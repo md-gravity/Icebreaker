@@ -1,10 +1,13 @@
-<div style="text-align: center; margin-bottom: 35px;">
-    <h1 style="margin-bottom: 5px;">Icebreaker</h1>
-    <i>🪢 <span style="color: chocolate;">Video Chat Application</span> based on WebRTC & JS & NodeJS & Kubernetes</i>
-</div>
-<div style="text-align: center;">
+<h1 align="center">Icebreaker</h1>
+<p align="center">
+    💘 <i>Video Chat Application based on WebRTC & JS & NodeJS & Kubernetes</i>
+</p>
+<br />
+<p align="center">
     <img src="https://cdn.dribbble.com/users/673247/screenshots/3929270/media/5134ca6144669a782ad63a6daea1d3cb.gif" alt="Icebreaker">
-</div>
+</p>
+
+<br />
 
 ### Technologies Stack
 - PNPM & Monorepo & Turbopack
@@ -14,7 +17,9 @@
 - NextJS
 - Docker & Kubernetes
 
-### Starting Point
+<br />
+
+## Starting Point
 It will be a steep climb, but step by step we will get there.
 <br />
 It's better to set it up once than every time. Good luck and have fun 🪖
@@ -62,4 +67,6 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 ## Finally... 😭 Start Icebreaker. Congratulations 🎉 🎉 🎉
 cd deployment/k8s
 skaffold dev 
+
+## Visit gravity.io 🚀
 ```

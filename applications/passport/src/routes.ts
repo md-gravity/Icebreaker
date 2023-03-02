@@ -11,7 +11,7 @@ const {router, procedure} = tRPC
 const passportRouter = router({
   createTemporalUser: procedure
     .input((body) => createTemporalUserInput.parse(body))
-    .mutation(async ({input}) => {
+    .mutation(async ({input, ctx}) => {
       const hash = crypto
         .createHash('md5')
         .update(
@@ -22,6 +22,9 @@ const passportRouter = router({
           })
         )
         .digest('hex')
+
+      const token = ''
+      ctx.res.setHeader('Set-Cookie', `token=${token}`)
 
       return getPassportDBClient().user.create({
         data: {
