@@ -6,7 +6,7 @@
   "types": "./build/index.d.ts",
   "files": ["build/**/*"],
   "scripts": {
-    "postinstall": "pnpm build",
+    "postinstall": "pnpm prisma:generate && pnpm build",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev --create-only --name",
     "prisma:deploy": "prisma migrate deploy",

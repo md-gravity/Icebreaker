@@ -5,5 +5,5 @@
 node_modules
 build
 .turbo
-tsconfig.tsbuildinfo\
+tsconfig.tsbuildinfo
 .env

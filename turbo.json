@@ -7,7 +7,7 @@
     },
     "build": {
       "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts"],
-      "outputs": ["build/**"],
+      "outputs": ["build/**", ".next/**"],
       "dependsOn": ["^build"]
     },
     "typecheck": {

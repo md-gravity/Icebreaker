@@ -7,7 +7,7 @@
     "typecheck": "turbo typecheck",
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
-    "======specific========": "==========tasks===========",
+    "=[dev]=============": "===================",
     "dev:passport": "turbo dev --filter=passport",
     "dev:web": "turbo dev --filter=web"
   },
