@@ -1,4 +1,4 @@
-name: Running @packages test
+name: Running @packages tests
 
 on:
   pull_request:
