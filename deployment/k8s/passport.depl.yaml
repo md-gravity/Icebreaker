@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: passport-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: passport
+  template:
+    metadata:
+      labels:
+        app: passport
+    spec:
+      containers:
+        - name: passport
+          image: dormammun/gravity-passport
+          env:
+            - name: PORT
+              value: "3000"
+            - name: DB_HOST
+              value: "postgresql://root:root@passport-db-cluster-ip-srv/passport"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: passport-cluster-ip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: passport
+  ports:
+    - name: passport
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+

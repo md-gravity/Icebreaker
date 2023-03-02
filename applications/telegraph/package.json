@@ -1,0 +1,38 @@
+{
+  "name": "@applications/telegraph",
+  "version": "0.0.1",
+  "main": "./build/server.js",
+  "types": "./build/server.d.ts",
+  "files": ["build/**/*"],
+  "scripts": {
+    "postinstall": "pnpm build",
+    "start": "tsx src",
+    "dev": "tsx --watch src",
+    "build": "tsc --build --clean && tsc && tsc-alias",
+    "typecheck": "tsc --noEmit true",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "dependencies": {
+    "@trpc/client": "^10.9.0",
+    "@trpc/server": "^10.9.0",
+    "ws": "^8.12.0",
+    "zod": "^3.20.2"
+  },
+  "devDependencies": {
+    "@packages/eslint-config-hub": "workspace:*",
+    "@packages/ts-configs": "workspace:*",
+    "@types/node": "^18.11.3",
+    "@types/ws": "^8.5.4",
+    "tsc-alias": "^1.8.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@packages/eslint-config-hub/.base.js"
+    ]
+  },
+  "prettier": "@packages/eslint-config-hub/.prettierrc.js"
+}

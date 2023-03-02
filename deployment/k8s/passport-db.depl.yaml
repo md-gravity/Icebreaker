@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: passport-db-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: passport-db
+  template:
+    metadata:
+      labels:
+        app: passport-db
+    spec:
+      containers:
+        - name: passport-db
+          image: postgres:12.2
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "root"
+            - name: POSTGRES_USER
+              value: "root"
+            - name: POSTGRES_DB
+              value: "passport"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: passport-db-cluster-ip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: passport-db
+  ports:
+    - name: passport-db
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
+

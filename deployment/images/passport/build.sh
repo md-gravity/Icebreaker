@@ -1,0 +1,1 @@
+docker build -t dormammun/gravity-passport:latest -f ./Dockerfile ../../..

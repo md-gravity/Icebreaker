@@ -1,0 +1,25 @@
+{
+  "extends": "@packages/ts-configs/next.json",
+  "compilerOptions": {
+    "paths": {
+      "@app/*": [
+        "./src/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "O:\\md-graviry\\chat\\applications\\web\\.next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

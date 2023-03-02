@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Frontend",
+  "extends": "./base",
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2019"]
+  }
+}

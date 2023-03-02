@@ -1,0 +1,27 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+    - ./*.depl.yaml
+    - ./*.srv.yaml
+build:
+  local:
+    push: false
+  artifacts:
+    - image: dormammun/gravity-passport
+      context: "../../"
+      sync:
+        manual:
+          - src: "applications/**/src/**/*"
+            dest: "."
+      docker:
+        dockerfile: "deployment/images/passport/Dockerfile"
+    - image: dormammun/gravity-web
+      context: "../../"
+      sync:
+        manual:
+          - src: "applications/**/src/**/*"
+            dest: "."
+      docker:
+        dockerfile: "deployment/images/web/Dockerfile"

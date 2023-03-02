@@ -1,0 +1,12 @@
+{
+  "name": "@packages/ts-configs",
+  "version": "1.0.0",
+  "private": true,
+  "files": [
+    "base.json",
+    "node.json",
+    "frontend.json",
+    "react.json",
+    "next.json"
+  ]
+}

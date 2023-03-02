@@ -1,0 +1,1 @@
+docker push dormammun/gravity-web:latest

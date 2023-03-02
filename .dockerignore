@@ -1,0 +1,8 @@
+**/node_modules
+**/build
+**/.turbo
+
+.idea
+.github
+.dockerignore
+deployment/k8s

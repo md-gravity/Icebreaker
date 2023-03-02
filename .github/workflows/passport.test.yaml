@@ -1,0 +1,19 @@
+name: Running @applications/passport tests
+
+on:
+  pull_request:
+    paths:
+      - 'applications/passport/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.22.0
+      - run: pnpm --filter @applications/passport... install
+      - run: pnpm --filter @packages/passport-db prisma:generate
+      - run: pnpm --filter @applications/passport... typecheck
+      - run: pnpm --filter @applications/passport... lint
+      - run: pnpm --filter @applications/passport... build
