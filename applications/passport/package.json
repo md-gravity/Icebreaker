@@ -7,17 +7,18 @@
   "scripts": {
     "postinstall": "pnpm build",
     "start": "tsx src",
-    "dev": "tsx --watch src",
+    "dev": "tsx watch src",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
+    "@packages/passport-db": "workspace:*",
+    "@packages/authentication": "workspace:*",
     "@trpc/client": "^10.9.0",
     "@trpc/server": "^10.9.0",
-    "zod": "^3.20.2",
-    "@packages/passport-db": "workspace:*"
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
