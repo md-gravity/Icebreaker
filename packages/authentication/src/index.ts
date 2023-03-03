@@ -1,1 +1,1 @@
-export * from './create-jwt-service'
+export * from './jwt-service'
