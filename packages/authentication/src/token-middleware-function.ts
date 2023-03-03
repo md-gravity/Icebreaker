@@ -2,6 +2,7 @@ import {AnyRootConfig, MiddlewareFunction, ProcedureParams} from '@trpc/server'
 import {IncomingMessage} from 'node:http'
 
 import {createJwtService} from './jwt.service'
+import {retrieveCookieToken} from './retrieve-cookie-token'
 
 const createTokenMiddlewareFunction = <Payload>(
   jwtService: ReturnType<typeof createJwtService<Payload>>
@@ -19,7 +20,7 @@ const createTokenMiddlewareFunction = <Payload>(
     AnyRootConfig,
     {
       req: IncomingMessage
-      jwt: null | Awaited<ReturnType<typeof jwtService.retrieveCookieToken>>
+      jwt: null | Awaited<ReturnType<typeof retrieveCookieToken>>
     },
     unknown,
     unknown,
@@ -32,11 +33,13 @@ const createTokenMiddlewareFunction = <Payload>(
     const {cookie} = ctx.req.headers
     /**
      * TODO
-     * 1) catch invalid token, expired token
+     * Catch invalid token, expired token
      */
+    const token = cookie ? await retrieveCookieToken(cookie) : null
+    const jwt = token ? await jwtService.verify(token) : null
     return next({
       ctx: {
-        jwt: cookie ? await jwtService.retrieveCookieToken(cookie) : null,
+        jwt,
       },
     })
   }

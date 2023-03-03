@@ -11,26 +11,7 @@ const createJwtService = <Payload>(privateKey: string) => {
   const verify = async (token: string): Promise<Payload> =>
     asyncVerify(token, privateKey)
 
-  async function retrieveCookieToken(cookie: string) {
-    const cookieTokenItem = cookie
-      .split(';')
-      .find((item) => item.includes('token'))
-
-    const tokenRegexp = /[=](?<token>.*)/u
-    const token = cookieTokenItem?.match(tokenRegexp)?.groups?.token ?? null
-
-    if (!token) {
-      return null
-    }
-
-    return {
-      payload: await verify(token),
-      token,
-    }
-  }
-
   return {
-    retrieveCookieToken,
     sign,
     verify,
   }
