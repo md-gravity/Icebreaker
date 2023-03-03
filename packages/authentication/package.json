@@ -1,33 +1,32 @@
 {
-  "name": "@applications/passport",
-  "version": "0.0.1",
-  "main": "./build/server.js",
-  "types": "./build/server.d.ts",
-  "files": ["build/**/*"],
+  "name": "@packages/authentication",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
   "scripts": {
     "postinstall": "pnpm build",
-    "start": "tsx src",
     "dev": "tsx watch src",
-    "build": "tsc --build --clean && tsc && tsc-alias",
+    "build": "tsc --build --clean && tsc",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@packages/passport-db": "workspace:*",
-    "@packages/authentication": "workspace:*",
-    "@trpc/client": "^10.9.0",
     "@trpc/server": "^10.9.0",
-    "zod": "^3.20.2"
+    "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
     "@packages/ts-configs": "workspace:*",
-    "@types/node": "^18.11.3",
-    "tsc-alias": "^1.8.2"
-  },
-  "engines": {
-    "node": ">=18"
+    "@types/node": "^18.11.3"
   },
   "eslintConfig": {
     "extends": [

@@ -6,7 +6,7 @@ Why? 🧸
 
 Please include a summary of the changes and 
 the related issue. Please also include relevant 
-motivation and context
+motivation and context.
 
 Screenshots (optional, more required)
 -->
@@ -22,7 +22,7 @@ List any dependencies that are required for this change.
 <!--
 How Reproduce? 🔬
 How To Test? 🔐
-Describe steps how test old and new behaviour.
+Describe steps how to test old and new behaviour.
 -->
 
 # Checklist

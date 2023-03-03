@@ -11,7 +11,7 @@
     "prisma:migrate": "prisma migrate dev --create-only --name",
     "prisma:deploy": "prisma migrate deploy",
     "prisma:studio": "prisma studio",
-    "dev": "tsx --watch src",
+    "dev": "tsx watch src",
     "build": "tsc --build --clean && tsc",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",

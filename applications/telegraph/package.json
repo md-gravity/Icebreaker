@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "pnpm build",
     "start": "tsx src",
-    "dev": "tsx --watch src",
+    "dev": "tsx watch src",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
