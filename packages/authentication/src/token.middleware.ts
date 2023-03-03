@@ -3,7 +3,7 @@ import {IncomingMessage} from 'node:http'
 
 import {createJwtService} from './jwt.service'
 
-const createFindTokenMiddleware = <Payload>(
+const createTokenMiddlewareFunction = <Payload>(
   jwtService: ReturnType<typeof createJwtService<Payload>>
 ): MiddlewareFunction<
   ProcedureParams<
@@ -28,7 +28,7 @@ const createFindTokenMiddleware = <Payload>(
     unknown
   >
 > =>
-  async function findTokenMiddleware({ctx, next}) {
+  async function tokenMiddlewareFunction({ctx, next}) {
     const {cookie} = ctx.req.headers
     /**
      * TODO
@@ -41,4 +41,4 @@ const createFindTokenMiddleware = <Payload>(
     })
   }
 
-export {createFindTokenMiddleware}
+export {createTokenMiddlewareFunction}

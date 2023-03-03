@@ -4,7 +4,9 @@
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
-  "files": ["build/**/*"],
+  "files": [
+    "build/**/*"
+  ],
   "scripts": {
     "postinstall": "pnpm build",
     "dev": "tsx watch src",
@@ -17,8 +19,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jsonwebtoken": "^9.0.0",
-    "@trpc/server": "^10.9.0"
+    "@trpc/server": "^10.9.0",
+    "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",

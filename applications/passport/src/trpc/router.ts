@@ -1,21 +1,13 @@
 import {createTemporalUserInput} from '@app/inputs/create-temporal-user.input'
 import {signInInput} from '@app/inputs/sign-in-user.input'
 import {signUpInput} from '@app/inputs/sign-up-user.input'
-import {findTokenMiddleware} from '@app/services/authentication.service'
 import {
   findUserByToken,
   signIn,
   signUp,
   temporalSignUp,
 } from '@app/services/sign-user.service'
-import {initTRPC} from '@trpc/server'
-
-import type {Context} from '@app/lib/create-context'
-
-const tRPC = initTRPC.context<Context>().create()
-const {router, procedure, middleware} = tRPC
-
-const findToken = middleware(findTokenMiddleware)
+import {procedure, router, tokenProcedure} from '@app/trpc/trpc'
 
 const passportRouter = router({
   createTemporalUser: procedure
@@ -31,7 +23,7 @@ const passportRouter = router({
 
       return user
     }),
-  currentUser: procedure.use(findToken).query(async ({ctx}) => {
+  currentUser: tokenProcedure.query(async ({ctx}) => {
     const {jwt} = ctx
     if (!jwt) {
       return null

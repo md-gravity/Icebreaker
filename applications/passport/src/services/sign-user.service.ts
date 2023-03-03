@@ -1,13 +1,15 @@
-import {CreateTemporalUserInputInterface} from '@app/inputs/create-temporal-user.input'
-import {SignInInputInterface} from '@app/inputs/sign-in-user.input'
-import {SignUpInputInterface} from '@app/inputs/sign-up-user.input'
-import {jwtService, TokenPayload} from '@app/services/authentication.service'
+import {jwtService} from '@app/services/authentication.service'
 import {
   comparePasswords,
   createPasswordHash,
 } from '@app/services/password.service'
 import {getPassportDBClient} from '@packages/passport-db'
 import crypto from 'node:crypto'
+
+import type {CreateTemporalUserInputInterface} from '@app/inputs/create-temporal-user.input'
+import type {SignInInputInterface} from '@app/inputs/sign-in-user.input'
+import type {SignUpInputInterface} from '@app/inputs/sign-up-user.input'
+import type {TokenPayload} from '@app/services/authentication.service'
 
 /**
  * TODO: remove password from payload

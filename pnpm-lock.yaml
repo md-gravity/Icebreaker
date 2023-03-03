@@ -106,9 +106,11 @@ importers:
       '@packages/ts-configs': workspace:*
       '@trpc/server': ^10.9.0
       '@types/node': ^18.11.3
+      i: ^0.3.7
       jsonwebtoken: ^9.0.0
     dependencies:
       '@trpc/server': 10.9.0
+      i: 0.3.7
       jsonwebtoken: 9.0.0
     devDependencies:
       '@packages/eslint-config-hub': link:../eslint-config-hub
@@ -2582,6 +2584,11 @@ packages:
     dependencies:
       function-bind: 1.1.1
     dev: true
+
+  /i/0.3.7:
+    resolution: {integrity: sha512-FYz4wlXgkQwIPqhzC5TdNMLSE5+GS1IIDJZY/1ZiEPCT2S3COUVZeT5OW4BmW4r5LHLQuOosSwsvnroG9GR59Q==}
+    engines: {node: '>=0.4'}
+    dev: false
 
   /ignore/5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}

@@ -1,2 +1,2 @@
 export * from './jwt.service'
-export * from './find-token.middleware'
+export * from './token.middleware'
