@@ -104,12 +104,16 @@ importers:
     specifiers:
       '@packages/eslint-config-hub': workspace:*
       '@packages/ts-configs': workspace:*
+      '@trpc/server': ^10.9.0
+      '@types/node': ^18.11.3
       jsonwebtoken: ^9.0.0
     dependencies:
+      '@trpc/server': 10.9.0
       jsonwebtoken: 9.0.0
     devDependencies:
       '@packages/eslint-config-hub': link:../eslint-config-hub
       '@packages/ts-configs': link:../ts-configs
+      '@types/node': 18.14.2
 
   packages/eslint-config-hub:
     specifiers:

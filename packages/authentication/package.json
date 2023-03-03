@@ -17,11 +17,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jsonwebtoken": "^9.0.0"
+    "jsonwebtoken": "^9.0.0",
+    "@trpc/server": "^10.9.0"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
-    "@packages/ts-configs": "workspace:*"
+    "@packages/ts-configs": "workspace:*",
+    "@types/node": "^18.11.3"
   },
   "eslintConfig": {
     "extends": [

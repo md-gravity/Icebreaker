@@ -1,7 +1,7 @@
 import {CreateTemporalUserInputInterface} from '@app/inputs/create-temporal-user.input'
 import {SignInInputInterface} from '@app/inputs/sign-in-user.input'
 import {SignUpInputInterface} from '@app/inputs/sign-up-user.input'
-import {jwtService} from '@app/services/authentication.service'
+import {jwtService, TokenPayload} from '@app/services/authentication.service'
 import {
   comparePasswords,
   createPasswordHash,
@@ -28,6 +28,11 @@ async function signUp(input: SignUpInputInterface) {
       username: input.username,
     },
   })
+
+  /**
+   * TODO
+   * Store tokens in session db; sessions[token, userId]
+   */
   const token = await jwtService.sign({userId: user.id})
 
   return {token, user}
@@ -43,6 +48,11 @@ async function temporalSignUp(input: CreateTemporalUserInputInterface) {
       username: input.username,
     },
   })
+
+  /**
+   * TODO
+   * Store tokens in session db; sessions[token, userId]
+   */
   const token = await jwtService.sign({userId: user.id})
 
   return {token, user}
@@ -60,26 +70,23 @@ async function signIn(input: SignInInputInterface) {
     throw new Error('Invalid credentials')
   }
 
+  /**
+   * TODO
+   * Store tokens in session db; sessions[token, userId]
+   */
   const token = await jwtService.sign({userId: user.id})
 
   return {token, user}
 }
 
-async function currentUser(cookie: string) {
+async function findUserByToken(tokenPayload: TokenPayload) {
   /**
    * TODO
-   * 1) catch invalid token, expired token
-   * 2) add secure property
-   * 3) store tokens in session db; sessions[token, userId]
+   * Verify and get user from sessions[token, userId] -> users[id] <- User
    */
-  const {payload} = await jwtService.retrieveCookieToken(cookie)
-  if (payload) {
-    return getPassportDBClient().user.findUnique({
-      where: {id: payload.userId},
-    })
-  }
-
-  return null
+  return getPassportDBClient().user.findUnique({
+    where: {id: tokenPayload.userId},
+  })
 }
 
 function createHashForTemporalUser(username) {
@@ -95,4 +102,4 @@ function createHashForTemporalUser(username) {
     .digest('hex')
 }
 
-export {signUp, signIn, currentUser, temporalSignUp}
+export {signUp, signIn, findUserByToken, temporalSignUp}
