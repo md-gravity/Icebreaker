@@ -18,6 +18,7 @@ importers:
     specifiers:
       '@packages/authentication': workspace:*
       '@packages/eslint-config-hub': workspace:*
+      '@packages/eventer': workspace:*
       '@packages/passport-db': workspace:*
       '@packages/ts-configs': workspace:*
       '@trpc/client': ^10.9.0
@@ -33,6 +34,7 @@ importers:
       zod: 3.20.2
     devDependencies:
       '@packages/eslint-config-hub': link:../../packages/eslint-config-hub
+      '@packages/eventer': link:../../packages/eventer
       '@packages/ts-configs': link:../../packages/ts-configs
       '@types/node': 18.11.18
       tsc-alias: 1.8.2

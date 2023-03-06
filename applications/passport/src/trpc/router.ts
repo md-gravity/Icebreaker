@@ -8,12 +8,15 @@ import {
   temporalSignUp,
 } from '@app/services/sign-user.service'
 import {procedure, router, tokenProcedure} from '@app/trpc/trpc'
+import {createUserEventer, getNATSClient} from '@packages/eventer'
 
 const passportRouter = router({
   createTemporalUser: procedure
     .input((body) => createTemporalUserInput.parse(body))
     .mutation(async ({input, ctx}) => {
       const {user, token} = await temporalSignUp(input)
+
+      await createUserEventer(getNATSClient().client).publish(user)
 
       ctx.res.setHeader('Set-Cookie', `token=${token}`)
 

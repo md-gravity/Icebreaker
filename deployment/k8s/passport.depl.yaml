@@ -20,6 +20,14 @@ spec:
               value: "3000"
             - name: DB_HOST
               value: "postgresql://root:root@passport-db-cluster-ip-srv/passport"
+            - name: NATS_URL
+              value: 'http://nats-cluster-ip-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: '@gravity/icebreaker'
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
 ---
 apiVersion: v1
 kind: Service
