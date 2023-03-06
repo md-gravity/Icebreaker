@@ -17,7 +17,6 @@ const passportRouter = router({
       const {user, token} = await temporalSignUp(input)
 
       await createUserEventer(getNATSClient().client).publish(user)
-
       ctx.res.setHeader('Set-Cookie', `token=${token}`)
 
       return user
@@ -44,6 +43,7 @@ const passportRouter = router({
     .mutation(async ({input, ctx}) => {
       const {user, token} = await signUp(input)
 
+      await createUserEventer(getNATSClient().client).publish(user)
       ctx.res.setHeader('Set-Cookie', `token=${token}`)
 
       return user
