@@ -31,10 +31,6 @@ const createTokenMiddlewareFunction = <Payload>(
 > =>
   async function tokenMiddlewareFunction({ctx, next}) {
     const {cookie} = ctx.req.headers
-    /**
-     * TODO
-     * Catch invalid token, expired token
-     */
     const token = cookie ? await retrieveCookieToken(cookie) : null
     const jwt = token ? await jwtService.verify(token) : null
     return next({

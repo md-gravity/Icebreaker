@@ -11,10 +11,6 @@ import type {SignInInputInterface} from '@app/inputs/sign-in-user.input'
 import type {SignUpInputInterface} from '@app/inputs/sign-up-user.input'
 import type {TokenPayload} from '@app/services/authentication.service'
 
-/**
- * TODO: remove password from payload
- */
-
 async function signUp(input: SignUpInputInterface) {
   if (
     await getPassportDBClient().user.findUnique({where: {email: input.email}})
@@ -31,10 +27,6 @@ async function signUp(input: SignUpInputInterface) {
     },
   })
 
-  /**
-   * TODO
-   * Store tokens in session db; sessions[token, userId]
-   */
   const token = await jwtService.sign({userId: user.id})
 
   return {token, user}
@@ -51,10 +43,6 @@ async function temporalSignUp(input: CreateTemporalUserInputInterface) {
     },
   })
 
-  /**
-   * TODO
-   * Store tokens in session db; sessions[token, userId]
-   */
   const token = await jwtService.sign({userId: user.id})
 
   return {token, user}
@@ -72,20 +60,12 @@ async function signIn(input: SignInInputInterface) {
     throw new Error('Invalid credentials')
   }
 
-  /**
-   * TODO
-   * Store tokens in session db; sessions[token, userId]
-   */
   const token = await jwtService.sign({userId: user.id})
 
   return {token, user}
 }
 
 async function findUserByToken(tokenPayload: TokenPayload) {
-  /**
-   * TODO
-   * Verify and get user from sessions[token, userId] -> users[id] <- User
-   */
   return getPassportDBClient().user.findUnique({
     where: {id: tokenPayload.userId},
   })

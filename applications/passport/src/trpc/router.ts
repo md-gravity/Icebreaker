@@ -15,10 +15,6 @@ const passportRouter = router({
     .mutation(async ({input, ctx}) => {
       const {user, token} = await temporalSignUp(input)
 
-      /**
-       * TODO
-       * Add secure property
-       */
       ctx.res.setHeader('Set-Cookie', `token=${token}`)
 
       return user
@@ -36,10 +32,6 @@ const passportRouter = router({
     .mutation(async ({input, ctx}) => {
       const {user, token} = await signIn(input)
 
-      /**
-       * TODO
-       * Add secure property
-       */
       ctx.res.setHeader('Set-Cookie', `token=${token}`)
 
       return user
@@ -49,10 +41,6 @@ const passportRouter = router({
     .mutation(async ({input, ctx}) => {
       const {user, token} = await signUp(input)
 
-      /**
-       * TODO
-       * Add secure property
-       */
       ctx.res.setHeader('Set-Cookie', `token=${token}`)
 
       return user
