@@ -23,6 +23,7 @@
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
     "@packages/ts-configs": "workspace:*",
+    "@packages/eventer": "workspace:*",
     "@types/node": "^18.11.3",
     "tsc-alias": "^1.8.2"
   },

@@ -1,5 +1,5 @@
 {
-  "name": "@graviry/icebreaker",
+  "name": "@gravity/icebreaker",
   "version": "1.0.0",
   "scripts": {
     "dev": "turbo dev",

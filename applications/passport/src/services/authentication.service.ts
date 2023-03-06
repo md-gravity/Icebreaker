@@ -1,10 +1,8 @@
 import {createJwtService} from '@packages/authentication'
 
-interface TokenPayload {
-  userId: number
-}
+import type {Payload as TokenPayload} from '@packages/authentication'
 
-const jwtService = createJwtService<TokenPayload>('secret')
+const jwtService = createJwtService('secret')
 
 export {jwtService}
 export type {TokenPayload}

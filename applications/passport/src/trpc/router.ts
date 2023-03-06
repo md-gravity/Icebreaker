@@ -8,6 +8,7 @@ import {
   temporalSignUp,
 } from '@app/services/sign-user.service'
 import {procedure, router, tokenProcedure} from '@app/trpc/trpc'
+import {createUserEventer, getNATSClient} from '@packages/eventer'
 
 const passportRouter = router({
   createTemporalUser: procedure
@@ -15,10 +16,7 @@ const passportRouter = router({
     .mutation(async ({input, ctx}) => {
       const {user, token} = await temporalSignUp(input)
 
-      /**
-       * TODO
-       * Add secure property
-       */
+      await createUserEventer(getNATSClient().client).publish(user)
       ctx.res.setHeader('Set-Cookie', `token=${token}`)
 
       return user
@@ -29,17 +27,13 @@ const passportRouter = router({
       return null
     }
 
-    return findUserByToken(jwt.payload)
+    return findUserByToken(jwt)
   }),
   signIn: procedure
     .input((body) => signInInput.parse(body))
     .mutation(async ({input, ctx}) => {
       const {user, token} = await signIn(input)
 
-      /**
-       * TODO
-       * Add secure property
-       */
       ctx.res.setHeader('Set-Cookie', `token=${token}`)
 
       return user
@@ -49,10 +43,7 @@ const passportRouter = router({
     .mutation(async ({input, ctx}) => {
       const {user, token} = await signUp(input)
 
-      /**
-       * TODO
-       * Add secure property
-       */
+      await createUserEventer(getNATSClient().client).publish(user)
       ctx.res.setHeader('Set-Cookie', `token=${token}`)
 
       return user

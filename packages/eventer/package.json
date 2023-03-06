@@ -1,5 +1,5 @@
 {
-  "name": "@packages/authentication",
+  "name": "@packages/eventer",
   "version": "1.0.0",
   "description": "",
   "main": "./build/index.js",
@@ -19,8 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@trpc/server": "^10.9.0",
-    "jsonwebtoken": "^9.0.0"
+    "node-nats-streaming": "^0.3.2"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
