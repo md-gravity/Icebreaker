@@ -3,7 +3,7 @@ name: Running @packages tests
 on:
   pull_request:
     paths:
-      - 'applications/packages/**'
+      - 'packages/**'
 jobs:
   build:
     runs-on: ubuntu-latest
