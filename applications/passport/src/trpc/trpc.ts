@@ -7,7 +7,9 @@ import type {Context} from '@app/trpc/context'
 const tRPC = initTRPC.context<Context>().create()
 const {router, procedure, middleware} = tRPC
 
-const tokenProcedure = procedure.use(createTokenMiddlewareFunction(jwtService))
+const tokenProcedure = procedure.use(
+  createTokenMiddlewareFunction(jwtService.verify)
+)
 
 export {router, procedure, middleware}
 export {tokenProcedure}

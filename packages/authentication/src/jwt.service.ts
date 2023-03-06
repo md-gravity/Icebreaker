@@ -4,7 +4,11 @@ import {promisify} from 'node:util'
 const asyncSign = promisify(jwt.sign)
 const asyncVerify = promisify(jwt.verify)
 
-const createJwtService = <Payload>(privateKey: string) => {
+interface Payload {
+  userId: number
+}
+
+const createJwtService = (privateKey: string) => {
   const sign = (payload: Payload): Promise<string> =>
     asyncSign(payload, privateKey, {algorithm: 'HS256'})
 
@@ -18,3 +22,4 @@ const createJwtService = <Payload>(privateKey: string) => {
 }
 
 export {createJwtService}
+export type {Payload}

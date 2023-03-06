@@ -25,7 +25,7 @@ const passportRouter = router({
       return null
     }
 
-    return findUserByToken(jwt.payload)
+    return findUserByToken(jwt)
   }),
   signIn: procedure
     .input((body) => signInInput.parse(body))
