@@ -17,6 +17,14 @@ build:
             dest: "."
       docker:
         dockerfile: "deployment/images/passport/Dockerfile"
+    - image: dormammun/gravity-archivist
+      context: "../../"
+      sync:
+        manual:
+          - src: "applications/**/src/**/*"
+            dest: "."
+      docker:
+        dockerfile: "deployment/images/archivist/Dockerfile"
     - image: dormammun/gravity-web
       context: "../../"
       sync:

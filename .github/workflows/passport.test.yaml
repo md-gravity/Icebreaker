@@ -1,5 +1,8 @@
 name: Running @applications/passport tests
 
+env:
+  JWT_SECRET_KEY: secret-key
+
 on:
   pull_request:
     paths:

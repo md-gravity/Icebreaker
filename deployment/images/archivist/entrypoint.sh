@@ -1,0 +1,1 @@
+pnpm --filter @applications/archivist dev

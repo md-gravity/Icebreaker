@@ -1,12 +1,10 @@
 import {AnyRootConfig, MiddlewareFunction, ProcedureParams} from '@trpc/server'
 import {IncomingMessage} from 'node:http'
 
-import {createJwtService, Payload} from './jwt.service'
-import {retrieveCookieToken} from './retrieve-cookie-token'
+import {verify, Payload} from './jwt.service'
+import {retrieveCookieToken} from './lib/retrieve-cookie-token'
 
-const createTokenMiddlewareFunction = (
-  verify: ReturnType<typeof createJwtService>['verify']
-): MiddlewareFunction<
+const tokenMiddlewareFunction: MiddlewareFunction<
   ProcedureParams<
     AnyRootConfig,
     {req: IncomingMessage},
@@ -28,16 +26,15 @@ const createTokenMiddlewareFunction = (
     unknown,
     unknown
   >
-> =>
-  async function tokenMiddlewareFunction({ctx, next}) {
-    const {cookie} = ctx.req.headers
-    const token = cookie ? await retrieveCookieToken(cookie) : null
-    const jwt = token ? await verify(token) : null
-    return next({
-      ctx: {
-        jwt,
-      },
-    })
-  }
+> = async ({ctx, next}) => {
+  const {cookie} = ctx.req.headers
+  const token = cookie ? await retrieveCookieToken(cookie) : null
+  const jwt = token ? await verify(token) : null
+  return next({
+    ctx: {
+      jwt,
+    },
+  })
+}
 
-export {createTokenMiddlewareFunction}
+export {tokenMiddlewareFunction}

@@ -14,6 +14,29 @@ importers:
       turbo: 1.6.3
       typescript: 4.9.4
 
+  applications/archivist:
+    specifiers:
+      '@packages/authentication': workspace:*
+      '@packages/eslint-config-hub': workspace:*
+      '@packages/eventer': workspace:*
+      '@packages/ts-configs': workspace:*
+      '@trpc/client': ^10.9.0
+      '@trpc/server': ^10.9.0
+      '@types/node': ^18.11.3
+      tsc-alias: ^1.8.2
+      zod: ^3.20.2
+    dependencies:
+      '@packages/authentication': link:../../packages/authentication
+      '@trpc/client': 10.9.0_@trpc+server@10.9.0
+      '@trpc/server': 10.9.0
+      zod: 3.20.2
+    devDependencies:
+      '@packages/eslint-config-hub': link:../../packages/eslint-config-hub
+      '@packages/eventer': link:../../packages/eventer
+      '@packages/ts-configs': link:../../packages/ts-configs
+      '@types/node': 18.14.2
+      tsc-alias: 1.8.2
+
   applications/passport:
     specifiers:
       '@packages/authentication': workspace:*
@@ -902,7 +925,7 @@ packages:
   /@types/ws/8.5.4:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
     dependencies:
-      '@types/node': 18.11.18
+      '@types/node': 18.14.2
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.54.0_zoonaykeg3xxmj2rwkmnkyt2om:

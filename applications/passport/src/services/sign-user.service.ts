@@ -1,15 +1,15 @@
-import {jwtService} from '@app/services/authentication.service'
 import {
   comparePasswords,
   createPasswordHash,
 } from '@app/services/password.service'
+import {sign} from '@packages/authentication'
 import {getPassportDBClient} from '@packages/passport-db'
 import crypto from 'node:crypto'
 
 import type {CreateTemporalUserInputInterface} from '@app/inputs/create-temporal-user.input'
 import type {SignInInputInterface} from '@app/inputs/sign-in-user.input'
 import type {SignUpInputInterface} from '@app/inputs/sign-up-user.input'
-import type {TokenPayload} from '@app/services/authentication.service'
+import type {Payload as TokenPayload} from '@packages/authentication'
 
 async function signUp(input: SignUpInputInterface) {
   if (
@@ -27,7 +27,7 @@ async function signUp(input: SignUpInputInterface) {
     },
   })
 
-  const token = await jwtService.sign({userId: user.id})
+  const token = await sign({userId: user.id})
 
   return {token, user}
 }
@@ -43,7 +43,7 @@ async function temporalSignUp(input: CreateTemporalUserInputInterface) {
     },
   })
 
-  const token = await jwtService.sign({userId: user.id})
+  const token = await sign({userId: user.id})
 
   return {token, user}
 }
@@ -60,7 +60,7 @@ async function signIn(input: SignInInputInterface) {
     throw new Error('Invalid credentials')
   }
 
-  const token = await jwtService.sign({userId: user.id})
+  const token = await sign({userId: user.id})
 
   return {token, user}
 }

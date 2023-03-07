@@ -1,7 +1,8 @@
 name: Running @applications/web tests
 
 env:
-  NEXT_PUBLIC_PASSPORT_API_URL: fake-passport-api-url
+  NEXT_PUBLIC_PASSPORT_API_URL: fake-passport-local-url
+  NEXT_PUBLIC_TELEGRAPH_API_URL: fake-passport-local-url
 
 on:
   pull_request:

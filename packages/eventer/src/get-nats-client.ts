@@ -27,14 +27,20 @@ const getNATSClient: GetNATSClient = () => ({
   connect({clusterId, clientId, url}: ConnectOpts) {
     if (!getNATSClient.client) {
       const client = nats.connect(clusterId, clientId, {url})
+
       return new Promise<Stan>((resolve, reject) => {
         client.on('connect', () => {
-          console.log('✅ Connected to NATS')
+          console.log(`✅ [${clientId}]: Connected to NATS`)
 
           getNATSClient.client = client
           resolve(client)
         })
+        client.on('close', () => {
+          console.log(`⚠️ [${clusterId}]: NATS connection closed!`)
+          process.exit()
+        })
         client.on('error', (err) => {
+          console.error(`❗️️[${clusterId}]: NATS connection closed!`)
           reject(err)
         })
       })

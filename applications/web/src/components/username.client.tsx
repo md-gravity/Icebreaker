@@ -1,8 +1,9 @@
 'use client'
 import {FormEvent, useState} from 'react'
 
-import {passportClient} from '@app/lib/clients'
-function Username() {
+import {passportClient} from '@app/lib/passport.client'
+
+function UsernameClient() {
   const [username, setUsername] = useState('')
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,4 +41,4 @@ function Username() {
   )
 }
 
-export {Username}
+export {UsernameClient}
