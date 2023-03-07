@@ -16,7 +16,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "/Users/dormammun/code/md-gravity/Icebreaker/applications/web/.next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

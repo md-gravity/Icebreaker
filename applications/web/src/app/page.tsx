@@ -1,9 +1,9 @@
-import {Username} from '@app/app/components/username'
+import {UsernameClient} from '@app/components/username.client'
 
 export default function Home() {
   return (
     <main>
-      <Username />
+      <UsernameClient />
     </main>
   )
 }

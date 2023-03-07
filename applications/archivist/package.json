@@ -1,5 +1,5 @@
 {
-  "name": "@applications/passport",
+  "name": "@applications/archivist",
   "version": "0.0.1",
   "main": "./build/server.js",
   "types": "./build/server.d.ts",
@@ -14,7 +14,6 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
-    "@packages/passport-db": "workspace:*",
     "@packages/authentication": "workspace:*",
     "@trpc/client": "^10.9.0",
     "@trpc/server": "^10.9.0",

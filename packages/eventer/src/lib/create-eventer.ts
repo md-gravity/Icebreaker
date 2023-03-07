@@ -1,7 +1,7 @@
 import {parseMessage} from './parse-message'
 
 import type {BaseEvent} from '../events/event'
-import type {Stan, Message} from './get-nats-client'
+import type {Stan, Message} from '../get-nats-client'
 
 interface ListenerOptions<Data> {
   ackWait: number
@@ -23,7 +23,9 @@ const createEventer = <Event extends BaseEvent>(type: Event['type']) =>
           createOptions()
         )
         subscription.on('message', (msg: Message) => {
-          console.log(`message received: ${type} / ${queueGroupName}`)
+          console.log(
+            `💎 [${queueGroupName}] > Message received: "${type}" / ${queueGroupName}`
+          )
           onMessage(parseMessage(msg), msg)
         })
 

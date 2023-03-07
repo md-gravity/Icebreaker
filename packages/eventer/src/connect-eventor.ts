@@ -1,6 +1,6 @@
 import {getNATSClient} from './get-nats-client'
 
-const connectEventer = async () => {
+const connectEventor = async () => {
   if (!process.env.NATS_CLUSTER_ID) {
     throw new Error('Define "NATS_CLUSTER_ID" in env')
   }
@@ -16,10 +16,6 @@ const connectEventer = async () => {
     clusterId: process.env.NATS_CLUSTER_ID,
     url: process.env.NATS_URL,
   })
-  client.on('close', () => {
-    console.log('⚠️ NATS connection closed!')
-    process.exit()
-  })
 
   process.on('SIGINT', () => client.close())
   process.on('SIGTERM', () => client.close())
@@ -27,4 +23,4 @@ const connectEventer = async () => {
   return client
 }
 
-export {connectEventer}
+export {connectEventor}
