@@ -4,7 +4,7 @@ const archivistRouter = router({
   createRoom: procedure.mutation(async ({input, ctx}) => ({})),
 })
 
-type PassportRouter = typeof archivistRouter
+type ArchivistRouter = typeof archivistRouter
 
 export {archivistRouter}
-export type {PassportRouter}
+export type {ArchivistRouter}

@@ -2,7 +2,7 @@ import {createContext} from '@app/trpc/context'
 import {archivistRouter} from '@app/trpc/router'
 import {createHTTPHandler} from '@trpc/server/adapters/standalone'
 
-import type {PassportRouter} from '@app/trpc/router'
+import type {ArchivistRouter} from '@app/trpc/router'
 
 const trpcHandler = createHTTPHandler({
   createContext,
@@ -10,4 +10,4 @@ const trpcHandler = createHTTPHandler({
 })
 
 export {trpcHandler}
-export type {PassportRouter}
+export type {ArchivistRouter}
