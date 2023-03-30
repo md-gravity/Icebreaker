@@ -7,6 +7,7 @@ interface CreateUserEvent {
     id: number
     email: string
     temporal: boolean
+    username: string
   }
 }
 

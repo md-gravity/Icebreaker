@@ -1,4 +1,4 @@
-import {PrismaClient} from '@prisma/client'
+import {PrismaClient} from '.prisma/client'
 
 interface GetArchivistDbClient {
   prisma?: PrismaClient
@@ -16,4 +16,4 @@ const getArchivistDbClient: GetArchivistDbClient = () => {
 }
 
 export {getArchivistDbClient}
-export * from '@prisma/client'
+export * from '.prisma/client'

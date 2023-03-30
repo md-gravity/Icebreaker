@@ -1,3 +1,4 @@
+import {getArchivistDbClient} from '@packages/archivist-db'
 import {createUserEventer, connectEventor as connect} from '@packages/eventer'
 
 const QUEUE_GROUP_NAME = 'archivist-service'
@@ -9,7 +10,7 @@ const connectEventor = async () => {
   createUserEventer(client).listen({
     ackWait: ACK_WAIT_ITERATOR_TIMEOUT,
     onMessage: async (data, msg) => {
-      console.log(data)
+      await getArchivistDbClient().user.create({data})
       msg.ack()
     },
     queueGroupName: QUEUE_GROUP_NAME,

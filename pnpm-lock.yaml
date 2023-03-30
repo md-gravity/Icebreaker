@@ -16,6 +16,7 @@ importers:
 
   applications/archivist:
     specifiers:
+      '@packages/archivist-db': workspace:*
       '@packages/authentication': workspace:*
       '@packages/eslint-config-hub': workspace:*
       '@packages/eventer': workspace:*
@@ -26,6 +27,7 @@ importers:
       tsc-alias: ^1.8.2
       zod: ^3.20.2
     dependencies:
+      '@packages/archivist-db': link:../../packages/archivist-db
       '@packages/authentication': link:../../packages/authentication
       '@trpc/client': 10.9.0_@trpc+server@10.9.0
       '@trpc/server': 10.9.0
@@ -1851,6 +1853,7 @@ packages:
 
   /eslint-config-prettier/8.5.0:
     resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
+    hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
     dependencies:
