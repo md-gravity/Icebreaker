@@ -37,6 +37,7 @@ kind: Service
 metadata:
   name: nats-cluster-ip-srv
 spec:
+  type: ClusterIP
   selector:
     app: nats
   ports:

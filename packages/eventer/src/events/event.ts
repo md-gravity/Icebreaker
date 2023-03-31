@@ -1,5 +1,6 @@
 enum EventTypes {
   CreateUser = 'createUser',
+  CreateRoom = 'createRoom',
 }
 
 interface BaseEvent {

@@ -24,7 +24,7 @@ const createEventer = <Event extends BaseEvent>(type: Event['type']) =>
         )
         subscription.on('message', (msg: Message) => {
           console.log(
-            `💎 [${queueGroupName}] > Message received: "${type}" / ${queueGroupName}`
+            `💌 [${queueGroupName}] > Message received: "${type}" / ${queueGroupName}`
           )
           onMessage(parseMessage(msg), msg)
         })
@@ -46,7 +46,7 @@ const createEventer = <Event extends BaseEvent>(type: Event['type']) =>
               return reject(err)
             }
 
-            console.log(`✅ Message "${type}" succeed`)
+            console.log(`📨 Message "${type}" sent`)
             resolve(guid)
           })
         }),

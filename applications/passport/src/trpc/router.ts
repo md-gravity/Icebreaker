@@ -14,10 +14,13 @@ const passportRouter = router({
   createTemporalUser: procedure
     .input((body) => createTemporalUserInput.parse(body))
     .mutation(async ({input, ctx}) => {
-      const {user, token} = await temporalSignUp(input)
+      const {
+        user: {passwordHash, ...user},
+        token,
+      } = await temporalSignUp(input)
 
       await createUserEventer(getNATSClient().client).publish(user)
-      ctx.res.setHeader('Set-Cookie', `token=${token}`)
+      ctx.res.setHeader('Set-Cookie', `token=${token}; domain=gravity.io`)
 
       return user
     }),
@@ -34,17 +37,20 @@ const passportRouter = router({
     .mutation(async ({input, ctx}) => {
       const {user, token} = await signIn(input)
 
-      ctx.res.setHeader('Set-Cookie', `token=${token}`)
+      ctx.res.setHeader('Set-Cookie', `token=${token}; domain=gravity.io`)
 
       return user
     }),
   signUp: procedure
     .input((body) => signUpInput.parse(body))
     .mutation(async ({input, ctx}) => {
-      const {user, token} = await signUp(input)
+      const {
+        user: {passwordHash, ...user},
+        token,
+      } = await signUp(input)
 
       await createUserEventer(getNATSClient().client).publish(user)
-      ctx.res.setHeader('Set-Cookie', `token=${token}`)
+      ctx.res.setHeader('Set-Cookie', `token=${token}; domain=gravity.io`)
 
       return user
     }),
