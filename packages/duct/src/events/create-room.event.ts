@@ -1,4 +1,4 @@
-import {createEventer} from '../lib/create-eventer'
+import {createEvent} from '../create-event'
 import {EventTypes} from './event'
 
 interface CreateRoomEvent {
@@ -10,7 +10,7 @@ interface CreateRoomEvent {
   }
 }
 
-const createRoomEventer = createEventer<CreateRoomEvent>(EventTypes.CreateRoom)
+const createRoomEvent = createEvent<CreateRoomEvent>(EventTypes.CreateRoom)
 
-export {createRoomEventer}
+export {createRoomEvent}
 export type {CreateRoomEvent}

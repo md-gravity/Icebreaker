@@ -8,7 +8,7 @@ import {
   temporalSignUp,
 } from '@app/services/sign-user.service'
 import {procedure, router, tokenProcedure} from '@app/trpc/trpc'
-import {createUserEventer, getNATSClient} from '@packages/eventer'
+import {createUserEvent, getNATSClient} from '@packages/duct'
 
 const passportRouter = router({
   createTemporalUser: procedure
@@ -19,7 +19,8 @@ const passportRouter = router({
         token,
       } = await temporalSignUp(input)
 
-      await createUserEventer(getNATSClient().client).publish(user)
+      await createUserEvent(getNATSClient().client).publish(user)
+
       ctx.res.setHeader('Set-Cookie', `token=${token}; domain=gravity.io`)
 
       return user
@@ -49,7 +50,8 @@ const passportRouter = router({
         token,
       } = await signUp(input)
 
-      await createUserEventer(getNATSClient().client).publish(user)
+      await createUserEvent(getNATSClient().client).publish(user)
+
       ctx.res.setHeader('Set-Cookie', `token=${token}; domain=gravity.io`)
 
       return user

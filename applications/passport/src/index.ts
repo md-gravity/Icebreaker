@@ -1,9 +1,9 @@
 import {server} from '@app/server'
 
-import {connectEventor} from './services/eventer.service'
+import {connectDuct} from './services/duct.service'
 
 const start = async () => {
-  await connectEventor()
+  await connectDuct()
 
   const port = process.env.PORT
   if (!port) {

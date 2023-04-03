@@ -1,7 +1,7 @@
-import {parseMessage} from './parse-message'
+import {parseMessage} from './lib/parse-message'
 
-import type {BaseEvent} from '../events/event'
-import type {Stan, Message} from '../get-nats-client'
+import type {BaseEvent} from './events/event'
+import type {Stan, Message} from './get-nats-client'
 
 interface ListenerOptions<Data> {
   ackWait: number
@@ -9,7 +9,7 @@ interface ListenerOptions<Data> {
   onMessage: (data: Data, msg: Message) => void
 }
 
-const createEventer = <Event extends BaseEvent>(type: Event['type']) =>
+const createEvent = <Event extends BaseEvent>(type: Event['type']) =>
   function eventer(client: Stan) {
     return {
       listen: ({
@@ -53,5 +53,5 @@ const createEventer = <Event extends BaseEvent>(type: Event['type']) =>
     }
   }
 
-export {createEventer}
+export {createEvent}
 export type {ListenerOptions}

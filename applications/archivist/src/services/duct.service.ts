@@ -1,17 +1,17 @@
 import {getArchivistDbClient} from '@packages/archivist-db'
 import {
-  createUserEventer,
-  connectEventor as connect,
-  createRoomEventer,
-} from '@packages/eventer'
+  createUserEvent,
+  connectDuct as connect,
+  createRoomEvent,
+} from '@packages/duct'
 
 const QUEUE_GROUP_NAME = 'archivist-service'
 const ACK_WAIT_ITERATOR_TIMEOUT = 5000
 
-const connectEventor = async () => {
+const connectDuct = async () => {
   const client = await connect()
 
-  createUserEventer(client).listen({
+  createUserEvent(client).listen({
     ackWait: ACK_WAIT_ITERATOR_TIMEOUT,
     onMessage: async (data, msg) => {
       await getArchivistDbClient().user.create({data})
@@ -19,7 +19,8 @@ const connectEventor = async () => {
     },
     queueGroupName: QUEUE_GROUP_NAME,
   })
-  createRoomEventer(client).listen({
+
+  createRoomEvent(client).listen({
     ackWait: ACK_WAIT_ITERATOR_TIMEOUT,
     onMessage: async (data, msg) => {
       console.log(data)
@@ -31,4 +32,4 @@ const connectEventor = async () => {
   return client
 }
 
-export {connectEventor}
+export {connectDuct}
