@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "pnpm build",
     "start": "tsx src",
-    "dev": "tsx watch src --clear-screen=false",
+    "dev": "tsx watch --clear-screen=false src",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@packages/authentication": "workspace:*",
+    "@packages/archivist-db": "workspace:*",
     "@trpc/client": "^10.9.0",
     "@trpc/server": "^10.9.0",
     "zod": "^3.20.2"
@@ -22,7 +23,7 @@
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
     "@packages/ts-configs": "workspace:*",
-    "@packages/eventer": "workspace:*",
+    "@packages/duct": "workspace:*",
     "@types/node": "^18.11.3",
     "tsc-alias": "^1.8.2"
   },

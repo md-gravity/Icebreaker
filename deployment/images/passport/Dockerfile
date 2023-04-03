@@ -1,6 +1,6 @@
 FROM node:19
 
-RUN npm install -g pnpm@$pnpm
+RUN npm install -g pnpm@7
 
 WORKDIR /app
 

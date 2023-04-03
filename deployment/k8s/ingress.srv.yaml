@@ -1,4 +1,3 @@
-# install https://kubernetes.github.io/ingress-nginx/
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -38,16 +37,3 @@ spec:
                 name: archivist-cluster-ip-srv
                 port:
                   number: 3000
----
-spec:
-  rules:
-    - host: passport-db.gravity.io
-      stream:
-        paths:
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: passport-db-cluster-ip-srv
-                port:
-                  number: 5432

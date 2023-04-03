@@ -1,6 +1,6 @@
 <h1 align="center">Icebreaker</h1>
 <p align="center">
-    💘 <i>Video Chat Application based on WebRTC & JS & NodeJS & Kubernetes</i>
+    💘 <i>Video Chat Application based on WebRTC & JavaScript & Kubernetes</i>
 </p>
 <br />
 <p align="center">
@@ -44,9 +44,9 @@ nvm install 19
 
 # Install Package Manager
 ## Unix
-brew install pnpm
+brew install pnpm@7
 ## Windows
-choco install pnpm
+choco install pnpm@7
 
 ## 🎃 Install Dependencies
 pnpm i

@@ -17,7 +17,7 @@ spec:
           image: postgres:12.2
           env:
             - name: DB_HOST
-              value: "passport-db-cluster-ip-srv"
+              value: "archivist-db-cluster-ip-srv"
             - name: DB_USER
               value: "root"
           command: [ 'sh', '-c' ]

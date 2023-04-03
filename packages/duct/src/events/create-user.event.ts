@@ -1,4 +1,4 @@
-import {createEventer} from '../lib/create-eventer'
+import {createEvent} from '../create-event'
 import {EventTypes} from './event'
 
 interface CreateUserEvent {
@@ -7,10 +7,11 @@ interface CreateUserEvent {
     id: number
     email: string
     temporal: boolean
+    username: string
   }
 }
 
-const createUserEventer = createEventer<CreateUserEvent>(EventTypes.CreateUser)
+const createUserEvent = createEvent<CreateUserEvent>(EventTypes.CreateUser)
 
-export {createUserEventer}
+export {createUserEvent}
 export type {CreateUserEvent}

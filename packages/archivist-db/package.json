@@ -1,0 +1,38 @@
+{
+  "name": "@packages/archivist-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": ["build/**/*"],
+  "scripts": {
+    "postinstall": "pnpm prisma:generate && pnpm build",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --create-only --name",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio",
+    "dev": "tsx watch src",
+    "build": "tsc --build --clean && tsc",
+    "typecheck": "tsc --noEmit true",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^4.10.1",
+    "prisma": "^4.10.1"
+  },
+  "devDependencies": {
+    "@packages/eslint-config-hub": "workspace:*",
+    "@packages/ts-configs": "workspace:*",
+    "@types/node": "^18.11.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@packages/eslint-config-hub/.base.js"
+    ]
+  },
+  "prettier": "@packages/eslint-config-hub/.prettierrc.js"
+}

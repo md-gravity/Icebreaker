@@ -16,9 +16,10 @@ importers:
 
   applications/archivist:
     specifiers:
+      '@packages/archivist-db': workspace:*
       '@packages/authentication': workspace:*
+      '@packages/duct': workspace:*
       '@packages/eslint-config-hub': workspace:*
-      '@packages/eventer': workspace:*
       '@packages/ts-configs': workspace:*
       '@trpc/client': ^10.9.0
       '@trpc/server': ^10.9.0
@@ -26,13 +27,14 @@ importers:
       tsc-alias: ^1.8.2
       zod: ^3.20.2
     dependencies:
+      '@packages/archivist-db': link:../../packages/archivist-db
       '@packages/authentication': link:../../packages/authentication
       '@trpc/client': 10.9.0_@trpc+server@10.9.0
       '@trpc/server': 10.9.0
       zod: 3.20.2
     devDependencies:
+      '@packages/duct': link:../../packages/duct
       '@packages/eslint-config-hub': link:../../packages/eslint-config-hub
-      '@packages/eventer': link:../../packages/eventer
       '@packages/ts-configs': link:../../packages/ts-configs
       '@types/node': 18.14.2
       tsc-alias: 1.8.2
@@ -40,8 +42,8 @@ importers:
   applications/passport:
     specifiers:
       '@packages/authentication': workspace:*
+      '@packages/duct': workspace:*
       '@packages/eslint-config-hub': workspace:*
-      '@packages/eventer': workspace:*
       '@packages/passport-db': workspace:*
       '@packages/ts-configs': workspace:*
       '@trpc/client': ^10.9.0
@@ -56,8 +58,8 @@ importers:
       '@trpc/server': 10.9.0
       zod: 3.20.2
     devDependencies:
+      '@packages/duct': link:../../packages/duct
       '@packages/eslint-config-hub': link:../../packages/eslint-config-hub
-      '@packages/eventer': link:../../packages/eventer
       '@packages/ts-configs': link:../../packages/ts-configs
       '@types/node': 18.11.18
       tsc-alias: 1.8.2
@@ -125,6 +127,21 @@ importers:
       '@packages/eslint-config-hub': link:../eslint-config-hub
       '@packages/ts-configs': link:../ts-configs
 
+  packages/archivist-db:
+    specifiers:
+      '@packages/eslint-config-hub': workspace:*
+      '@packages/ts-configs': workspace:*
+      '@prisma/client': ^4.10.1
+      '@types/node': ^18.11.3
+      prisma: ^4.10.1
+    dependencies:
+      '@prisma/client': 4.10.1_prisma@4.10.1
+      prisma: 4.10.1
+    devDependencies:
+      '@packages/eslint-config-hub': link:../eslint-config-hub
+      '@packages/ts-configs': link:../ts-configs
+      '@types/node': 18.14.2
+
   packages/authentication:
     specifiers:
       '@packages/eslint-config-hub': workspace:*
@@ -135,6 +152,19 @@ importers:
     dependencies:
       '@trpc/server': 10.9.0
       jsonwebtoken: 9.0.0
+    devDependencies:
+      '@packages/eslint-config-hub': link:../eslint-config-hub
+      '@packages/ts-configs': link:../ts-configs
+      '@types/node': 18.14.2
+
+  packages/duct:
+    specifiers:
+      '@packages/eslint-config-hub': workspace:*
+      '@packages/ts-configs': workspace:*
+      '@types/node': ^18.11.3
+      node-nats-streaming: ^0.3.2
+    dependencies:
+      node-nats-streaming: 0.3.2
     devDependencies:
       '@packages/eslint-config-hub': link:../eslint-config-hub
       '@packages/ts-configs': link:../ts-configs
@@ -155,19 +185,6 @@ importers:
       eslint-config-next: 13.2.3
       eslint-plugin-github: 4.6.0
       eslint-plugin-sort-keys-fix: 1.1.2
-
-  packages/eventer:
-    specifiers:
-      '@packages/eslint-config-hub': workspace:*
-      '@packages/ts-configs': workspace:*
-      '@types/node': ^18.11.3
-      node-nats-streaming: ^0.3.2
-    dependencies:
-      node-nats-streaming: 0.3.2
-    devDependencies:
-      '@packages/eslint-config-hub': link:../eslint-config-hub
-      '@packages/ts-configs': link:../ts-configs
-      '@types/node': 18.14.2
 
   packages/passport-db:
     specifiers:
@@ -1836,10 +1853,11 @@ packages:
 
   /eslint-config-prettier/8.5.0:
     resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
     dependencies:
       eslint: 8.31.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /eslint-import-resolver-node/0.3.6:
@@ -1997,10 +2015,10 @@ packages:
 
   /eslint-plugin-i18n-text/1.0.1:
     resolution: {integrity: sha512-3G3UetST6rdqhqW9SfcfzNYMpQXS7wNkJvp6dsXnjzGiku6Iu5hl3B0kmk6lIcFPwYjhQIY+tXVRtK9TlGT7RA==}
+    peerDependencies:
+      eslint: '>=5.0.0'
     dependencies:
       eslint: 8.31.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /eslint-plugin-import/2.26.0_v6pogsd564n3dkrcb6ziw2hlc4:
@@ -2153,10 +2171,10 @@ packages:
   /eslint-plugin-react-hooks/4.6.0:
     resolution: {integrity: sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==}
     engines: {node: '>=10'}
+    peerDependencies:
+      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
     dependencies:
       eslint: 8.31.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /eslint-plugin-react/7.31.11:

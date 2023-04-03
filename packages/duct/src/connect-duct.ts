@@ -1,6 +1,6 @@
 import {getNATSClient} from './get-nats-client'
 
-const connectEventor = async () => {
+const connectDuct = async () => {
   if (!process.env.NATS_CLUSTER_ID) {
     throw new Error('Define "NATS_CLUSTER_ID" in env')
   }
@@ -23,4 +23,4 @@ const connectEventor = async () => {
   return client
 }
 
-export {connectEventor}
+export {connectDuct}

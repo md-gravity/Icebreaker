@@ -1,4 +1,4 @@
-import {PrismaClient} from '@prisma/client'
+import {PrismaClient} from '.prisma/client'
 
 interface GetPassportDBClient {
   prisma?: PrismaClient
@@ -16,4 +16,4 @@ const getPassportDBClient: GetPassportDBClient = () => {
 }
 
 export {getPassportDBClient}
-export * from '@prisma/client'
+export * from '.prisma/client'
