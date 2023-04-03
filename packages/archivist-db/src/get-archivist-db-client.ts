@@ -8,7 +8,7 @@ interface GetArchivistDbClient {
 const getArchivistDbClient: GetArchivistDbClient = () => {
   const prisma: PrismaClient = getArchivistDbClient.prisma || new PrismaClient()
 
-  if (getArchivistDbClient.prisma) {
+  if (!getArchivistDbClient.prisma) {
     getArchivistDbClient.prisma = prisma
   }
 

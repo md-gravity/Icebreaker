@@ -55,6 +55,7 @@ module.exports =  {
       "never"
     ],
     // Clean plugins rules
+    "i18n-text/no-en": 0,
     "import/no-unresolved": 0,
     "import/extensions": 0,
     "eslint-comments/no-use": 0,

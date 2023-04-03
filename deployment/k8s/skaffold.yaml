@@ -33,3 +33,11 @@ build:
             dest: "."
       docker:
         dockerfile: "deployment/images/web/Dockerfile"
+    - image: dormammun/gravity-telegraph
+      context: "../../"
+      sync:
+        manual:
+        - src: "applications/**/src/**/*"
+          dest: "."
+      docker:
+          dockerfile: "deployment/images/telegraph/Dockerfile"

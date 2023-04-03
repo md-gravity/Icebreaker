@@ -14,6 +14,9 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
+    "@packages/authentication": "workspace:*",
+    "@packages/telegraph-db": "workspace:*",
+    "@packages/duct": "workspace:*",
     "@trpc/client": "^10.9.0",
     "@trpc/server": "^10.9.0",
     "ws": "^8.12.0",

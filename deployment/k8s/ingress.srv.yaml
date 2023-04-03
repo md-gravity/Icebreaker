@@ -37,3 +37,13 @@ spec:
                 name: archivist-cluster-ip-srv
                 port:
                   number: 3000
+    - host: telegraph.gravity.io
+      http:
+        paths:
+        - path: /?(.*)
+          pathType: Prefix
+          backend:
+            service:
+                name: telegraph-cluster-ip-srv
+                port:
+                 number: 3000

@@ -8,7 +8,7 @@ interface GetPassportDBClient {
 const getPassportDBClient: GetPassportDBClient = () => {
   const prisma: PrismaClient = getPassportDBClient.prisma || new PrismaClient()
 
-  if (getPassportDBClient.prisma) {
+  if (!getPassportDBClient.prisma) {
     getPassportDBClient.prisma = prisma
   }
 
