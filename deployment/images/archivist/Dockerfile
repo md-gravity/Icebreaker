@@ -1,12 +1,13 @@
-FROM node:19
+FROM alpine:3.17
 
-RUN npm install -g pnpm@7
+RUN apk add --update nodejs npm && \
+    npm install -g pnpm@7
 
 WORKDIR /app
 
 COPY . .
 
-RUN pnpm --filter @applications/archivist... install
-RUN pnpm --filter @packages/archivist-db prisma:generate
+RUN pnpm --filter @applications/archivist... install && \
+    pnpm --filter @packages/archivist-db prisma:generate
 
-ENTRYPOINT ["bash", "./deployment/images/archivist/entrypoint.sh"]
+ENTRYPOINT ["sh", "./deployment/images/archivist/entrypoint.sh"]

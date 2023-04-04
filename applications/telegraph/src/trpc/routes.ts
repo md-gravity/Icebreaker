@@ -1,55 +1,20 @@
 import {joinRoomInput} from '@app/inputs/join-room.input'
-import {emitJoinRoom, onJoinRoom, removeOnJoinRoom} from '@app/lib/events'
+import {join, onJoin} from '@app/services/room.service'
 import {protectedProcedure, router} from '@app/trpc/trpc'
-import {getTelegraphDbClient} from '@packages/telegraph-db'
 import {observable} from '@trpc/server/observable'
 
-import type {OnJoinRoomInputInterface} from '@app/inputs/on-join-room.input'
+import type {JoinMessage} from '@app/services/join-emitter.service'
 
 const roomRouter = router({
   join: protectedProcedure
     .input((body) => joinRoomInput.parse(body))
-    .mutation(async ({input, ctx}) => {
-      const room = await getTelegraphDbClient().room.findUnique({
-        where: {url: input.url},
-      })
-      if (!room) {
-        throw Error(`Could not find room with the URL "${input.url}"`)
-      }
-
-      const user = (await getTelegraphDbClient().user.findUnique({
-        where: {id: ctx.jwt.userId},
-      }))!
-
-      emitJoinRoom({roomId: room.id, user})
-
-      return room
-    }),
+    .mutation(async ({input, ctx}) => join(input, ctx.jwt.userId)),
   onJoin: protectedProcedure
     .input((body) => joinRoomInput.parse(body))
     .subscription(({input, ctx}) =>
-      observable<OnJoinRoomInputInterface>((emit) => {
-        const callback = async ({user}) => {
-          if (user.id !== ctx.jwt.userId) {
-            return
-          }
-
-          const room = await getTelegraphDbClient().room.findUnique({
-            where: {url: input.url},
-          })
-          if (!room) {
-            throw Error(`Could not find room with the URL "${input.url}"`)
-          }
-
-          emit.next({roomId: room.id, user})
-        }
-
-        onJoinRoom(callback)
-
-        return () => {
-          removeOnJoinRoom(callback)
-        }
-      })
+      observable<JoinMessage>((emit) =>
+        onJoin({...input, subscriberId: ctx.jwt.userId}, emit)
+      )
     ),
   /*
    * Message: procedure
