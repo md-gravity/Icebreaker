@@ -1,35 +1,16 @@
-import {createServer} from '@app/server'
+import {server} from '@app/server'
+import {connectDuct} from '@app/services/duct.service'
 
-const start = () => {
-  const port = process.env.PORT
+const start = async () => {
+  await connectDuct()
+
+  const port = process.env.PORT && parseInt(process.env.PORT, 10)
   if (!port) {
     throw new Error('PORT is not defined')
   }
 
-  const {server, handler} = createServer(parseInt(port, 10))
-
-  server.on('connection', (ws) => {
-    console.log(`➕➕ Connection (${server.clients.size})`)
-    ws.once('close', () => {
-      console.log(`➖➖ Connection (${server.clients.size})`)
-    })
-  })
-  console.log(`✅ WebSocket Server listening on ${port}`)
-
-  process.on('SIGTERM', () => {
-    console.log('SIGTERM')
-    handler.broadcastReconnectNotification()
-    server.clients.forEach((socket) => {
-      socket.terminate()
-    })
-    server.close((err) => {
-      if (err) {
-        console.error(err)
-      } else {
-        console.log('❎ WebSocket Server closed')
-      }
-    })
-  })
+  server.listen(port)
+  server.logConnections()
 }
 
-export {start}
+start()

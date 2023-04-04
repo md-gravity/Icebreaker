@@ -1,6 +1,7 @@
-FROM node:19
+FROM alpine:3.17
 
-RUN npm install -g pnpm@7
+RUN apk add --update nodejs npm && \
+    npm install -g pnpm@7
 
 WORKDIR /app
 
@@ -8,4 +9,4 @@ COPY . .
 
 RUN pnpm --filter @applications/web... install
 
-ENTRYPOINT ["bash", "./deployment/images/web/entrypoint.sh"]
+ENTRYPOINT ["sh", "./deployment/images/web/entrypoint.sh"]

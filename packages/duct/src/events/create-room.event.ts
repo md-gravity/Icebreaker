@@ -1,5 +1,5 @@
-import {createEvent} from '../create-event'
 import {EventTypes} from './event'
+import {createEvent} from '../create-event'
 
 interface CreateRoomEvent {
   type: EventTypes.CreateRoom

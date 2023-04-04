@@ -1,9 +1,7 @@
-import {userInput} from '@app/inputs/user.input'
 import {z} from 'zod'
 
 const roomSubscriptionInput = z.object({
-  roomId: z.string(),
-  user: userInput,
+  roomId: z.number(),
 })
 
 type RoomSubscriptionInput = z.infer<typeof roomSubscriptionInput>

@@ -3,11 +3,15 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-    - ./*.depl.yaml
-    - ./*.srv.yaml
+      - ./*.depl.yaml
+      - ./*.srv.yaml
 build:
+  tagPolicy:
+    customTemplate:
+        template: "latest"
   local:
     push: false
+    concurrency: 0
   artifacts:
     - image: dormammun/gravity-passport
       context: "../../"
@@ -33,3 +37,11 @@ build:
             dest: "."
       docker:
         dockerfile: "deployment/images/web/Dockerfile"
+    - image: dormammun/gravity-telegraph
+      context: "../../"
+      sync:
+        manual:
+          - src: "applications/**/src/**/*"
+            dest: "."
+      docker:
+          dockerfile: "deployment/images/telegraph/Dockerfile"
