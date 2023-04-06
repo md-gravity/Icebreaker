@@ -1,7 +1,10 @@
-import {AnyRootConfig, MiddlewareFunction, ProcedureParams} from '@trpc/server'
-import {IncomingMessage} from 'node:http'
-
-import {Payload} from './jwt.service'
+import type {Payload} from './jwt.service'
+import type {
+  AnyRootConfig,
+  MiddlewareFunction,
+  ProcedureParams,
+} from '@trpc/server'
+import type {IncomingMessage} from 'node:http'
 
 const protectedMiddlewareFunction: MiddlewareFunction<
   ProcedureParams<

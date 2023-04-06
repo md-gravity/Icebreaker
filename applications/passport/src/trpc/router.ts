@@ -8,6 +8,7 @@ import {
   temporalSignUp,
 } from '@app/services/sign-user.service'
 import {procedure, router, tokenProcedure} from '@app/trpc/trpc'
+import {createCookieToken} from '@packages/authentication'
 import {createUserEvent, getNATSClient} from '@packages/duct'
 
 const passportRouter = router({
@@ -21,7 +22,7 @@ const passportRouter = router({
 
       await createUserEvent(getNATSClient().client).publish(user)
 
-      ctx.res.setHeader('Set-Cookie', `token=${token}; domain=gravity.io`)
+      ctx.res.setHeader('Set-Cookie', createCookieToken(token))
 
       return user
     }),
@@ -38,7 +39,7 @@ const passportRouter = router({
     .mutation(async ({input, ctx}) => {
       const {user, token} = await signIn(input)
 
-      ctx.res.setHeader('Set-Cookie', `token=${token}; domain=gravity.io`)
+      ctx.res.setHeader('Set-Cookie', createCookieToken(token))
 
       return user
     }),
@@ -52,7 +53,7 @@ const passportRouter = router({
 
       await createUserEvent(getNATSClient().client).publish(user)
 
-      ctx.res.setHeader('Set-Cookie', `token=${token}; domain=gravity.io`)
+      ctx.res.setHeader('Set-Cookie', createCookieToken(token))
 
       return user
     }),

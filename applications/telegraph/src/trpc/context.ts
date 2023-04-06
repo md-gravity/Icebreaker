@@ -2,9 +2,8 @@ import {inferAsyncReturnType} from '@trpc/server'
 
 import type {CreateWSSContextFnOptions} from '@trpc/server/adapters/ws'
 
-function createContext({req, res}: CreateWSSContextFnOptions) {
+function createContext({req}: CreateWSSContextFnOptions) {
   return {
-    client: res,
     req,
   }
 }

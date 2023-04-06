@@ -1,10 +1,10 @@
 {
-  "name": "@packages/telegraph-db",
+    "name": "@packages/telegraph-db",
   "version": "1.0.0",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
-  "files": ["build/**/*"],
+  "files": ["./build/**/*"],
   "scripts": {
     "postinstall": "pnpm prisma:generate && pnpm build",
     "prisma:generate": "prisma generate",
@@ -20,10 +20,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@prisma/client": "^4.10.1",
-    "prisma": "^4.10.1"
-  },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
     "@packages/ts-configs": "workspace:*",

@@ -55,7 +55,7 @@ pnpm i
 ## 😐 Install Docker & Enable Kubernetes: 🔬https://docs.docker.com/engine/install/
 ## 😶 Install Skaffold: https://skaffold.dev/docs/install/
 ## 🫠 Install Ingress NGINX
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.6.4/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.0/deploy/static/provider/cloud/deploy.yaml
 
 # 📝 Update hosts for yours local machine
 ## Copy body of deployments/k8s/hosts

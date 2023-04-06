@@ -1,8 +1,13 @@
-import {AnyRootConfig, MiddlewareFunction, ProcedureParams} from '@trpc/server'
-import {IncomingMessage} from 'node:http'
+import {verify} from './jwt.service'
+import {cookieToken} from './lib/cookie-token'
 
-import {verify, Payload} from './jwt.service'
-import {retrieveCookieToken} from './lib/retrieve-cookie-token'
+import type {Payload} from './jwt.service'
+import type {
+  AnyRootConfig,
+  MiddlewareFunction,
+  ProcedureParams,
+} from '@trpc/server'
+import type {IncomingMessage} from 'node:http'
 
 const tokenMiddlewareFunction: MiddlewareFunction<
   ProcedureParams<
@@ -28,7 +33,7 @@ const tokenMiddlewareFunction: MiddlewareFunction<
   >
 > = async ({ctx, next}) => {
   const {cookie} = ctx.req.headers
-  const token = cookie ? await retrieveCookieToken(cookie) : null
+  const token = cookie ? await cookieToken(cookie) : null
   const jwt = token ? await verify(token) : null
   return next({
     ctx: {

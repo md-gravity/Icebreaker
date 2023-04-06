@@ -11,7 +11,8 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
-    "@packages/api-client": "workspace:*",
+    "@packages/passport-client": "workspace:*",
+    "@packages/telegraph-client": "workspace:*",
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"

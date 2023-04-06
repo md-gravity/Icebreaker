@@ -17,9 +17,7 @@
     "@packages/authentication": "workspace:*",
     "@packages/archivist-db": "workspace:*",
     "@packages/duct": "workspace:*",
-    "@trpc/client": "^10.9.0",
-    "@trpc/server": "^10.9.0",
-    "zod": "^3.20.2"
+    "@packages/cors": "workspace:*"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",

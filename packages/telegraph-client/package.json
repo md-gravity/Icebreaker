@@ -1,17 +1,13 @@
 {
-  "name": "@packages/archivist-db",
+  "name": "@packages/telegraph-client",
   "version": "1.0.0",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": ["build/**/*"],
   "scripts": {
-    "postinstall": "pnpm prisma:generate && pnpm build",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev --create-only --name",
-    "prisma:deploy": "prisma migrate deploy",
-    "prisma:studio": "prisma studio",
-    "dev": "tsx watch src",
+    "postinstall": "pnpm build",
+    "dev": "tsx --watch src",
     "build": "tsc --build --clean && tsc",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
@@ -20,10 +16,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@applications/telegraph": "workspace:*",
+    "@packages/telegraph-db": "workspace:*",
+    "@packages/authentication": "workspace:*"
+  },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
-    "@packages/ts-configs": "workspace:*",
-    "@types/node": "^18.11.3"
+    "@packages/ts-configs": "workspace:*"
   },
   "eslintConfig": {
     "extends": [

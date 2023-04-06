@@ -1,13 +1,15 @@
 {
-  "name": "@packages/api-client",
+  "name": "@packages/cors",
   "version": "1.0.0",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
-  "files": ["build/**/*"],
+  "files": [
+    "./build/**/*"
+  ],
   "scripts": {
     "postinstall": "pnpm build",
-    "dev": "tsx --watch src",
+    "dev": "tsx watch src",
     "build": "tsc --build --clean && tsc",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
@@ -16,14 +18,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@trpc/client": "^10.9.0",
-    "@trpc/server": "^10.9.0",
-    "@applications/passport": "workspace:*"
-  },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
-    "@packages/ts-configs": "workspace:*"
+    "@packages/ts-configs": "workspace:*",
+    "@types/node": "^18.11.3"
   },
   "eslintConfig": {
     "extends": [
