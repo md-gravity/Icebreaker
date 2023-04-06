@@ -10,8 +10,7 @@ const cookieToken = (cookie: string) => {
 
 const DEFAULT_MAX_AGE = 24 * 60 * 60 * 1000
 
-const createCookieToken = (token: string, maxAge = DEFAULT_MAX_AGE) => {
-  return `token=${token}; Domain=gravity.io; Secure; HttpOnly; Max-Age=${maxAge}`
-}
+const createCookieToken = (token: string, maxAge = DEFAULT_MAX_AGE) =>
+  `token=${token}; Domain=gravity.io; Secure; HttpOnly; Max-Age=${maxAge}`
 
 export {cookieToken, createCookieToken}
