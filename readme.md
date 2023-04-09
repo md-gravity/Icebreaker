@@ -44,9 +44,9 @@ nvm install 19
 
 # Install Package Manager
 ## Unix
-brew install pnpm@7
+brew install pnpm
 ## Windows
-choco install pnpm@7
+choco install pnpm
 
 ## 🎃 Install Dependencies
 pnpm i
