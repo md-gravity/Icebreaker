@@ -1,30 +1,28 @@
 'use client'
-import {createContext, useState, useContext, useEffect} from 'react'
-
-import {passportClient} from '../lib/passport.client'
+import {createContext, useContext, useState} from 'react'
 
 import type {ReactNode} from 'react'
 
-type User = Awaited<ReturnType<typeof passportClient.signIn.mutate>> &
-  Awaited<ReturnType<typeof passportClient.signUp.mutate>> &
-  Awaited<ReturnType<typeof passportClient.createTemporalUser.mutate>>
+type User = {
+  id: number
+  username: string
+  email: string
+  temporal: boolean
+}
 
-const UserContext = createContext<ReturnType<typeof useUserContext>>(null)
+const useUser = () => useState<User | null>(null)
 
-const UserProvider = ({children}: {children: ReactNode}) => {
-  const [user, setUser] = useState<User | null>(null)
-  useEffect(() => {
-    effect()
+const UserContext = createContext<ReturnType<typeof useUser> | null>(null)
 
-    async function effect() {
-      setUser(await passportClient.currentUser.query())
-    }
-  }, [])
-  return (
-    <UserContext.Provider value={[user, setUser]}>
-      {children}
-    </UserContext.Provider>
-  )
+const UserProvider = ({
+  user,
+  children,
+}: {
+  children: ReactNode
+  user: User | null
+}) => {
+  const ctx = useState<User | null>(user)
+  return <UserContext.Provider value={ctx}>{children}</UserContext.Provider>
 }
 
 const useUserContext = () => {

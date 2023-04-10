@@ -1,17 +1,19 @@
 'use client'
-import {FormEvent, useState} from 'react'
+import {type FormEvent, useState} from 'react'
 
-import {passportClient} from '@app/lib/passport.client'
+import {usePassportClient} from '@app/store/passport-client'
 import {useUserContext} from '@app/store/user'
 
 function UsernameClient() {
   const [user, setUser] = useUserContext()
 
-  const [username, setUsername] = useState('')
+  const [username, setUsername] = useState(user?.username ?? '')
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value)
   }
-  const onSend = (event: FormEvent) => {
+
+  const passportClient = usePassportClient()
+  const onSubmit = (event: FormEvent) => {
     event.preventDefault()
 
     send()
@@ -21,12 +23,8 @@ function UsernameClient() {
     }
   }
 
-  if (user) {
-    return <h1>Hello {user.username}</h1>
-  }
-
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <fieldset>
         <legend>Username:</legend>
         <input
@@ -36,12 +34,7 @@ function UsernameClient() {
         />
         <br />
         <br />
-        <button
-          type="submit"
-          onClick={onSend}
-        >
-          Send
-        </button>
+        <button type="submit">Send</button>
       </fieldset>
     </form>
   )

@@ -1,12 +1,12 @@
 import {createTRPCProxyClient, httpLink} from '@trpc/client'
 
-import type {PassportRouter} from '@applications/passport'
+import type {ArchivistRouter} from '@applications/archivist'
 
-const createPassportClient = (
+const createArchivistClient = (
   url: string,
   customHeaders?: {[key: string]: string}
 ) =>
-  createTRPCProxyClient<PassportRouter>({
+  createTRPCProxyClient<ArchivistRouter>({
     links: [
       httpLink({
         fetch(origin, options) {
@@ -24,4 +24,4 @@ const createPassportClient = (
     ],
   })
 
-export {createPassportClient}
+export {createArchivistClient}

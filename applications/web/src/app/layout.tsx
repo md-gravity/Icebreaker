@@ -1,3 +1,6 @@
+import {createPassportApi} from '@app/lib/passport-api'
+import {ArchivistClientProvider} from '@app/store/archivist-client'
+import {PassportClientProvider} from '@app/store/passport-client'
 import {UserProvider} from '@app/store/user'
 
 export const metadata = {
@@ -5,11 +8,21 @@ export const metadata = {
   title: 'Create Next App',
 }
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const user = await createPassportApi().currentUser.query()
+
   return (
     <html lang="en">
       <body>
-        <UserProvider>{children}</UserProvider>
+        <PassportClientProvider>
+          <ArchivistClientProvider>
+            <UserProvider user={user}>{children}</UserProvider>
+          </ArchivistClientProvider>
+        </PassportClientProvider>
       </body>
     </html>
   )

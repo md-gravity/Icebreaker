@@ -122,12 +122,18 @@ importers:
 
   applications/web:
     dependencies:
+      '@packages/archivist-client':
+        specifier: workspace:*
+        version: link:../../packages/archivist-client
       '@packages/passport-client':
         specifier: workspace:*
         version: link:../../packages/passport-client
       '@packages/telegraph-client':
         specifier: workspace:*
         version: link:../../packages/telegraph-client
+      '@tanstack/react-query':
+        specifier: ^4.29.1
+        version: 4.29.1(react-dom@18.2.0)(react@18.2.0)
       next:
         specifier: 13.2.3
         version: 13.2.3(react-dom@18.2.0)(react@18.2.0)
@@ -153,6 +159,19 @@ importers:
       '@types/react-dom':
         specifier: 18.0.11
         version: 18.0.11
+
+  packages/archivist-client:
+    dependencies:
+      '@applications/archivist':
+        specifier: workspace:*
+        version: link:../../applications/archivist
+    devDependencies:
+      '@packages/eslint-config-hub':
+        specifier: workspace:*
+        version: link:../eslint-config-hub
+      '@packages/ts-configs':
+        specifier: workspace:*
+        version: link:../ts-configs
 
   packages/archivist-db:
     devDependencies:
@@ -1155,6 +1174,28 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tanstack/query-core@4.29.1:
+    resolution: {integrity: sha512-vkPewLEG8ua0efo3SsVT0BcBtkq5RZX8oPhDAyKL+k/rdOYSQTEocfGEXSaBwIwsXeOGBUpfKqI+UmHvNqdWXg==}
+    dev: false
+
+  /@tanstack/react-query@4.29.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-/crv1v+OeuGG6EOvaQmyeo9GCKtH4jbmuhZkvk9ulufRiHcTr/A9+YP9GevEAZzUTdzXMwenpTbyxBGvG2xXvw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.29.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
   /@testing-library/dom@8.20.0:
@@ -3859,6 +3900,14 @@ packages:
     dependencies:
       punycode: 2.3.0
     dev: true
+
+  /use-sync-external-store@1.2.0(react@18.2.0):
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /which-boxed-primitive@1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}

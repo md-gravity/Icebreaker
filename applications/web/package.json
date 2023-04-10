@@ -13,6 +13,8 @@
   "dependencies": {
     "@packages/passport-client": "workspace:*",
     "@packages/telegraph-client": "workspace:*",
+    "@packages/archivist-client": "workspace:*",
+    "@tanstack/react-query": "^4.29.1",
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -28,7 +30,10 @@
     "extends": [
       "@packages/eslint-config-hub/.next.js"
     ],
-    "ignorePatterns": ["/*.js", "/*.ts"]
+    "ignorePatterns": [
+      "/*.js",
+      "/*.ts"
+    ]
   },
   "prettier": "@packages/eslint-config-hub/.prettierrc.js"
 }
