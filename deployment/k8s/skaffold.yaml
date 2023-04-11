@@ -8,7 +8,6 @@ deploy:
 build:
   local:
     concurrency: 3
-    tryImportMissing: true
     push: false
   artifacts:
     - image: dormammun/gravity-passport

@@ -7,7 +7,6 @@ import {type IncomingMessage} from 'node:http'
 
 import {verify} from './jwt.service'
 import {type Payload} from './jwt.service'
-import {cookieToken} from './lib/cookie-token'
 
 const tokenMiddlewareFunction: MiddlewareFunction<
   ProcedureParams<
@@ -40,6 +39,13 @@ const tokenMiddlewareFunction: MiddlewareFunction<
       jwt,
     },
   })
+}
+
+const cookieToken = (cookie: string) => {
+  const TOKEN_REGEXP = /[=](?<jwt>.*)/u
+
+  const cookieTokenItem = cookie.split(';').find((item) => item.includes('jwt'))
+  return cookieTokenItem?.match(TOKEN_REGEXP)?.groups?.jwt ?? null
 }
 
 export {tokenMiddlewareFunction}
