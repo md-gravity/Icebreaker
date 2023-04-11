@@ -8,6 +8,6 @@ WORKDIR /app
 COPY . .
 
 RUN pnpm --filter @applications/telegraph... install && \
-    pnpm --filter @packages/telegraph-db prisma:generate
+    pnpm --filter @applications/telegraph prisma:generate
 
 ENTRYPOINT ["sh", "./deployment/images/telegraph/entrypoint.sh"]

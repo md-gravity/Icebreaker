@@ -18,5 +18,4 @@ const sign = (payload: Payload): Promise<string> =>
 const verify = async (token: string): Promise<Payload> =>
   asyncVerify(token, process.env.JWT_SECRET_KEY)
 
-export {sign, verify}
-export type {Payload}
+export {type Payload, sign, verify}

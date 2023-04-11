@@ -11,10 +11,7 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
-    "@packages/passport-client": "workspace:*",
-    "@packages/telegraph-client": "workspace:*",
-    "@packages/archivist-client": "workspace:*",
-    "@tanstack/react-query": "^4.29.1",
+    "@applications/passport": "workspace:*",
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"

@@ -1,4 +1,4 @@
-import type {ServerResponse, IncomingMessage} from 'node:http'
+import {type ServerResponse, type IncomingMessage} from 'node:http'
 
 const cors =
   (origin: string) =>

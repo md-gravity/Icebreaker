@@ -1,17 +1,17 @@
-import {CreateRoomInput} from '@app/inputs/create-room.input'
-import {getArchivistDbClient} from '@packages/archivist-db'
-import {createRoomEvent, getNATSClient} from '@packages/duct'
+import {type CreateRoomInput} from '@app/dtos/create-room.input'
+import {prismaClient} from '@app/library/prisma-client'
+import {emitRoomCreated} from '@app/services/duct.service'
 import {createHash} from 'node:crypto'
 
 const createRoom = async (input: CreateRoomInput, userId: number) => {
-  const room = await getArchivistDbClient().room.create({
+  const room = await prismaClient().room.create({
     data: {
       name: input?.name,
       url: createUrl(input, userId),
     },
   })
 
-  await createRoomEvent(getNATSClient().client).publish(room)
+  await emitRoomCreated(room)
 
   return room
 }

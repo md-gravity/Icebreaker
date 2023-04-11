@@ -1,11 +1,9 @@
-import {CreateRoom} from '@app/components/create-room'
-import {UsernameClient} from '@app/components/username.client'
+import {User} from '@app/components/user'
 
 export default function Home() {
   return (
     <main>
-      <CreateRoom />
-      <UsernameClient />
+      <User />
     </main>
   )
 }

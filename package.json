@@ -2,7 +2,7 @@
   "name": "@gravity/icebreaker",
   "version": "1.0.0",
   "engines": {
-    "node": ">=19",
+    "node": ">=18",
     "pnpm": ">=8"
   },
   "scripts": {
@@ -11,7 +11,7 @@
     "typecheck": "turbo typecheck",
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
-    "=[dev]=============": "===================",
+    "===dev===": "===dev===",
     "dev:passport": "turbo dev --filter=passport",
     "dev:web": "turbo dev --filter=web"
   },

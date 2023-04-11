@@ -5,17 +5,21 @@
   "types": "./build/server.d.ts",
   "files": ["build/**/*"],
   "scripts": {
-    "postinstall": "pnpm build",
+    "postinstall": "pnpm prisma:generate && pnpm build",
     "start": "tsx src",
     "dev": "tsx watch --clear-screen=false src",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "lint:fix": "eslint src --fix",
+    "===prisma===": "===prisma===",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --create-only --name",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio"
   },
   "dependencies": {
     "@packages/authentication": "workspace:*",
-    "@packages/telegraph-db": "workspace:*",
     "@packages/duct": "workspace:*",
     "ws": "^8.12.0"
   },

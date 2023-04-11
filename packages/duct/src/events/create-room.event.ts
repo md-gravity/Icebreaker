@@ -12,5 +12,4 @@ interface CreateRoomEvent {
 
 const createRoomEvent = createEvent<CreateRoomEvent>(EventTypes.CreateRoom)
 
-export {createRoomEvent}
-export type {CreateRoomEvent}
+export {type CreateRoomEvent, createRoomEvent}

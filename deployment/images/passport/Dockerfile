@@ -8,6 +8,6 @@ WORKDIR /app
 COPY . .
 
 RUN pnpm --filter @applications/passport... install && \
-    pnpm --filter @packages/passport-db prisma:generate
+    pnpm --filter @applications/passport prisma:generate
 
 ENTRYPOINT ["sh", "./deployment/images/passport/entrypoint.sh"]

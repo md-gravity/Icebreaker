@@ -1,9 +1,9 @@
+import {prismaClient} from '@app/library/prisma-client'
 import {
   createUserEvent,
   connectDuct as connect,
   createRoomEvent,
 } from '@packages/duct'
-import {getTelegraphDbClient} from '@packages/telegraph-db'
 
 const QUEUE_GROUP_NAME = 'telegraph-service'
 const ACK_WAIT_ITERATOR_TIMEOUT = 5000
@@ -14,7 +14,7 @@ const connectDuct = async () => {
   createUserEvent(client).listen({
     ackWait: ACK_WAIT_ITERATOR_TIMEOUT,
     onMessage: async (data, msg) => {
-      await getTelegraphDbClient().user.create({data})
+      await prismaClient().user.create({data})
       msg.ack()
     },
     queueGroupName: QUEUE_GROUP_NAME,
@@ -23,7 +23,7 @@ const connectDuct = async () => {
   createRoomEvent(client).listen({
     ackWait: ACK_WAIT_ITERATOR_TIMEOUT,
     onMessage: async (data, msg) => {
-      await getTelegraphDbClient().room.create({data})
+      await prismaClient().room.create({data})
       msg.ack()
     },
     queueGroupName: QUEUE_GROUP_NAME,

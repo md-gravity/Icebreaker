@@ -1,5 +1,12 @@
-import {getArchivistDbClient} from '@packages/archivist-db'
-import {createUserEvent, connectDuct as connect} from '@packages/duct'
+import {roomOutput} from '@app/dtos/room.output'
+import {prismaClient} from '@app/library/prisma-client'
+import {
+  connectDuct as connect,
+  createRoomEvent,
+  CreateRoomEvent,
+  createUserEvent,
+  getNATSClient,
+} from '@packages/duct'
 
 const QUEUE_GROUP_NAME = 'archivist-service'
 const ACK_WAIT_ITERATOR_TIMEOUT = 5000
@@ -10,7 +17,7 @@ const connectDuct = async () => {
   createUserEvent(client).listen({
     ackWait: ACK_WAIT_ITERATOR_TIMEOUT,
     onMessage: async (data, msg) => {
-      await getArchivistDbClient().user.create({data})
+      await prismaClient().user.create({data})
       msg.ack()
     },
     queueGroupName: QUEUE_GROUP_NAME,
@@ -19,4 +26,8 @@ const connectDuct = async () => {
   return client
 }
 
-export {connectDuct}
+const emitRoomCreated = async (room: CreateRoomEvent['data']) => {
+  await createRoomEvent(getNATSClient().client).publish(roomOutput.parse(room))
+}
+
+export {connectDuct, emitRoomCreated}

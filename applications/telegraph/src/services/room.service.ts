@@ -1,20 +1,18 @@
+import {type JoinInputInterface} from '@app/dtos/join.input'
+import {type OnJoinOutputInterface} from '@app/dtos/on-join.output'
+import {prismaClient} from '@app/library/prisma-client'
 import {joinEmitter} from '@app/services/join-emitter.service'
-import {getTelegraphDbClient} from '@packages/telegraph-db'
+import {type Observer} from '@trpc/server/observable'
 
-import type {JoinRoomInputInterface} from '@app/inputs/join-room.input'
-import type {JoinMessage} from '@app/services/join-emitter.service'
-
-import type {Observer} from '@trpc/server/observable'
-
-const join = async (input: JoinRoomInputInterface, userId: number) => {
-  const room = await getTelegraphDbClient().room.findUnique({
+const join = async (input: JoinInputInterface, userId: number) => {
+  const room = await prismaClient().room.findUnique({
     where: {url: input.url},
   })
   if (!room) {
     throw Error(`Could not find room with the URL "${input.url}"`)
   }
 
-  const user = await getTelegraphDbClient().user.findUnique({
+  const user = await prismaClient().user.findUnique({
     where: {id: userId},
   })
   if (!user) {
@@ -27,8 +25,8 @@ const join = async (input: JoinRoomInputInterface, userId: number) => {
 }
 
 const onJoin = (
-  {url, subscriberId}: JoinRoomInputInterface & {subscriberId: number},
-  emit: Observer<JoinMessage, unknown>
+  {url, subscriberId}: JoinInputInterface & {subscriberId: number},
+  emit: Observer<OnJoinOutputInterface, unknown>
 ) => {
   joinEmitter.on(url, callback)
 
@@ -36,13 +34,13 @@ const onJoin = (
     joinEmitter.off(url, callback)
   }
 
-  async function callback({sender}: JoinMessage) {
+  async function callback({sender}: OnJoinOutputInterface) {
     const sameUser = subscriberId === sender.id
     if (sameUser) {
       return
     }
 
-    const subscribedRoom = await getTelegraphDbClient().room.findUnique({
+    const subscribedRoom = await prismaClient().room.findUnique({
       where: {url},
     })
     if (!subscribedRoom) {

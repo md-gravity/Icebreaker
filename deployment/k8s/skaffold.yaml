@@ -7,6 +7,8 @@ deploy:
       - ./*.srv.yaml
 build:
   local:
+    concurrency: 3
+    tryImportMissing: true
     push: false
   artifacts:
     - image: dormammun/gravity-passport
@@ -25,6 +27,14 @@ build:
             dest: "."
       docker:
         dockerfile: "deployment/images/archivist/Dockerfile"
+    - image: dormammun/gravity-telegraph
+      context: "../../"
+      sync:
+        manual:
+          - src: "applications/**/src/**/*"
+            dest: "."
+      docker:
+        dockerfile: "deployment/images/telegraph/Dockerfile"
     - image: dormammun/gravity-web
       context: "../../"
       sync:
@@ -33,11 +43,3 @@ build:
             dest: "."
       docker:
         dockerfile: "deployment/images/web/Dockerfile"
-    - image: dormammun/gravity-telegraph
-      context: "../../"
-      sync:
-        manual:
-          - src: "applications/**/src/**/*"
-            dest: "."
-      docker:
-          dockerfile: "deployment/images/telegraph/Dockerfile"

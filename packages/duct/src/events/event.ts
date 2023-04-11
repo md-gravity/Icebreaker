@@ -8,5 +8,4 @@ interface BaseEvent {
   data: unknown
 }
 
-export {EventTypes}
-export type {BaseEvent}
+export {type BaseEvent, EventTypes}

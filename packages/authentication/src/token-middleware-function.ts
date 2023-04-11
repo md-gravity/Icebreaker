@@ -1,13 +1,13 @@
-import {verify} from './jwt.service'
-import {cookieToken} from './lib/cookie-token'
-
-import type {Payload} from './jwt.service'
-import type {
-  AnyRootConfig,
-  MiddlewareFunction,
-  ProcedureParams,
+import {
+  type AnyRootConfig,
+  type MiddlewareFunction,
+  type ProcedureParams,
 } from '@trpc/server'
-import type {IncomingMessage} from 'node:http'
+import {type IncomingMessage} from 'node:http'
+
+import {verify} from './jwt.service'
+import {type Payload} from './jwt.service'
+import {cookieToken} from './lib/cookie-token'
 
 const tokenMiddlewareFunction: MiddlewareFunction<
   ProcedureParams<

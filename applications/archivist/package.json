@@ -1,21 +1,24 @@
 {
   "name": "@applications/archivist",
   "version": "0.0.1",
-  "main": "./build/server.js",
-  "types": "./build/server.d.ts",
-  "files": ["build/**/*"],
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "scripts": {
-    "postinstall": "pnpm build",
-    "start": "tsx src",
-    "dev": "tsx watch --clear-screen=false src",
+    "postinstall": "pnpm prisma:generate && pnpm build",
+    "start": "tsx src/main.ts",
+    "dev": "tsx watch --clear-screen=false src/main.ts",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "lint:fix": "eslint src --fix",
+    "===prisma===": "===prisma===",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --create-only --name",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio"
   },
   "dependencies": {
     "@packages/authentication": "workspace:*",
-    "@packages/archivist-db": "workspace:*",
     "@packages/duct": "workspace:*",
     "@packages/cors": "workspace:*"
   },

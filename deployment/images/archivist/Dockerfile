@@ -8,6 +8,6 @@ WORKDIR /app
 COPY . .
 
 RUN pnpm --filter @applications/archivist... install && \
-    pnpm --filter @packages/archivist-db prisma:generate
+    pnpm --filter @applications/archivist prisma:generate
 
 ENTRYPOINT ["sh", "./deployment/images/archivist/entrypoint.sh"]

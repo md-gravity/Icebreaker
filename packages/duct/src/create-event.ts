@@ -1,7 +1,6 @@
+import {type BaseEvent} from './events/event'
+import {type Stan, type Message} from './get-nats-client'
 import {parseMessage} from './lib/parse-message'
-
-import type {BaseEvent} from './events/event'
-import type {Stan, Message} from './get-nats-client'
 
 interface ListenerOptions<Data> {
   ackWait: number
@@ -53,5 +52,4 @@ const createEvent = <Event extends BaseEvent>(type: Event['type']) =>
     }
   }
 
-export {createEvent}
-export type {ListenerOptions}
+export {type ListenerOptions, createEvent}

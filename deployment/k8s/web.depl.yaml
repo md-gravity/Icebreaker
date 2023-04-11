@@ -17,11 +17,11 @@ spec:
           image: dormammun/gravity-web
           env:
             - name: NEXT_PUBLIC_PASSPORT_API_URL
-              value: "https://passport.gravity.io"
+              value: "http://passport.gravity.io"
             - name: NEXT_PUBLIC_TELEGRAPH_API_URL
-              value: "https://telegraph.gravity.io"
+              value: "ws://telegraph.gravity.io"
             - name: NEXT_PUBLIC_ARCHIVIST_API_URL
-              value: "https://archivist.gravity.io"
+              value: "http://archivist.gravity.io"
 ---
 apiVersion: v1
 kind: Service

@@ -1,9 +1,0 @@
-{
-  "extends": "@packages/ts-configs/node.json",
-  "compilerOptions": {
-    "outDir": "build",
-    "baseUrl": ".",
-    "isolatedModules": false
-  },
-  "include": ["src"]
-}
