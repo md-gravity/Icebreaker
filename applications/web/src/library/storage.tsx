@@ -1,6 +1,7 @@
 'use client'
-import {type ReactNode, useEffect, useRef} from 'react'
+import {type ReactNode, useRef} from 'react'
 import {QueryClient, QueryClientProvider} from 'react-query'
+import {ReactQueryDevtools} from 'react-query/devtools'
 
 import {CURRENT_USER_QUERY_KEY, CurrentUser} from '@app/services/current-user'
 
@@ -20,7 +21,10 @@ const StorageProvider = ({
   }
 
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      {children}
+    </QueryClientProvider>
   )
 }
 

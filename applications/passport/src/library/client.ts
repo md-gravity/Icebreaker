@@ -10,6 +10,12 @@ const createClient = (
   createTRPCProxyClient<PassportRouter>({
     links: [
       httpLink({
+        fetch(origin, options) {
+          return fetch(origin, {
+            ...options,
+            credentials: 'include',
+          })
+        },
         headers: getCustomHeaders,
         url,
       }),

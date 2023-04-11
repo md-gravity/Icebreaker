@@ -16,6 +16,8 @@ build:
         manual:
           - src: "applications/**/src/**/*"
             dest: "."
+          - src: "packages/**/src/**/*"
+            dest: "."
       docker:
         dockerfile: "deployment/images/passport/Dockerfile"
     - image: dormammun/gravity-archivist
@@ -23,6 +25,8 @@ build:
       sync:
         manual:
           - src: "applications/**/src/**/*"
+            dest: "."
+          - src: "packages/**/src/**/*"
             dest: "."
       docker:
         dockerfile: "deployment/images/archivist/Dockerfile"
@@ -32,6 +36,8 @@ build:
         manual:
           - src: "applications/**/src/**/*"
             dest: "."
+          - src: "packages/**/src/**/*"
+            dest: "."
       docker:
         dockerfile: "deployment/images/telegraph/Dockerfile"
     - image: dormammun/gravity-web
@@ -39,6 +45,8 @@ build:
       sync:
         manual:
           - src: "applications/**/src/**/*"
+            dest: "."
+          - src: "packages/**/src/**/*"
             dest: "."
       docker:
         dockerfile: "deployment/images/web/Dockerfile"

@@ -1,17 +1,19 @@
 {
   "name": "@applications/web",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "start": "next start",
     "build": "next build",
+    "watch": "tsc --watch",
+    "===utils===": "===utils===",
     "typecheck": "tsc --noEmit true",
     "lint": "next lint",
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
-    "@applications/passport": "workspace:*",
+    "@application/passport": "workspace:*",
+    "@application/archivist": "workspace:*",
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -10,6 +10,12 @@ const createClient = (
   createTRPCProxyClient<ArchivistRouter>({
     links: [
       httpLink({
+        fetch(origin, options) {
+          return fetch(origin, {
+            ...options,
+            credentials: 'include',
+          })
+        },
         headers: getCustomHeaders,
         url,
       }),

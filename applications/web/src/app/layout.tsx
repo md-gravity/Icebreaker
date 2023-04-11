@@ -1,6 +1,6 @@
 import {type ReactNode} from 'react'
 
-import {createPassportApi} from '@app/library/passport-api'
+import {passportClient} from '@app/library/passport-client'
 import {StorageProvider} from '@app/library/storage'
 
 export const metadata = {
@@ -9,7 +9,7 @@ export const metadata = {
 }
 
 export default async function RootLayout({children}: {children: ReactNode}) {
-  const {user} = await createPassportApi.currentUser.query()
+  const {user} = await passportClient.currentUser.query()
   return (
     <html lang="en">
       <body>

@@ -4,19 +4,25 @@ import {type ChangeEvent, type FormEvent, useState} from 'react'
 import {useCreateTemporalUser} from '@app/services/create-temporal-user'
 import {useCurrentUserQuery} from '@app/services/current-user'
 
-function User() {
+function UserForm() {
   const currentUser = useCurrentUserQuery()
+  const createTemporalUser = useCreateTemporalUser()
 
   const [username, setUsername] = useState(currentUser.data?.username ?? '')
   const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value)
   }
 
-  const createTemporalUser = useCreateTemporalUser()
+  const usernameUpdated =
+    currentUser.data && currentUser.data.username !== username
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
 
-    createTemporalUser.mutate({username})
+    if (usernameUpdated) {
+      console.warn('Implement update user mutation')
+    } else {
+      createTemporalUser.mutate({username})
+    }
   }
 
   return (
@@ -24,16 +30,17 @@ function User() {
       <fieldset>
         <legend>Username:</legend>
         <input
+          name="username"
           type="text"
           value={username}
           onChange={handleUsernameChange}
         />
         <br />
         <br />
-        <button type="submit">Send</button>
+        <button type="submit">{usernameUpdated ? 'Update' : 'Save'}</button>
       </fieldset>
     </form>
   )
 }
 
-export {User}
+export {UserForm}

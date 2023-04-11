@@ -8,9 +8,11 @@
     "./build/**/*"
   ],
   "scripts": {
-    "postinstall": "pnpm build",
     "dev": "tsx watch src",
+    "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc",
+    "===utils===": "===utils===",
+    "postinstall": "pnpm build",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"

@@ -32,7 +32,7 @@ const tokenMiddlewareFunction: MiddlewareFunction<
   >
 > = async ({ctx, next}) => {
   const {cookie} = ctx.req.headers
-  const token = cookie ? await cookieToken(cookie) : null
+  const token = cookie ? await retrieveCookieToken(cookie) : null
   const jwt = token ? await verify(token) : null
   return next({
     ctx: {
@@ -41,7 +41,7 @@ const tokenMiddlewareFunction: MiddlewareFunction<
   })
 }
 
-const cookieToken = (cookie: string) => {
+const retrieveCookieToken = (cookie: string) => {
   const TOKEN_REGEXP = /[=](?<jwt>.*)/u
 
   const cookieTokenItem = cookie.split(';').find((item) => item.includes('jwt'))

@@ -5,6 +5,9 @@
       "cache": false,
       "dependsOn": ["^build"]
     },
+    "watch": {
+      "cache": false
+    },
     "build": {
       "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts"],
       "outputs": ["build/**", ".next/**"],
