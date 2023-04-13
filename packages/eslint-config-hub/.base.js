@@ -6,6 +6,9 @@ module.exports = {
     'plugin:github/typescript',
   ],
   plugins: ['sort-keys-fix'],
+  settings:{
+    'import/ignore': ['node_modules'],
+  },
   rules: {
     'prettier/prettier': ['error', {endOfLine: 'auto'}],
     'sort-keys-fix/sort-keys-fix': 2,
@@ -62,6 +65,6 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 0,
     'import/no-deprecated': 0,
     'import/namespace': 0,
-    'capitalized-comments': 0,
+    'capitalized-comments': 0
   },
 }

@@ -3,50 +3,54 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-      - ./*.depl.yaml
-      - ./*.srv.yaml
+      - "system/*.yaml"
+      - "services/*.yaml"
+      - "providers/*.yaml"
 build:
+  tagPolicy:
+    customTemplate:
+        template: "skaffold-{{.IMAGE_NAME}}"
   local:
-    concurrency: 3
+    concurrency: 4
     push: false
   artifacts:
     - image: dormammun/gravity-passport
       context: "../../"
       sync:
         manual:
-          - src: "applications/**/src/**/*"
-            dest: "."
-          - src: "packages/**/src/**/*"
-            dest: "."
+          - src: "applications/**/src/**/*.ts"
+            dest: .
+          - src: "applications/**/src/**/*.tsx"
+            dest: .
       docker:
         dockerfile: "deployment/images/passport/Dockerfile"
     - image: dormammun/gravity-archivist
       context: "../../"
       sync:
         manual:
-          - src: "applications/**/src/**/*"
-            dest: "."
-          - src: "packages/**/src/**/*"
-            dest: "."
+          - src: "applications/**/src/**/*.ts"
+            dest: .
+          - src: "applications/**/src/**/*.tsx"
+            dest: .
       docker:
         dockerfile: "deployment/images/archivist/Dockerfile"
     - image: dormammun/gravity-telegraph
       context: "../../"
       sync:
         manual:
-          - src: "applications/**/src/**/*"
-            dest: "."
-          - src: "packages/**/src/**/*"
-            dest: "."
+          - src: "applications/**/src/**/*.ts"
+            dest: .
+          - src: "applications/**/src/**/*.tsx"
+            dest: .
       docker:
         dockerfile: "deployment/images/telegraph/Dockerfile"
     - image: dormammun/gravity-web
       context: "../../"
       sync:
         manual:
-          - src: "applications/**/src/**/*"
-            dest: "."
-          - src: "packages/**/src/**/*"
-            dest: "."
+          - src: "applications/**/src/**/*.ts"
+            dest: .
+          - src: "applications/**/src/**/*.tsx"
+            dest: .
       docker:
         dockerfile: "deployment/images/web/Dockerfile"

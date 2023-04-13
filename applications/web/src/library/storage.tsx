@@ -1,22 +1,32 @@
 'use client'
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+  UseMutationOptions,
+} from '@tanstack/react-query'
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 import {type ReactNode, useRef} from 'react'
-import {QueryClient, QueryClientProvider} from 'react-query'
-import {ReactQueryDevtools} from 'react-query/devtools'
 
-import {CURRENT_USER_QUERY_KEY, CurrentUser} from '@app/services/current-user'
+import {
+  type CurrentUser,
+  CURRENT_USER_QUERY_KEY,
+} from '@app/services/current-user'
 
 const queryClient = new QueryClient()
 
-const StorageProvider = ({
+const QueryProvider = ({
   children,
   currentUser,
 }: {
   children: ReactNode
   currentUser: CurrentUser | null
 }) => {
-  const previousCurrentUserRef = useRef<CurrentUser>()
+  const previousCurrentUserRef = useRef<CurrentUser | null>(null)
   if (previousCurrentUserRef.current !== currentUser) {
-    queryClient.setQueryData(CURRENT_USER_QUERY_KEY, currentUser)
+    queryClient.setQueryData([CURRENT_USER_QUERY_KEY], {user: currentUser})
     previousCurrentUserRef.current = currentUser
   }
 
@@ -28,5 +38,11 @@ const StorageProvider = ({
   )
 }
 
-export {StorageProvider, queryClient}
-export * from 'react-query'
+export {
+  type UseMutationOptions,
+  QueryProvider,
+  queryClient,
+  useQuery,
+  useMutation,
+  useQueryClient,
+}

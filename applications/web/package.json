@@ -12,18 +12,19 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
-    "@application/passport": "workspace:*",
-    "@application/archivist": "workspace:*",
-    "next": "13.2.3",
+    "@applications/archivist": "workspace:*",
+    "@applications/passport": "workspace:*",
+    "@tanstack/react-query": "^4.29.1",
+    "@tanstack/react-query-devtools": "^4.29.1",
+    "next": "13.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-query": "^3.39.3"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
     "@packages/ts-configs": "workspace:*",
     "@types/node": "18.14.2",
-    "@types/react": "18.0.28",
+    "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11"
   },
   "eslintConfig": {

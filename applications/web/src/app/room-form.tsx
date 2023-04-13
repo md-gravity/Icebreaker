@@ -27,15 +27,17 @@ function RoomForm() {
   return (
     <form onSubmit={onSubmit}>
       <fieldset>
-        <legend>Room(optional):</legend>
+        <legend>Room</legend>
+        <label htmlFor="roomName">Name(optional):</label>
         <input
+          id="roomName"
           name="roomName"
           type="text"
         />
-        <br />
-        <br />
-        <button type="submit">Create</button>
       </fieldset>
+      <br />
+      <br />
+      <button type="submit">Create</button>
     </form>
   )
 }

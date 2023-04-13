@@ -5,40 +5,39 @@ import {useCreateTemporalUser} from '@app/services/create-temporal-user'
 import {useCurrentUserQuery} from '@app/services/current-user'
 
 function UserForm() {
-  const currentUser = useCurrentUserQuery()
-  const createTemporalUser = useCreateTemporalUser()
+  const currentUserQuery = useCurrentUserQuery()
+  const currentUser = currentUserQuery?.data?.user
+  const createTemporalUserMutation = useCreateTemporalUser()
 
-  const [username, setUsername] = useState(currentUser.data?.username ?? '')
+  const [username, setUsername] = useState(currentUser?.username ?? '')
   const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value)
   }
 
-  const usernameUpdated =
-    currentUser.data && currentUser.data.username !== username
+  const usernameUpdated = currentUser && currentUser.username !== username
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
 
     if (usernameUpdated) {
       console.warn('Implement update user mutation')
     } else {
-      createTemporalUser.mutate({username})
+      createTemporalUserMutation.mutate({username})
     }
   }
 
   return (
     <form onSubmit={onSubmit}>
       <fieldset>
-        <legend>Username:</legend>
+        <label htmlFor="username">Username:</label>
         <input
+          id="username"
           name="username"
           type="text"
           value={username}
           onChange={handleUsernameChange}
         />
-        <br />
-        <br />
-        <button type="submit">{usernameUpdated ? 'Update' : 'Save'}</button>
       </fieldset>
+      <button type="submit">{usernameUpdated ? 'Update' : 'Save'}</button>
     </form>
   )
 }

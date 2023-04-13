@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "files": [
-    ".remix.js",
+    ".next.js",
     ".base.js",
     ".react.js"
   ],
@@ -11,7 +11,7 @@
     "@remix-run/eslint-config": "^1.9.0",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
-    "eslint-config-next": "13.2.3",
+    "eslint-config-next": "13.3.0",
     "eslint-plugin-github": "^4.6.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2"
   }

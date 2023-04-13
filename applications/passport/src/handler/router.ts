@@ -10,12 +10,19 @@ import {
   signUp,
   temporalSignUp,
 } from '@app/services/sign-user.service'
+import {setCookieToken} from '@packages/authentication'
 
 const passportRouter = router({
   createTemporalUser: procedure
     .input((body) => createTemporalUserInput.parse(body))
     .output(authOutput)
-    .mutation(async ({input}) => temporalSignUp(input)),
+    .mutation(async ({input, ctx}) => {
+      const {user, token} = await temporalSignUp(input)
+
+      setCookieToken(token, ctx.res)
+
+      return {user}
+    }),
   currentUser: tokenProcedure.output(currentUserOutput).query(async ({ctx}) => {
     const {jwt} = ctx
     if (!jwt) {
@@ -27,11 +34,23 @@ const passportRouter = router({
   signIn: procedure
     .input((body) => signInInput.parse(body))
     .output(authOutput)
-    .mutation(async ({input}) => signIn(input)),
+    .mutation(async ({input, ctx}) => {
+      const {user, token} = await signIn(input)
+
+      setCookieToken(token, ctx.res)
+
+      return {user}
+    }),
   signUp: procedure
     .input((body) => signUpInput.parse(body))
     .output(authOutput)
-    .mutation(async ({input}) => signUp(input)),
+    .mutation(async ({input, ctx}) => {
+      const {user, token} = await signUp(input)
+
+      setCookieToken(token, ctx.res)
+
+      return {user}
+    }),
 })
 
 type PassportRouter = typeof passportRouter

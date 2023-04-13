@@ -1,49 +1,41 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-srv
+  name: ingress
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - host: gravity.io
       http:
         paths:
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: web-cluster-ip-srv
-                port:
-                  number: 3000
-    - host: passport.gravity.io
-      http:
-        paths:
-          - path: /?(.*)
+          - path: /api/passport(/|$)(.*)
             pathType: Prefix
             backend:
               service:
                 name: passport-cluster-ip-srv
                 port:
                   number: 3000
-    - host: archivist.gravity.io
-      http:
-        paths:
-          - path: /?(.*)
+          - path: /api/archivist(/|$)(.*)
             pathType: Prefix
             backend:
               service:
                 name: archivist-cluster-ip-srv
                 port:
                   number: 3000
-    - host: telegraph.gravity.io
-      http:
-        paths:
-        - path: /?(.*)
-          pathType: Prefix
-          backend:
-            service:
+          - path: /api/telegraph(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
                 name: telegraph-cluster-ip-srv
                 port:
-                 number: 3000
+                  number: 3000
+          - path: /(|)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: web-cluster-ip-srv
+                port:
+                  number: 3000

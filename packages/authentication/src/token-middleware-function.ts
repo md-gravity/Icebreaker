@@ -3,10 +3,9 @@ import {
   type MiddlewareFunction,
   type ProcedureParams,
 } from '@trpc/server'
-import {type IncomingMessage} from 'node:http'
+import {type IncomingMessage, type ServerResponse} from 'node:http'
 
-import {verify} from './jwt.service'
-import {type Payload} from './jwt.service'
+import {type Payload, verify} from './jwt.service'
 
 const tokenMiddlewareFunction: MiddlewareFunction<
   ProcedureParams<
@@ -48,4 +47,12 @@ const retrieveCookieToken = (cookie: string) => {
   return cookieTokenItem?.match(TOKEN_REGEXP)?.groups?.jwt ?? null
 }
 
-export {tokenMiddlewareFunction}
+const DEFAULT_MAX_AGE = 24 * 60 * 60 * 1000
+
+const setCookieToken = (token: string, res: ServerResponse) =>
+  res.setHeader(
+    'Set-Cookie',
+    `jwt=${token}; Path=/; Max-Age=${DEFAULT_MAX_AGE}`
+  )
+
+export {tokenMiddlewareFunction, setCookieToken}

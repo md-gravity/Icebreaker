@@ -21,8 +21,7 @@
   },
   "dependencies": {
     "@packages/authentication": "workspace:*",
-    "@packages/duct": "workspace:*",
-    "@packages/cors": "workspace:*"
+    "@packages/duct": "workspace:*"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
