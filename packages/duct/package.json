@@ -1,6 +1,5 @@
 {
   "name": "@packages/duct",
-  "private": true,
   "version": "0.0.1",
   "main": "./build/index.js",
   "scripts": {
@@ -13,6 +12,7 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
+    "@applications/passport": "^0.0.1",
     "node-nats-streaming": "^0.3.2"
   },
   "devDependencies": {

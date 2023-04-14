@@ -1,6 +1,5 @@
 {
   "name": "@packages/eslint-config-hub",
-  "private": true,
   "version": "1.0.0",
   "files": [
     ".next.js",
@@ -14,5 +13,8 @@
     "eslint-config-next": "13.3.0",
     "eslint-plugin-github": "^4.6.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2"
+  },
+  "dependencies": {
+    "@applications/passport": "^0.0.1"
   }
 }

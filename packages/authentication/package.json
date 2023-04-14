@@ -1,6 +1,5 @@
 {
   "name": "@packages/authentication",
-  "private": true,
   "version": "0.0.1",
   "main": "./build/index.js",
   "scripts": {
@@ -14,8 +13,9 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
-    "jsonwebtoken": "^9.0.0",
-    "@trpc/server": "^10.20.0"
+    "@applications/passport": "^0.0.1",
+    "@trpc/server": "^10.20.0",
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "1.0.0",

@@ -1,6 +1,5 @@
 {
   "name": "@packages/ts-configs",
-  "private": true,
   "version": "1.0.0",
   "files": [
     "base.json",
@@ -8,5 +7,8 @@
     "frontend.json",
     "react.json",
     "next.json"
-  ]
+  ],
+  "dependencies": {
+    "@applications/passport": "^0.0.1"
+  }
 }

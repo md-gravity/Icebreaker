@@ -1,7 +1,6 @@
 {
   "name": "@applications/telegraph",
   "version": "0.0.1",
-  "private": true,
   "main": "./build/index.js",
   "scripts": {
     "start": "tsx src/main.ts",
@@ -20,13 +19,14 @@
     "prisma:studio": "prisma studio"
   },
   "dependencies": {
+    "@applications/passport": "^0.0.1",
     "@packages/authentication": "0.0.1",
     "@packages/duct": "0.0.1",
-    "ws": "^8.12.0",
+    "@prisma/client": "^4.10.1",
     "@trpc/server": "^10.20.0",
-    "zod": "^3.20.2",
     "prisma": "^4.10.1",
-    "@prisma/client": "^4.10.1"
+    "ws": "^8.12.0",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "1.0.0",
