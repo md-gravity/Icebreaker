@@ -2,6 +2,7 @@ name: Running @applications/web tests
 
 env:
   NEXT_PUBLIC_API_URL: fake-api-url
+  JWT_SECRET_KEY: secret-key
 
 on:
   pull_request:
