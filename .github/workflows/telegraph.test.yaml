@@ -8,6 +8,25 @@ on:
     paths:
       - 'applications/telegraph/**'
 jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm install --workspace=@applications/telegraph --install-workspace-root
+      - run: npm run lint -- --filter=@applications/telegraph
+      - run: npm run typecheck --filter=@applications/telegraph
+  typecheck:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm install --workspace=@applications/telegraph --install-workspace-root
+      - run: npm run typecheck --filter=@applications/telegraph
   build:
     runs-on: ubuntu-20.04
     steps:
@@ -15,7 +34,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/telegraph --include-workspace-root --verbose
-      - run: npm run typecheck --workspace=@applications/telegraph
-      - run: npm run lint --workspace=@applications/telegraph
+      - run: npm install --workspace=@applications/telegraph --install-workspace-root
       - run: npm run build --workspace=@applications/telegraph

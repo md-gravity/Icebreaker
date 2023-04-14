@@ -1,7 +1,6 @@
-name: Running @packages tests
+name: Running packages tests
 
 env:
-  NEXT_PUBLIC_API_URL: fake-api-url
   JWT_SECRET_KEY: secret-key
 
 on:
@@ -9,6 +8,24 @@ on:
     paths:
       - 'packages/**'
 jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm install --workspaces --install-workspace-root
+      - run: npm run lint
+  typecheck:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm install --workspaces --install-workspace-root
+      - run: npm run typecheck
   build:
     runs-on: ubuntu-20.04
     steps:
@@ -16,7 +33,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --include-workspace-root --verbose
-      - run: npm run typecheck
-      - run: npm run lint
+      - run: npm install --workspaces --install-workspace-root
       - run: npm run build
