@@ -15,7 +15,6 @@
     "@applications/archivist": "0.0.1",
     "@applications/passport": "^0.0.1",
     "@applications/telegraph": "0.0.1",
-    "@packages/authentication": "0.0.1",
     "@tanstack/react-query": "^4.29.1",
     "@tanstack/react-query-devtools": "^4.29.1",
     "@trpc/client": "^10.20.0",
