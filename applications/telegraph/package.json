@@ -9,6 +9,7 @@
     "build": "tsc --build --clean && tsc && tsc-alias",
     "===utils===": "===utils===",
     "preinstall": "npm run prisma:generate",
+    "prepare": "npm run build",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
