@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-          architecture: x64
+      - run: rm package-lock.json
       - run: npm install --workspace=@applications/passport --include-workspace-root --verbose
       - run: npm run prisma:generate --workspace=@applications/passport
       - run: npm run typecheck --workspace=@applications/passport
