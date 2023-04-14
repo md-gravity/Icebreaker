@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspaces --include-workspace-root
+      - run: npm install --workspaces --include-workspace-root --foreground-scripts
       - run: npm run lint
   typecheck:
     runs-on: ubuntu-20.04
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspaces --include-workspace-root
+      - run: npm install --workspaces --include-workspace-root --foreground-scripts
       - run: npm run typecheck
   build:
     runs-on: ubuntu-20.04
@@ -33,5 +33,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspaces --include-workspace-root
+      - run: npm install --workspaces --include-workspace-root --foreground-scriptss
       - run: npm run build
