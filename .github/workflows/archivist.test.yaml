@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci --workspaces
+      - run: npm ci --workspaces --workspace=@applications/archivist
       - run: npm run prisma:generate --workspace=@applications/archivist
       - run: npm run typecheck --workspace=@applications/archivist
       - run: npm run lint --workspace=@applications/archivist
