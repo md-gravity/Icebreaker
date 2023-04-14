@@ -12,10 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          version: 7.22.0
-      - run: pnpm --filter @applications/telegraph... install
-      - run: pnpm --filter @applications/telegraph... typecheck
-      - run: pnpm --filter @applications/telegraph... lint
-      - run: pnpm --filter @applications/telegraph... build
+          node-version: 19
+      - run: npm install --workspace=applications/telegraph
+      - run: npm install --workspaces=false
+      - run: npm run prisma:generate --workspace=applications/telegraph
+      - run: npm run typecheck --workspace=applications/telegraph
+      - run: npm run lint --workspace=applications/telegraph
+      - run: npm run build --workspace=applications/telegraph

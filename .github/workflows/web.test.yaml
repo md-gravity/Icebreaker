@@ -12,10 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          version: 7.22.0
-      - run: pnpm --filter @applications/web... install
-      - run: pnpm --filter @applications/web... typecheck
-      - run: pnpm --filter @applications/web... lint
-      - run: pnpm --filter @applications/web... build
+          node-version: 19
+      - run: npm install --workspace=applications/web
+      - run: npm install --workspaces=false
+      - run: npm run typecheck --workspace=applications/web
+      - run: npm run lint --workspace=applications/web
+      - run: npm run build --workspace=applications/web

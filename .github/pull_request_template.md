@@ -1,5 +1,4 @@
 # Description
-
 <!--
 What? 👀
 Why? 🧸
@@ -15,7 +14,7 @@ Screenshots (optional, more required)
 <!--
 How? ⚗️
 
-List any dependencies that are required for this change.
+List any dependencies that was required to change.
 -->
 
 ## How To Test
@@ -26,8 +25,8 @@ Describe steps how to test old and new behaviour.
 -->
 
 # Checklist
-- [ ] I have performed a self-review of my code
-- [ ] If it is a core feature, I have added thorough tests.
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] I have performed a self-review(clean, lint, typecheck, build) of my code & follow full user flow
+- [ ] If it is a core feature, I have added thorough tests
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Code Improvement & Refactoring

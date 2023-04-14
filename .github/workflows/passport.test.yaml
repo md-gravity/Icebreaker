@@ -12,11 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          version: 7.22.0
-      - run: pnpm --filter @applications/passport... install
-      - run: pnpm --filter @packages/passport-db prisma:generate
-      - run: pnpm --filter @applications/passport... typecheck
-      - run: pnpm --filter @applications/passport... lint
-      - run: pnpm --filter @applications/passport... build
+          node-version: 19
+      - run: npm install --workspace=applications/passport
+      - run: npm install --workspaces=false
+      - run: npm run prisma:generate --workspace=applications/passport
+      - run: npm run typecheck --workspace=applications/passport
+      - run: npm run lint --workspace=applications/passport
+      - run: npm run build --workspace=applications/passport
