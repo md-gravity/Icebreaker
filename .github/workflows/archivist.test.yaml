@@ -1,0 +1,22 @@
+name: Running @applications/archivist tests
+
+env:
+  JWT_SECRET_KEY: secret-key
+
+on:
+  pull_request:
+    paths:
+      - 'applications/archivist/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci -w =@applications/archivist
+      - run: npm run prisma:generate --workspace=@applications/archivist
+      - run: npm run typecheck --workspace=@applications/archivist
+      - run: npm run lint --workspace=@applications/archivist
+      - run: npm run build --workspace=@applications/archivist
