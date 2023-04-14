@@ -1,5 +1,6 @@
 {
   "name": "@packages/ts-configs",
+  "private": true,
   "version": "1.0.0",
   "files": [
     "base.json",

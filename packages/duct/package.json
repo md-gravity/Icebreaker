@@ -1,5 +1,6 @@
 {
   "name": "@packages/duct",
+  "private": true,
   "version": "0.0.1",
   "main": "./build/index.js",
   "scripts": {

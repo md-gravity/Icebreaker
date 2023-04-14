@@ -1,6 +1,7 @@
 {
   "name": "@applications/telegraph",
   "version": "0.0.1",
+  "private": true,
   "main": "./build/index.js",
   "scripts": {
     "start": "tsx src/main.ts",
