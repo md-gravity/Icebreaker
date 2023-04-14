@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci --include-workspace-root --verbose
+      - run: npm install --include-workspace-root --verbose
       - run: npm typecheck
       - run: npm lint
       - run: npm build
