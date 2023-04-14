@@ -7,8 +7,5 @@
     "frontend.json",
     "react.json",
     "next.json"
-  ],
-  "dependencies": {
-    "@applications/passport": "^0.0.1"
-  }
+  ]
 }
