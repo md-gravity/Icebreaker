@@ -2,15 +2,13 @@
   "name": "@applications/passport",
   "version": "0.0.1",
   "main": "./build/index.js",
-  "types": "./build/index.d.ts",
-  "files": ["build/**/*"],
   "scripts": {
     "start": "tsx src/main.ts",
     "dev": "tsx watch --clear-screen=false src/main.ts",
     "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "===utils===": "===utils===",
-    "postinstall": "pnpm prisma:generate && pnpm build",
+    "postinstall": "npm run prisma:generate && npm run build",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
@@ -21,21 +19,18 @@
     "prisma:studio": "prisma studio"
   },
   "dependencies": {
-    "@packages/authentication": "workspace:*",
-    "@packages/duct": "workspace:*",
+    "@packages/authentication": "0.0.1",
+    "@packages/duct": "0.0.1",
     "@trpc/server": "^10.20.0",
     "zod": "^3.20.2",
     "prisma": "^4.10.1",
     "@prisma/client": "^4.10.1"
   },
   "devDependencies": {
-    "@packages/eslint-config-hub": "workspace:*",
-    "@packages/ts-configs": "workspace:*",
+    "@packages/eslint-config-hub": "1.0.0",
+    "@packages/ts-configs": "1.0.0",
     "@types/node": "^18.11.3",
     "tsc-alias": "^1.8.2"
-  },
-  "engines": {
-    "node": ">=18"
   },
   "eslintConfig": {
     "extends": [

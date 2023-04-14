@@ -1,29 +1,24 @@
 {
   "name": "@packages/authentication",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
   "main": "./build/index.js",
-  "types": "./build/index.d.ts",
   "scripts": {
     "dev": "tsx watch src",
     "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc",
     "===utils===": "===utils===",
-    "postinstall": "pnpm build",
+    "postinstall": "npm run build",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "jsonwebtoken": "^9.0.0",
     "@trpc/server": "^10.20.0"
   },
   "devDependencies": {
-    "@packages/eslint-config-hub": "workspace:*",
-    "@packages/ts-configs": "workspace:*",
+    "@packages/eslint-config-hub": "1.0.0",
+    "@packages/ts-configs": "1.0.0",
     "@types/node": "^18.11.3"
   },
   "eslintConfig": {

@@ -1,7 +1,6 @@
 {
   "name": "@packages/eslint-config-hub",
   "version": "1.0.0",
-  "private": true,
   "files": [
     ".next.js",
     ".base.js",

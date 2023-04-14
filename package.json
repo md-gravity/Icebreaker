@@ -1,10 +1,14 @@
 {
   "name": "@gravity/icebreaker",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "engines": {
     "node": ">=18",
-    "pnpm": ">=8"
+    "npm": ">=9"
   },
+  "workspaces": [
+    "applications/*",
+    "packages/*"
+  ],
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
