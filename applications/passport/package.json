@@ -8,7 +8,7 @@
     "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "===utils===": "===utils===",
-    "postinstall": "ls ../../packages/duct && ls ../../node_modules/@packages/duct && npm run prisma:generate && npm run build",
+    "prepare": "npm run prisma:generate && npm run build",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
