@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-          architecture: arm64
+          architecture: x64
       - run: npm install --workspace=@applications/telegraph --include-workspace-root --verbose
       - run: npm run prisma:generate --workspace=@applications/telegraph
       - run: npm run typecheck --workspace=@applications/telegraph

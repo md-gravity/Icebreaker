@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-          architecture: arm64
+          architecture: x64
       - run: npm install --include-workspace-root --verbose 
       - run: npm run typecheck
       - run: npm run lint
