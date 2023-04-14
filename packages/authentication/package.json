@@ -4,9 +4,6 @@
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
-  "files": [
-    "./build/**/*"
-  ],
   "scripts": {
     "dev": "tsx watch src",
     "watch": "tsc --watch",
@@ -21,7 +18,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jsonwebtoken": "^9.0.0"
+    "jsonwebtoken": "^9.0.0",
+    "@trpc/server": "^10.20.0"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",

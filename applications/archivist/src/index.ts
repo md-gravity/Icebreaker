@@ -1,1 +1,1 @@
-export {createClient} from '@app/library/client'
+export {type ArchivistRouter} from '@app/handler'

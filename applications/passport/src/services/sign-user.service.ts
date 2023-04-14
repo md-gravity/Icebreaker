@@ -7,7 +7,7 @@ import {
   comparePasswords,
   createPasswordHash,
 } from '@app/services/password.service'
-import {type Payload as TokenPayload, sign} from '@packages/authentication'
+import {type Payload as JwtPayload, sign} from '@packages/authentication'
 import crypto from 'node:crypto'
 
 async function signUp(input: SignUpInputInterface) {
@@ -66,9 +66,9 @@ async function signIn(input: SignInInputInterface) {
   return {token, user}
 }
 
-async function findUserByToken(tokenPayload: TokenPayload) {
+async function findUserByToken(jwtPayload: JwtPayload) {
   return prismaClient().user.findUnique({
-    where: {id: tokenPayload.userId},
+    where: {id: jwtPayload.userId},
   })
 }
 

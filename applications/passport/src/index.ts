@@ -1,1 +1,1 @@
-export {createClient} from '@app/library/client'
+export {type PassportRouter} from '@app/handler'

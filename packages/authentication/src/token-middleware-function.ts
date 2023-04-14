@@ -8,26 +8,13 @@ import {type IncomingMessage, type ServerResponse} from 'node:http'
 import {type Payload, verify} from './jwt.service'
 
 const tokenMiddlewareFunction: MiddlewareFunction<
-  ProcedureParams<
-    AnyRootConfig,
-    {req: IncomingMessage},
-    unknown,
-    unknown,
-    unknown,
-    unknown,
-    unknown
-  >,
+  ProcedureParams<AnyRootConfig, {req: IncomingMessage}>,
   ProcedureParams<
     AnyRootConfig,
     {
       req: IncomingMessage
-      jwt: null | Payload
-    },
-    unknown,
-    unknown,
-    unknown,
-    unknown,
-    unknown
+      jwt: Payload | null
+    }
   >
 > = async ({ctx, next}) => {
   const {cookie} = ctx.req.headers

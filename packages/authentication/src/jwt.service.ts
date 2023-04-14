@@ -4,13 +4,11 @@ import {promisify} from 'node:util'
 const asyncSign = promisify(jwt.sign)
 const asyncVerify = promisify(jwt.verify)
 
-interface Payload {
-  userId: number
-}
-
 if (!process.env.JWT_SECRET_KEY) {
   throw new Error('Define "JWT_SECRET_KEY" in env')
 }
+
+type Payload = {userId: number}
 
 const sign = (payload: Payload): Promise<string> =>
   asyncSign(payload, process.env.JWT_SECRET_KEY, {algorithm: 'HS256'})

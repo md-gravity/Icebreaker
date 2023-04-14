@@ -12,25 +12,15 @@ const protectedMiddlewareFunction: MiddlewareFunction<
     AnyRootConfig,
     {
       req: IncomingMessage
-      jwt: null | Payload
-    },
-    unknown,
-    unknown,
-    unknown,
-    unknown,
-    unknown
+      jwt: Payload | null
+    }
   >,
   ProcedureParams<
     AnyRootConfig,
     {
       req: IncomingMessage
       jwt: Payload
-    },
-    unknown,
-    unknown,
-    unknown,
-    unknown,
-    unknown
+    }
   >
 > = async ({ctx, next}) => {
   const {jwt} = ctx

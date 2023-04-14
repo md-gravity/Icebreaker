@@ -25,7 +25,7 @@ spec:
                 name: archivist-cluster-ip-srv
                 port:
                   number: 3000
-          - path: /api/telegraph(/|$)(.*)
+          - path: /(|)(api/telegraph)
             pathType: Prefix
             backend:
               service:

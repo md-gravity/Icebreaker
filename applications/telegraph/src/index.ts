@@ -1,2 +1,1 @@
-export {createClient} from '@app/library/client'
-export type * from '@app/library/prisma-client'
+export {type RoomRouter} from '@app/handler'

@@ -1,7 +1,6 @@
 import {createHandler} from '@app/handler'
 import {applyWSSHandler} from '@trpc/server/adapters/ws'
-import WS from 'ws'
-import {type Server} from 'ws'
+import WS, {type Server} from 'ws'
 
 const createServer = () => {
   let server: Server

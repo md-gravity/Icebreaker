@@ -9,7 +9,7 @@ deploy:
 build:
   tagPolicy:
     customTemplate:
-        template: "skaffold-{{.IMAGE_NAME}}"
+        template: "latest"
   local:
     concurrency: 4
     push: false

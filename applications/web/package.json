@@ -14,11 +14,15 @@
   "dependencies": {
     "@applications/archivist": "workspace:*",
     "@applications/passport": "workspace:*",
+    "@applications/telegraph": "workspace:*",
+    "@packages/authentication": "workspace:*",
     "@tanstack/react-query": "^4.29.1",
     "@tanstack/react-query-devtools": "^4.29.1",
     "next": "13.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "@trpc/client": "^10.20.0",
+    "@trpc/server": "^10.20.0"
   },
   "devDependencies": {
     "@packages/eslint-config-hub": "workspace:*",
