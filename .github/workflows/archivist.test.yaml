@@ -8,6 +8,24 @@ on:
     paths:
       - 'applications/archivist/**'
 jobs:
+  install:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+          cache: npm
+      - run: npm install --workspace=@applications/archivist --install-workspace-root --verbose
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm run lint -- --filter=@applications/archivist
+      - run: npm run typecheck --filter=@applications/archivist
   build:
     runs-on: ubuntu-20.04
     steps:
@@ -15,7 +33,4 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/archivist --install-workspace-root --verbose
-      - run: npm run typecheck --workspace=@applications/archivist
-      - run: npm run lint --workspace=@applications/archivist
       - run: npm run build --workspace=@applications/archivist
