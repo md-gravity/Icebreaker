@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/archivist --include-workspace-root --verbose
+      - run: npm install --workspaces=true --workspace=@applications/archivist --include-workspace-root --verbose
       - run: npm run lint --workspace=@applications/archivist
   typecheck:
     runs-on: ubuntu-20.04
