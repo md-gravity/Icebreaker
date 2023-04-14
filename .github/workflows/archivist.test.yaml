@@ -15,9 +15,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/archivist --include-workspace-root --package-lock=false --install-strategy=nested
-      - run: npm run lint -- --filter=@applications/archivist
-      - run: npm run typecheck --filter=@applications/archivist
+      - run: npm install --include-workspace-root
+      - run: npm run lint --workspace=@applications/archivist
   typecheck:
     runs-on: ubuntu-20.04
     steps:
@@ -25,8 +24,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/archivist --include-workspace-root --package-lock=false --install-strategy=nested
-      - run: npm run typecheck --filter=@applications/archivist
+      - run: npm install --workspace=@applications/archivist --include-workspace-root
+      - run: npm run typecheck --workspace=@applications/archivist
   build:
     runs-on: ubuntu-20.04
     steps:
@@ -34,5 +33,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/archivist --include-workspace-root --package-lock=false --install-strategy=nested
+      - run: npm install --workspace=@applications/archivist --include-workspace-root
       - run: npm run build --workspace=@applications/archivist

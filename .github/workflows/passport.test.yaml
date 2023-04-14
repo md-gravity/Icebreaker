@@ -16,8 +16,8 @@ jobs:
         with:
           node-version: 19
       - run: npm install --workspace=@applications/passport --include-workspace-root
-      - run: npm run lint -- --filter=@applications/passport
-      - run: npm run typecheck --filter=@applications/passport
+      - run: npm run lint --workspace=@applications/passport
+      - run: npm run typecheck --workspace=@applications/passport
   typecheck:
     runs-on: ubuntu-20.04
     steps:
@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: 19
       - run: npm install --workspace=@applications/passport --include-workspace-root
-      - run: npm run typecheck --filter=@applications/passport
+      - run: npm run typecheck --workspace=@applications/passport
   build:
     runs-on: ubuntu-20.04
     steps:

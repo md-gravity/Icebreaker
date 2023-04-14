@@ -17,8 +17,8 @@ jobs:
         with:
           node-version: 19
       - run: npm install --workspace=@applications/web --include-workspace-root
-      - run: npm run lint -- --filter=@applications/web
-      - run: npm run typecheck --filter=@applications/web
+      - run: npm run lint --workspace=@applications/web
+      - run: npm run typecheck --workspace=@applications/web
   typecheck:
     runs-on: ubuntu-20.04
     steps:
@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 19
       - run: npm install --workspace=@applications/web --include-workspace-root
-      - run: npm run typecheck --filter=@applications/web
+      - run: npm run typecheck --workspace=@applications/web
   build:
     runs-on: ubuntu-20.04
     steps:
