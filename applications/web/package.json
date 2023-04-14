@@ -12,9 +12,9 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
-    "@applications/archivist": "0.0.1",
-    "@applications/passport": "^0.0.1",
-    "@applications/telegraph": "0.0.1",
+    "@applications/archivist": "*",
+    "@applications/passport": "*",
+    "@applications/telegraph": "*",
     "@tanstack/react-query": "^4.29.1",
     "@tanstack/react-query-devtools": "^4.29.1",
     "@trpc/client": "^10.20.0",
@@ -24,8 +24,8 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@packages/eslint-config-hub": "1.0.0",
-    "@packages/ts-configs": "1.0.0",
+    "@packages/eslint-config-hub": "*",
+    "@packages/ts-configs": "*",
     "@types/node": "18.14.2",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11"

@@ -10,12 +10,10 @@
 <br />
 
 ### Technologies Stack
-- Monorepo & Turbopack
-- TypeScript
-- NodeJS & tRPC & Prisma
-- PostgresSQL Database
-- NextJS
-- Docker & Kubernetes
+**Build Pack:** [NPM & Workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true), [TypeScript](https://www.typescriptlang.org/docs/), [Turborepo](https://turbo.build/pack);
+**Backend:** [NodeJS](https://nodejs.dev/en/), [tRPC](https://trpc.io), [Prisma](https://www.prisma.io), [PostgreSQL](https://www.postgresql.org);
+**Frontend:** [NextJS](https://nextjs.org), [React](https://react.dev), [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API);
+**Deployment:** [Docker](https://www.docker.com), [Kubernetes](https://kubernetes.io), [Skaffold](https://skaffold.dev), [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/);
 
 <br />
 
@@ -30,14 +28,12 @@ It's better to set it up once than every time. Good luck and have fun 🪖
 # 🚀 Install Package Manager
 ## Unix; For more info visit 🙄 https://brew.sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install nvm
+
 ## Windows: For more info visit 🙄 https://chocolatey.org/install
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-
-# Install Node Version Manager
-## Unix
-brew install nvm
-## Windows
 choco install nvm
+
 
 # 😱 Install NodeJS
 nvm install 19

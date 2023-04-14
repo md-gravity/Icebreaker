@@ -19,8 +19,8 @@
     "prisma:studio": "prisma studio"
   },
   "dependencies": {
-    "@packages/authentication": "0.0.1",
-    "@packages/duct": "0.0.1",
+    "@packages/authentication": "*",
+    "@packages/duct": "*",
     "@prisma/client": "^4.10.1",
     "@trpc/server": "^10.20.0",
     "prisma": "^4.10.1",
@@ -28,8 +28,8 @@
     "zod": "^3.20.2"
   },
   "devDependencies": {
-    "@packages/eslint-config-hub": "1.0.0",
-    "@packages/ts-configs": "1.0.0",
+    "@packages/eslint-config-hub": "*",
+    "@packages/ts-configs": "*",
     "@types/node": "^18.11.3",
     "@types/ws": "^8.5.4",
     "tsc-alias": "^1.8.2"
