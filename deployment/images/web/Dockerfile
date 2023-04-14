@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install --workspace=applications/web && \
-    npm install --workspaces=false
+RUN npm ci --workspace=applications/web && \
+    npm ci --workspaces=false
 
 ENTRYPOINT ["sh", "./deployment/images/web/entrypoint.sh"]
