@@ -40,9 +40,9 @@ brew install nvm
 choco install nvm
 
 # 😱 Install NodeJS
-nvm install 18
+nvm install 19
 ## 🎃 Install Dependencies For Local Development 
-npm i
+npm i --include-workspace-root
 
 # Install Development Environment Dependencies
 ## 😐 Install Docker & Enable Kubernetes: 🔬https://docs.docker.com/engine/install/
