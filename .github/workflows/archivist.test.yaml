@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - run: sudo apt update -y && sudo apt install nodejs && npm i -g npm@latest
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
       - run: npm install --workspace=@applications/archivist --include-workspace-root --verbose
       - run: npm run lint --workspace=@applications/archivist
   typecheck:
