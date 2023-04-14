@@ -1,4 +1,4 @@
-import {prismaClient} from '@app/library/prisma-client'
+import {getPrismaClient} from '@app/library/prisma-client'
 import {
   createUserEvent,
   connectDuct as connect,
@@ -14,7 +14,7 @@ const connectDuct = async () => {
   createUserEvent(client).listen({
     ackWait: ACK_WAIT_ITERATOR_TIMEOUT,
     onMessage: async (data, msg) => {
-      await prismaClient().user.create({data})
+      await getPrismaClient().user.create({data})
       msg.ack()
     },
     queueGroupName: QUEUE_GROUP_NAME,
@@ -23,7 +23,7 @@ const connectDuct = async () => {
   createRoomEvent(client).listen({
     ackWait: ACK_WAIT_ITERATOR_TIMEOUT,
     onMessage: async (data, msg) => {
-      await prismaClient().room.create({data})
+      await getPrismaClient().room.create({data})
       msg.ack()
     },
     queueGroupName: QUEUE_GROUP_NAME,

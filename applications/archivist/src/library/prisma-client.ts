@@ -2,11 +2,11 @@ import {PrismaClient} from '.prisma/client'
 
 let prisma: PrismaClient
 
-const prismaClient = (): PrismaClient => {
+const getPrismaClient = (): PrismaClient => {
   prisma ||= new PrismaClient()
 
   return prisma
 }
 
-export {prismaClient}
+export {getPrismaClient}
 export type * from '.prisma/client'

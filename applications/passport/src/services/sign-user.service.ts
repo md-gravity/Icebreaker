@@ -1,7 +1,7 @@
 import {type CreateTemporalUserInputInterface} from '@app/dtos/create-temporal-user.input'
 import {type SignInInputInterface} from '@app/dtos/sign-in-user.input'
 import {type SignUpInputInterface} from '@app/dtos/sign-up-user.input'
-import {prismaClient} from '@app/library/prisma-client'
+import {getPrismaClient} from '@app/library/prisma-client'
 import {emitUserCreated} from '@app/services/duct.service'
 import {
   comparePasswords,
@@ -11,11 +11,11 @@ import {type Payload as JwtPayload, sign} from '@packages/authentication'
 import crypto from 'node:crypto'
 
 async function signUp(input: SignUpInputInterface) {
-  if (await prismaClient().user.findUnique({where: {email: input.email}})) {
+  if (await getPrismaClient().user.findUnique({where: {email: input.email}})) {
     throw new Error('Email already exists')
   }
 
-  const user = await prismaClient().user.create({
+  const user = await getPrismaClient().user.create({
     data: {
       email: input.email,
       passwordHash: await createPasswordHash(input.password),
@@ -33,7 +33,7 @@ async function signUp(input: SignUpInputInterface) {
 
 async function temporalSignUp(input: CreateTemporalUserInputInterface) {
   const hash = createHashForTemporalUser(input.username)
-  const user = await prismaClient().user.create({
+  const user = await getPrismaClient().user.create({
     data: {
       email: hash,
       passwordHash: hash,
@@ -50,7 +50,7 @@ async function temporalSignUp(input: CreateTemporalUserInputInterface) {
 }
 
 async function signIn(input: SignInInputInterface) {
-  const user = await prismaClient().user.findUnique({
+  const user = await getPrismaClient().user.findUnique({
     where: {email: input.email},
   })
 
@@ -67,7 +67,7 @@ async function signIn(input: SignInInputInterface) {
 }
 
 async function findUserByToken(jwtPayload: JwtPayload) {
-  return prismaClient().user.findUnique({
+  return getPrismaClient().user.findUnique({
     where: {id: jwtPayload.userId},
   })
 }

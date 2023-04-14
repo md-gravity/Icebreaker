@@ -1,10 +1,10 @@
 import {type CreateRoomInput} from '@app/dtos/create-room.input'
-import {prismaClient} from '@app/library/prisma-client'
+import {getPrismaClient} from '@app/library/prisma-client'
 import {emitRoomCreated} from '@app/services/duct.service'
 import {createHash} from 'node:crypto'
 
 const createRoom = async (input: CreateRoomInput, userId: number) => {
-  const room = await prismaClient().room.create({
+  const room = await getPrismaClient().room.create({
     data: {
       name: input?.name,
       url: createUrl(input, userId),

@@ -1,18 +1,18 @@
 import {type JoinInputInterface} from '@app/dtos/join.input'
 import {type OnJoinOutputInterface} from '@app/dtos/on-join.output'
-import {prismaClient} from '@app/library/prisma-client'
+import {getPrismaClient} from '@app/library/prisma-client'
 import {joinEmitter} from '@app/services/join-emitter.service'
 import {type Observer} from '@trpc/server/observable'
 
 const join = async (input: JoinInputInterface, userId: number) => {
-  const room = await prismaClient().room.findUnique({
+  const room = await getPrismaClient().room.findUnique({
     where: {url: input.url},
   })
   if (!room) {
     throw Error(`Could not find room with the URL "${input.url}"`)
   }
 
-  const user = await prismaClient().user.findUnique({
+  const user = await getPrismaClient().user.findUnique({
     where: {id: userId},
   })
   if (!user) {
@@ -40,7 +40,7 @@ const onJoin = (
       return
     }
 
-    const subscribedRoom = await prismaClient().room.findUnique({
+    const subscribedRoom = await getPrismaClient().room.findUnique({
       where: {url},
     })
     if (!subscribedRoom) {

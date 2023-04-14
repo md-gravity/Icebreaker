@@ -1,5 +1,5 @@
 import {roomOutput} from '@app/dtos/room.output'
-import {prismaClient} from '@app/library/prisma-client'
+import {getPrismaClient} from '@app/library/prisma-client'
 import {
   connectDuct as connect,
   createRoomEvent,
@@ -17,7 +17,7 @@ const connectDuct = async () => {
   createUserEvent(client).listen({
     ackWait: ACK_WAIT_ITERATOR_TIMEOUT,
     onMessage: async (data, msg) => {
-      await prismaClient().user.create({data})
+      await getPrismaClient().user.create({data})
       msg.ack()
     },
     queueGroupName: QUEUE_GROUP_NAME,
