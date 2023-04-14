@@ -14,7 +14,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 19
+      - run: npm cache clean --force
       - run: npm ci --workspace=@applications/archivist --install-workspace-root --verbose
       - run: npm run prisma:generate --workspace=@applications/archivist
       - run: npm run typecheck --workspace=@applications/archivist
