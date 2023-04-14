@@ -6,7 +6,5 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm ci --workspace=@applications/telegraph --include-workspace-root && \
-    npm run prisma:generate --workspace=@applications/telegraph
-
+RUN npm ci --workspace=@applications/telegraph --include-workspace-root
 ENTRYPOINT ["sh", "./deployment/images/telegraph/entrypoint.sh"]
