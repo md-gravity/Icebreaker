@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install
+      - run: npm ci
       - run: npm typecheck
       - run: npm lint
       - run: npm build

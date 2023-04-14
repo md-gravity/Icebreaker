@@ -15,9 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/passport
-#      - run: npm install --workspaces=false
-#      - run: npm run prisma:generate --workspace=@applications/passport
-#      - run: npm run typecheck --workspace=@applications/passport
-#      - run: npm run lint --workspace=@applications/passport
-#      - run: npm run build --workspace=@applications/passport
+      - run: npm ci --workspace=@applications/passport
+      - run: npm ci --workspaces=false
+      - run: npm run prisma:generate --workspace=@applications/passport
+      - run: npm run typecheck --workspace=@applications/passport
+      - run: npm run lint --workspace=@applications/passport
+      - run: npm run build --workspace=@applications/passport
