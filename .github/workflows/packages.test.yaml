@@ -16,7 +16,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: rm package-lock.json
       - run: npm install --include-workspace-root --verbose
       - run: npm run typecheck
       - run: npm run lint
