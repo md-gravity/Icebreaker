@@ -20,7 +20,6 @@
     "prisma:studio": "prisma studio"
   },
   "dependencies": {
-    "@applications/passport": "^0.0.1",
     "@packages/authentication": "0.0.1",
     "@packages/duct": "0.0.1",
     "@prisma/client": "^4.10.1",
