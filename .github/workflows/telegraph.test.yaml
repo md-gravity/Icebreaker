@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/telegraph --include-workspace-root
+      - run: npm install --workspace=@applications/telegraph --include-workspace-root --verbose
       - run: npm run lint --workspace=@applications/archivist
       - run: npm run typecheck --workspace=@applications/archivist
   typecheck:
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/telegraph --include-workspace-root
+      - run: npm install --workspace=@applications/telegraph --include-workspace-root --verbose
       - run: npm run typecheck --workspace=@applications/archivist
   build:
     runs-on: ubuntu-20.04
@@ -34,5 +34,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/telegraph --include-workspace-root
+      - run: npm install --workspace=@applications/telegraph --include-workspace-root --verbose
       - run: npm run build --workspace=@applications/telegraph
