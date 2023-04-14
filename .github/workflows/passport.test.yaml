@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/passport --install-workspace-root
+      - run: npm install --workspace=@applications/passport --include-workspace-root
       - run: npm run lint -- --filter=@applications/passport
       - run: npm run typecheck --filter=@applications/passport
   typecheck:
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/passport --install-workspace-root
+      - run: npm install --workspace=@applications/passport --include-workspace-root
       - run: npm run typecheck --filter=@applications/passport
   build:
     runs-on: ubuntu-20.04
@@ -34,5 +34,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/passport --install-workspace-root
+      - run: npm install --workspace=@applications/passport --include-workspace-root
       - run: npm run build --workspace=@applications/passport
