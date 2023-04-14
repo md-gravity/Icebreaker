@@ -15,8 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci --workspace=@applications/telegraph
-      - run: npm ci --workspaces=false
+      - run: npm ci --include-workspace-root
       - run: npm run prisma:generate --workspace=@applications/telegraph
       - run: npm run typecheck --workspace=@applications/telegraph
       - run: npm run lint --workspace=@applications/telegraph
