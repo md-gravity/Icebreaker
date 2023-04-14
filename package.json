@@ -10,14 +10,10 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo dev",
     "build": "turbo build",
     "typecheck": "turbo typecheck",
     "lint": "turbo lint",
-    "lint:fix": "turbo lint:fix",
-    "===dev===": "===dev===",
-    "dev:passport": "turbo dev --filter=passport",
-    "dev:web": "turbo dev --filter=web"
+    "lint:fix": "turbo lint:fix"
   },
   "devDependencies": {
     "eslint": "^8.30.0",

@@ -1,2 +1,2 @@
-pnpm --filter @applications/archivist prisma:deploy &&
-pnpm --filter @applications/archivist dev
+npm run prisma:deploy --workspace=@applications/archivist &&
+npm run dev --workspace=@applications/archivist

@@ -10,7 +10,7 @@
 <br />
 
 ### Technologies Stack
-- PNPM & Monorepo & Turbopack
+- Monorepo & Turbopack
 - TypeScript
 - NodeJS & tRPC & Prisma
 - PostgresSQL Database
@@ -40,16 +40,9 @@ brew install nvm
 choco install nvm
 
 # 😱 Install NodeJS
-nvm install 19
-
-# Install Package Manager
-## Unix
-brew install pnpm
-## Windows
-choco install pnpm
-
-## 🎃 Install Dependencies
-pnpm i
+nvm install 18
+## 🎃 Install Dependencies For Local Development 
+npm i
 
 # Install Development Environment Dependencies
 ## 😐 Install Docker & Enable Kubernetes: 🔬https://docs.docker.com/engine/install/
@@ -57,10 +50,7 @@ pnpm i
 ## 🫠 Install Ingress NGINX
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.0/deploy/static/provider/cloud/deploy.yaml
 
-# 📝 Update hosts for yours local machine
-## Copy body of deployments/k8s/hosts
-## And put in yours. 
-## 🚨 You will need root access for it.
+# 📝 Update hosts on yours local machine from "deployments/k8s/hosts"
 ## Windows: C:\Windows\System32\drivers\etc\hosts
 ## Unix: /etc/hosts
 
