@@ -6,8 +6,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm ci --workspace=@applications/passport && \
-    npm ci --workspaces=false && \
+RUN npm ci --workspace=@applications/passport --include-workspace-root && \
     npm run prisma:generate --workspace=@applications/passport
 
 ENTRYPOINT ["sh", "./deployment/images/passport/entrypoint.sh"]

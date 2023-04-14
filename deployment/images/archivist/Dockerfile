@@ -6,8 +6,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm ci --workspace=@applications/archivist && \
-    npm ci --workspaces=false && \
+RUN npm ci --workspace=@applications/archivist --include-workspace-root && \
     npm run prisma:generate --workspace=@applications/archivist
 
 ENTRYPOINT ["sh", "./deployment/images/archivist/entrypoint.sh"]

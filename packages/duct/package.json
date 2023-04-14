@@ -6,7 +6,8 @@
     "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc",
     "===utils===": "===utils===",
-    "prepares": "npm run build",
+    "prepare": "npm run build",
+    "preinstall": " echo 'du' &&npm run build",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"
