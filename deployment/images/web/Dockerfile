@@ -5,6 +5,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm ci --workspace=applications/web --include-workspace-root
+RUN npm install --workspace=applications/web --include-workspace-root
 
 ENTRYPOINT ["sh", "./deployment/images/web/entrypoint.sh"]
