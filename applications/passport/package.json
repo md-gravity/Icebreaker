@@ -8,7 +8,7 @@
     "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "===utils===": "===utils===",
-    "prepare": "npm run prisma:generate && npm run build",
+    "preinstall": "echo 'ar' && npm run prisma:generate && npm run build",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
