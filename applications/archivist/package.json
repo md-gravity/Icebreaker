@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "./build/index.js",
   "scripts": {
-    "setup": "npm install && npm run prisma:generate && npm run build",
+    "install": "npm run prisma:generate && npm run build",
     "start": "tsx src/main.ts",
     "dev": "tsx watch --clear-screen=false src/main.ts",
     "watch": "tsc --watch",
