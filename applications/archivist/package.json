@@ -17,7 +17,7 @@
     "prisma:deploy": "prisma migrate deploy",
     "prisma:studio": "prisma studio",
     "===scripts===": "===scripts===",
-    "prepare": "npm run prisma:generate"
+    "prepare": "npm run prisma:generate && npm run build"
   },
   "dependencies": {
     "@packages/authentication": "*",
