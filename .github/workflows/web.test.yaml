@@ -16,9 +16,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/web --include-workspace-root --verbose
-      - run: npm run lint --workspace=@applications/web
-      - run: npm run typecheck --workspace=@applications/web
+      - run: npm ci --w @applications/web --include-workspace-root
+      - run: npm run lint -- --filter=@applications/web
   typecheck:
     runs-on: ubuntu-22.04
     steps:
@@ -26,8 +25,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/web --include-workspace-root --verbose
-      - run: npm run typecheck --workspace=@applications/web
+      - run: npm ci --w @applications/web --include-workspace-root
+      - run: npm run typecheck -- --filter=@applications/web
   build:
     runs-on: ubuntu-22.04
     steps:
@@ -35,5 +34,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/web --include-workspace-root --verbose
-      - run: npm run build --workspace=@applications/web
+      - run: npm ci --w @applications/web --include-workspace-root
+      - run: npm run build -- --filter=@applications/web

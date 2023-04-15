@@ -15,9 +15,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/passport --include-workspace-root --verbose
-      - run: npm run lint --workspace=@applications/passport
-      - run: npm run typecheck --workspace=@applications/passport
+      - run: npm ci --w @applications/passport --include-workspace-root
+      - run: npm run lint -- --filter=@applications/archivist
   typecheck:
     runs-on: ubuntu-22.04
     steps:
@@ -25,8 +24,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/passport --include-workspace-root --verbose
-      - run: npm run typecheck --workspace=@applications/passport
+      - run: npm ci --w @applications/passport --include-workspace-root
+      - run: npm run typecheck -- --filter=@applications/archivist
   build:
     runs-on: ubuntu-22.04
     steps:
@@ -34,5 +33,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=@applications/passport --include-workspace-root --verbose
-      - run: npm run build --workspace=@applications/passport
+      - run: npm ci --w @applications/passport --include-workspace-root
+      - run: npm run build -- --filter=@applications/archivist
