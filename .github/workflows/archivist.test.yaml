@@ -15,8 +15,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspaces=false
       - run: bash applications/archivist/scripts/pre-install.sh
+      - run: npm install --workspaces=false
       - run: npm install --workspace=@applications/archivist
       - run: npm run lint --workspace=@applications/archivist
   typecheck:
