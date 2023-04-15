@@ -1,8 +1,7 @@
-name: Running @packages tests
+name: Running packages tests
 
 env:
-  NEXT_PUBLIC_PASSPORT_API_URL: fake-passport-local-url
-  NEXT_PUBLIC_TELEGRAPH_API_URL: fake-passport-local-url
+  NEXT_PUBLIC_API_URL: fake-api-url
   JWT_SECRET_KEY: secret-key
 
 on:
@@ -10,14 +9,30 @@ on:
     paths:
       - 'packages/**'
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  lint:
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          version: 7.22.0
-      - run: pnpm install
-      - run: pnpm typecheck
-      - run: pnpm lint
-      - run: pnpm build
+          node-version: 19
+      - run: npm ci --include-workspace-root
+      - run: npm run lint
+  typecheck:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci --workspaces --include-workspace-root
+      - run: npm run typecheck
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci --workspaces --include-workspace-root
+      - run: npm run build

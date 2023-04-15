@@ -1,10 +1,6 @@
-import {createHandler} from '@app/trpc/handler'
+import {createHandler} from '@app/handler'
 import {applyWSSHandler} from '@trpc/server/adapters/ws'
-import WS from 'ws'
-
-import type {RoomRouter} from '@app/trpc/handler'
-
-import type {Server} from 'ws'
+import WS, {type Server} from 'ws'
 
 const createServer = () => {
   let server: Server
@@ -54,4 +50,3 @@ const createServer = () => {
 const server = createServer()
 
 export {server}
-export type {RoomRouter}

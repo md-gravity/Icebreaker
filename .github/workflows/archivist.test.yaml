@@ -1,0 +1,37 @@
+name: Running @applications/archivist tests
+
+env:
+  JWT_SECRET_KEY: secret-key
+
+on:
+  pull_request:
+    paths:
+      - 'applications/archivist/**'
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci --workspace=@applications/archivist --include-workspace-root --verbose
+      - run: npm run lint -- --filter=@applications/archivist
+  typecheck:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci ---workspace=@applications/archivist --include-workspace-root
+      - run: npm run typecheck -- --filter=@applications/archivist
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci ---workspace=@applications/archivist --include-workspace-root
+      - run: npm run build -- --filter=@applications/archivist

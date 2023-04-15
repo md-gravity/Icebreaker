@@ -13,5 +13,4 @@ interface CreateUserEvent {
 
 const createUserEvent = createEvent<CreateUserEvent>(EventTypes.CreateUser)
 
-export {createUserEvent}
-export type {CreateUserEvent}
+export {type CreateUserEvent, createUserEvent}

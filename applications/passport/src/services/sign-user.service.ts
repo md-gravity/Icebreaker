@@ -1,24 +1,21 @@
+import {type CreateTemporalUserInputInterface} from '@app/dtos/create-temporal-user.input'
+import {type SignInInputInterface} from '@app/dtos/sign-in-user.input'
+import {type SignUpInputInterface} from '@app/dtos/sign-up-user.input'
+import {getPrismaClient} from '@app/library/prisma-client'
+import {emitUserCreated} from '@app/services/duct.service'
 import {
   comparePasswords,
   createPasswordHash,
 } from '@app/services/password.service'
-import {sign} from '@packages/authentication'
-import {getPassportDBClient} from '@packages/passport-db'
+import {type Payload as JwtPayload, sign} from '@packages/authentication'
 import crypto from 'node:crypto'
 
-import type {CreateTemporalUserInputInterface} from '@app/inputs/create-temporal-user.input'
-import type {SignInInputInterface} from '@app/inputs/sign-in-user.input'
-import type {SignUpInputInterface} from '@app/inputs/sign-up-user.input'
-import type {Payload as TokenPayload} from '@packages/authentication'
-
 async function signUp(input: SignUpInputInterface) {
-  if (
-    await getPassportDBClient().user.findUnique({where: {email: input.email}})
-  ) {
+  if (await getPrismaClient().user.findUnique({where: {email: input.email}})) {
     throw new Error('Email already exists')
   }
 
-  const user = await getPassportDBClient().user.create({
+  const user = await getPrismaClient().user.create({
     data: {
       email: input.email,
       passwordHash: await createPasswordHash(input.password),
@@ -27,6 +24,8 @@ async function signUp(input: SignUpInputInterface) {
     },
   })
 
+  await emitUserCreated(user)
+
   const token = await sign({userId: user.id})
 
   return {token, user}
@@ -34,7 +33,7 @@ async function signUp(input: SignUpInputInterface) {
 
 async function temporalSignUp(input: CreateTemporalUserInputInterface) {
   const hash = createHashForTemporalUser(input.username)
-  const user = await getPassportDBClient().user.create({
+  const user = await getPrismaClient().user.create({
     data: {
       email: hash,
       passwordHash: hash,
@@ -43,13 +42,15 @@ async function temporalSignUp(input: CreateTemporalUserInputInterface) {
     },
   })
 
+  await emitUserCreated(user)
+
   const token = await sign({userId: user.id})
 
   return {token, user}
 }
 
 async function signIn(input: SignInInputInterface) {
-  const user = await getPassportDBClient().user.findUnique({
+  const user = await getPrismaClient().user.findUnique({
     where: {email: input.email},
   })
 
@@ -65,9 +66,9 @@ async function signIn(input: SignInInputInterface) {
   return {token, user}
 }
 
-async function findUserByToken(tokenPayload: TokenPayload) {
-  return getPassportDBClient().user.findUnique({
-    where: {id: tokenPayload.userId},
+async function findUserByToken(jwtPayload: JwtPayload) {
+  return getPrismaClient().user.findUnique({
+    where: {id: jwtPayload.userId},
   })
 }
 

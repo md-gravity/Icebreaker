@@ -10,12 +10,10 @@
 <br />
 
 ### Technologies Stack
-- PNPM & Monorepo & Turbopack
-- TypeScript
-- NodeJS & tRPC & Prisma
-- PostgresSQL Database
-- NextJS
-- Docker & Kubernetes
+**Build Pack:** [NPM & Workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true), [TypeScript](https://www.typescriptlang.org/docs/), [Turborepo](https://turbo.build/pack);
+**Backend:** [NodeJS](https://nodejs.dev/en/), [tRPC](https://trpc.io), [Prisma](https://www.prisma.io), [PostgreSQL](https://www.postgresql.org);
+**Frontend:** [NextJS](https://nextjs.org), [React](https://react.dev), [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API);
+**Deployment:** [Docker](https://www.docker.com), [Kubernetes](https://kubernetes.io), [Skaffold](https://skaffold.dev), [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/);
 
 <br />
 
@@ -30,37 +28,25 @@ It's better to set it up once than every time. Good luck and have fun 🪖
 # 🚀 Install Package Manager
 ## Unix; For more info visit 🙄 https://brew.sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install nvm
+
 ## Windows: For more info visit 🙄 https://chocolatey.org/install
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-
-# Install Node Version Manager
-## Unix
-brew install nvm
-## Windows
 choco install nvm
+
 
 # 😱 Install NodeJS
 nvm install 19
-
-# Install Package Manager
-## Unix
-brew install pnpm@7
-## Windows
-choco install pnpm@7
-
-## 🎃 Install Dependencies
-pnpm i
+## 🎃 Install Dependencies For Local Development 
+npm i --include-workspace-root
 
 # Install Development Environment Dependencies
 ## 😐 Install Docker & Enable Kubernetes: 🔬https://docs.docker.com/engine/install/
 ## 😶 Install Skaffold: https://skaffold.dev/docs/install/
 ## 🫠 Install Ingress NGINX
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.6.4/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.0/deploy/static/provider/cloud/deploy.yaml
 
-# 📝 Update hosts for yours local machine
-## Copy body of deployments/k8s/hosts
-## And put in yours. 
-## 🚨 You will need root access for it.
+# 📝 Update hosts on yours local machine from "deployments/k8s/hosts"
 ## Windows: C:\Windows\System32\drivers\etc\hosts
 ## Unix: /etc/hosts
 

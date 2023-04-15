@@ -1,2 +1,2 @@
-pnpm --filter @packages/telegraph-db prisma:deploy &&
-pnpm --filter @applications/telegraph dev
+npm run prisma:deploy --workspace=@applications/telegraph &&
+npm run dev --workspace=@applications/telegraph

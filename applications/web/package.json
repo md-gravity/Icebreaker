@@ -1,33 +1,43 @@
 {
   "name": "@applications/web",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "start": "next start",
     "build": "next build",
+    "watch": "tsc --watch",
+    "===utils===": "===utils===",
     "typecheck": "tsc --noEmit true",
     "lint": "next lint",
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
-    "@packages/api-client": "workspace:*",
-    "next": "13.2.3",
+    "@applications/archivist": "*",
+    "@applications/passport": "*",
+    "@applications/telegraph": "*",
+    "@tanstack/react-query": "^4.29.1",
+    "@tanstack/react-query-devtools": "^4.29.1",
+    "@trpc/client": "^10.20.0",
+    "@trpc/server": "^10.20.0",
+    "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@packages/eslint-config-hub": "workspace:*",
-    "@packages/ts-configs": "workspace:*",
+    "@packages/eslint-config-hub": "*",
+    "@packages/ts-configs": "*",
     "@types/node": "18.14.2",
-    "@types/react": "18.0.28",
+    "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11"
   },
   "eslintConfig": {
     "extends": [
       "@packages/eslint-config-hub/.next.js"
     ],
-    "ignorePatterns": ["/*.js", "/*.ts"]
+    "ignorePatterns": [
+      "/*.js",
+      "/*.ts"
+    ]
   },
   "prettier": "@packages/eslint-config-hub/.prettierrc.js"
 }

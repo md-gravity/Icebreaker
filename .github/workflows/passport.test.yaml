@@ -8,15 +8,30 @@ on:
     paths:
       - 'applications/passport/**'
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  lint:
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          version: 7.22.0
-      - run: pnpm --filter @applications/passport... install
-      - run: pnpm --filter @packages/passport-db prisma:generate
-      - run: pnpm --filter @applications/passport... typecheck
-      - run: pnpm --filter @applications/passport... lint
-      - run: pnpm --filter @applications/passport... build
+          node-version: 19
+      - run: npm ci --workspace=@applications/passport --include-workspace-root
+      - run: npm run lint -- --filter=@applications/archivist
+  typecheck:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci ---workspace=@applications/passport --include-workspace-root
+      - run: npm run typecheck -- --filter=@applications/archivist
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci ---workspace=@applications/passport --include-workspace-root
+      - run: npm run build -- --filter=@applications/archivist

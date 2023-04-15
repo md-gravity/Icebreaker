@@ -1,1 +1,1 @@
-pnpm --filter @applications/web dev
+npm run dev --workspace=@applications/web

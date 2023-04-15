@@ -1,2 +1,2 @@
-pnpm --filter @packages/passport-db prisma:deploy &&
-pnpm --filter @applications/passport dev
+npm run prisma:deploy --workspace=@applications/passport &&
+npm run dev --workspace=@applications/passport

@@ -8,14 +8,30 @@ on:
     paths:
       - 'applications/telegraph/**'
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  lint:
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          version: 7.22.0
-      - run: pnpm --filter @applications/telegraph... install
-      - run: pnpm --filter @applications/telegraph... typecheck
-      - run: pnpm --filter @applications/telegraph... lint
-      - run: pnpm --filter @applications/telegraph... build
+          node-version: 19
+      - run: npm ci --workspace=@applications/telegraph --include-workspace-root
+      - run: npm run lint -- --filter=@applications/telegraph
+  typecheck:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci ---workspace=@applications/telegraph --include-workspace-root
+      - run: npm run typecheck -- --filter=@applications/telegraph
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci ---workspace=@applications/telegraph --include-workspace-root
+      - run: npm run build -- --filter=@applications/telegraph

@@ -1,9 +1,16 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
+    "setup": {
+      "cache": false,
+      "dependsOn": ["^setup"]
+    },
     "dev": {
       "cache": false,
       "dependsOn": ["^build"]
+    },
+    "watch": {
+      "cache": false
     },
     "build": {
       "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts"],

@@ -1,22 +1,38 @@
 name: Running @applications/web tests
 
 env:
-  NEXT_PUBLIC_PASSPORT_API_URL: fake-passport-local-url
-  NEXT_PUBLIC_TELEGRAPH_API_URL: fake-passport-local-url
+  NEXT_PUBLIC_API_URL: fake-api-url
+  JWT_SECRET_KEY: secret-key
 
 on:
   pull_request:
     paths:
       - 'applications/web/**'
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  lint:
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          version: 7.22.0
-      - run: pnpm --filter @applications/web... install
-      - run: pnpm --filter @applications/web... typecheck
-      - run: pnpm --filter @applications/web... lint
-      - run: pnpm --filter @applications/web... build
+          node-version: 19
+      - run: npm ci --workspace=@applications/web --include-workspace-root
+      - run: npm run lint -- --filter=@applications/web
+  typecheck:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci ---workspace=@applications/web --include-workspace-root
+      - run: npm run typecheck -- --filter=@applications/web
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm ci ---workspace=@applications/web --include-workspace-root
+      - run: npm run build -- --filter=@applications/web

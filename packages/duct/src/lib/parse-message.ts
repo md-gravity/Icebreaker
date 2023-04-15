@@ -1,4 +1,4 @@
-import {Message} from '../get-nats-client'
+import {type Message} from '../get-nats-client'
 
 function parseMessage(msg: Message) {
   const data = msg.getData()

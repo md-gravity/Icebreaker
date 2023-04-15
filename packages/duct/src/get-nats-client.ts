@@ -1,6 +1,4 @@
-import nats from 'node-nats-streaming'
-
-import type {Stan, Message} from 'node-nats-streaming'
+import nats, {type Stan, type Message} from 'node-nats-streaming'
 
 interface ConnectOpts {
   clusterId: string
@@ -50,5 +48,4 @@ const getNATSClient: GetNATSClient = () => ({
   },
 })
 
-export {getNATSClient}
-export type {Stan, Message, ConnectOpts}
+export {type Stan, type Message, type ConnectOpts, getNATSClient}

@@ -1,13 +1,10 @@
 FROM alpine:3.17
 
-RUN apk add --update nodejs npm && \
-    npm install -g pnpm@7
+RUN apk add --update nodejs npm
 
 WORKDIR /app
 
 COPY . .
 
-RUN pnpm --filter @applications/telegraph... install && \
-    pnpm --filter @packages/telegraph-db prisma:generate
-
+RUN npm ci --workspace=@applications/telegraph --include-workspace-root
 ENTRYPOINT ["sh", "./deployment/images/telegraph/entrypoint.sh"]

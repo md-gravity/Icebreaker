@@ -1,24 +1,25 @@
 {
   "name": "@gravity/icebreaker",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "engines": {
     "node": ">=19",
-    "pnpm": "<=8"
+    "npm": ">=9"
   },
+  "workspaces": [
+    "applications/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "turbo dev",
+    "setup": "turbo setup",
     "build": "turbo build",
     "typecheck": "turbo typecheck",
     "lint": "turbo lint",
-    "lint:fix": "turbo lint:fix",
-    "=[dev]=============": "===================",
-    "dev:passport": "turbo dev --filter=passport",
-    "dev:web": "turbo dev --filter=web"
+    "lint:fix": "turbo lint:fix"
   },
   "devDependencies": {
     "eslint": "^8.30.0",
+    "tsx": "^3.12.6",
     "turbo": "^1.6.3",
-    "tsx": "^3.12.2",
-    "typescript": "^4.8.4"
+    "typescript": "^5.0.3"
   }
 }
