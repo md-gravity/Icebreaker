@@ -10,7 +10,9 @@
     "===utils===": "===utils===",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "lint:fix": "eslint src --fix",
+    "===scripts===": "===scripts===",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@trpc/server": "^10.20.0",
