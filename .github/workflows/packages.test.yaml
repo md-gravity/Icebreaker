@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci --workspaces --include-workspace-root
+      - run: npm ci --include-workspace-root
       - run: npm run lint
   typecheck:
     runs-on: ubuntu-22.04
