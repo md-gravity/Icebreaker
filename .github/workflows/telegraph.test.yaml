@@ -9,7 +9,7 @@ on:
       - 'applications/telegraph/**'
 jobs:
   lint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -19,7 +19,7 @@ jobs:
       - run: npm run lint --workspace=@applications/archivist
       - run: npm run typecheck --workspace=@applications/archivist
   typecheck:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -28,7 +28,7 @@ jobs:
       - run: npm install --workspace=@applications/telegraph --include-workspace-root --verbose
       - run: npm run typecheck --workspace=@applications/archivist
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

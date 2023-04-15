@@ -9,16 +9,18 @@ on:
       - 'applications/archivist/**'
 jobs:
   lint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 19
+      - run: npm config ls
+      - run: lsb_release -a
       - run: npm install --workspace=@applications/archivist --include-workspace-root --verbose
       - run: npm run lint --workspace=@applications/archivist
   typecheck:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -27,7 +29,7 @@ jobs:
       - run: npm install --workspace=@applications/archivist --include-workspace-root --verbose
       - run: npm run typecheck --workspace=@applications/archivist
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

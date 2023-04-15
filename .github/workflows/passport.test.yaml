@@ -9,7 +9,7 @@ on:
       - 'applications/passport/**'
 jobs:
   lint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -19,7 +19,7 @@ jobs:
       - run: npm run lint --workspace=@applications/passport
       - run: npm run typecheck --workspace=@applications/passport
   typecheck:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -28,7 +28,7 @@ jobs:
       - run: npm install --workspace=@applications/passport --include-workspace-root --verbose
       - run: npm run typecheck --workspace=@applications/passport
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
