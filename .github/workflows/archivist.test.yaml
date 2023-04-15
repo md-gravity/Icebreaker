@@ -15,9 +15,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm config ls
-      - run: lsb_release -a
-      - run: npm install --workspace=@applications/archivist --include-workspace-root --verbose
+      - run: npm install --workspace=false
+      - run: npm install --workspace=@packages/packages
+      - run: npm install --workspace=@packages/authentication
+      - run: npm install --workspace=@applications/archivist
       - run: npm run lint --workspace=@applications/archivist
   typecheck:
     runs-on: ubuntu-22.04
