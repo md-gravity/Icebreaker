@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci --w @applications/archivist --include-workspace-root
+      - run: npm ci -w @applications/archivist --include-workspace-root
       - run: npm run lint -- --filter=@applications/archivist
   typecheck:
     runs-on: ubuntu-22.04
