@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "./build/index.js",
   "scripts": {
+    "setup": "npm install && npm run build",
     "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc",
     "===utils===": "===utils===",
-    "postinstall": "npm run build",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"

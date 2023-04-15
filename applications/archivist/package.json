@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "main": "./build/index.js",
   "scripts": {
+    "setup": "npm install && npm run prisma:generate && npm run build",
     "start": "tsx src/main.ts",
     "dev": "tsx watch --clear-screen=false src/main.ts",
     "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "===utils===": "===utils===",
-    "postinstall": "npm run prisma:generate && npm run build",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
