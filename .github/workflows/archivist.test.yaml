@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm install --workspace=false
+      - run: npm install --workspaces=false
       - run: npm install --workspace=@packages/packages
       - run: npm install --workspace=@packages/authentication
       - run: npm install --workspace=@applications/archivist
