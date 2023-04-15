@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "./build/index.js",
   "scripts": {
-    "install": "npm run build",
     "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc",
     "===utils===": "===utils===",
