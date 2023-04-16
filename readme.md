@@ -16,7 +16,7 @@
 
 **Frontend:** [NextJS](https://nextjs.org), [React](https://react.dev), [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API);
 
-**Deployment:** [Docker](https://www.docker.com), [Kubernetes](https://kubernetes.io), [Skaffold](https://skaffold.dev), [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/);
+**Deployment:** [Docker](https://www.docker.com), [Kubernetes](https://kubernetes.io), [Skaffold](https://skaffold.dev), [Minikube](https://minikube.sigs.k8s.io/docs/start/), [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/);
 
 
 ## Starting Point
@@ -39,41 +39,24 @@ Not to worry, you can accomplish this using tools like Docker, Kubernetes, and S
 With these tools, you can automate the installation and building of all the necessary dependencies, making the process feel almost magical 🪄. 
 For example, you can easily install and connect PostgreSQL, NATS Streaming service, and other services to your API services.
 
-Pre-requirements:
-- [Install Docker](https://docs.docker.com/engine/install/)
-- [Enable Kubernetes](https://docs.docker.com/desktop/kubernetes/)
-- [Install Skaffold](https://skaffold.dev/docs/install/)
-
 ```bash
+brew  install --cask docker
+brew install skaffold
+brew install minikube
 
-# Install Ingress NGINX
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.0/deploy/static/provider/cloud/deploy.yaml
+minikube start
+minikube addons enable metrics-server
+minikube addons enable ingress
 
-# 📝 Update hosts
-sudo cat deployment/k8s/hosts >> /etc/hosts
+# Add to /etc/hosts
+127.0.0.1 gravity.io
 
-# Finally... 😭 Start Icebreaker. Congratulations 🎉 🎉 🎉
+# Build and Deploy Containers
 cd deployment/k8s
 skaffold dev
 
+# Finally... In new terminal window 😭 Release Icebreaker 🎉 🎉 🎉
+sudo minikube tunnel
+
 # Visit http://gravity.io 🚀
-```
-
-## For Windows Users
-
-🚨 Firstly install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
-
-```powershell
-# Install Windows Package Manager: For more info visit 🙄 https://chocolatey.org/install
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-
-choco install nvm
-
-brew install nvm
-nvm install 19
-
-npm i --include-workspace-root
-
-# 📝 Update hosts on yours local machine from "deployments/k8s/hosts"
-# C:\Windows\System32\drivers\etc\hosts
 ```
