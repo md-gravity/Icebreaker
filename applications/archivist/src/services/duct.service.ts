@@ -2,9 +2,9 @@ import {roomOutput} from '@app/dtos/room.output'
 import {getPrismaClient} from '@app/library/prisma-client'
 import {
   connectDuct as connect,
-  createRoomEvent,
-  CreateRoomEvent,
-  createUserEvent,
+  userCreatedEvent,
+  type RoomCreatedEvent,
+  roomCreatedEvent,
   getNATSClient,
 } from '@packages/duct'
 
@@ -14,7 +14,7 @@ const ACK_WAIT_ITERATOR_TIMEOUT = 5000
 const connectDuct = async () => {
   const client = await connect()
 
-  createUserEvent(client).listen({
+  userCreatedEvent(client).listen({
     ackWait: ACK_WAIT_ITERATOR_TIMEOUT,
     onMessage: async (data, msg) => {
       await getPrismaClient().user.create({data})
@@ -26,8 +26,8 @@ const connectDuct = async () => {
   return client
 }
 
-const emitRoomCreated = async (room: CreateRoomEvent['data']) => {
-  await createRoomEvent(getNATSClient().client).publish(roomOutput.parse(room))
+const emitRoomCreated = async (room: RoomCreatedEvent['data']) => {
+  await roomCreatedEvent(getNATSClient().client).publish(roomOutput.parse(room))
 }
 
 export {connectDuct, emitRoomCreated}

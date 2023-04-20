@@ -1,14 +1,14 @@
 import {userOutput} from '@app/dtos/user.output'
 import {
   connectDuct as connect,
-  CreateUserEvent,
-  createUserEvent,
+  type UserCreatedEvent,
+  userCreatedEvent,
   getNATSClient,
 } from '@packages/duct'
 
 const connectDuct = async () => connect()
 
-const emitUserCreated = async (user: CreateUserEvent['data']) =>
-  createUserEvent(getNATSClient().client).publish(userOutput.parse(user))
+const emitUserCreated = async (user: UserCreatedEvent['data']) =>
+  userCreatedEvent(getNATSClient().client).publish(userOutput.parse(user))
 
 export {connectDuct, emitUserCreated}

@@ -18,14 +18,14 @@ function RoomForm() {
       router.push(`/room/${room.url}`)
     },
   })
-  const onSubmit = (event: FormEvent<HTMLRoomForm>) => {
+  const handleSubmit = (event: FormEvent<HTMLRoomForm>) => {
     event.preventDefault()
 
     createRoom.mutate({name: event.currentTarget.roomName.value})
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit}>
       <fieldset>
         <legend>Room</legend>
         <label htmlFor="roomName">Name(optional):</label>

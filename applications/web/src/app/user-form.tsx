@@ -15,7 +15,7 @@ function UserForm() {
   }
 
   const usernameUpdated = currentUser && currentUser.username !== username
-  const onSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
 
     if (usernameUpdated) {
@@ -26,7 +26,7 @@ function UserForm() {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit}>
       <fieldset>
         <label htmlFor="username">Username:</label>
         <input

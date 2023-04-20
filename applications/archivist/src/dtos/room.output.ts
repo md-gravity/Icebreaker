@@ -6,6 +6,6 @@ const roomOutput = z.object({
   url: z.string(),
 })
 
-type RoomOutput = z.infer<typeof roomOutput>
+type RoomOutputInterface = z.infer<typeof roomOutput>
 
-export {type RoomOutput, roomOutput}
+export {type RoomOutputInterface, roomOutput}

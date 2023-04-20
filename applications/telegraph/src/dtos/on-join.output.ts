@@ -3,8 +3,8 @@ import {userOutput} from '@app/dtos/user.output'
 import {z} from 'zod'
 
 const onJoinOutput = z.object({
-  sender: userOutput,
-  targetRoom: roomOutput,
+  roomId: roomOutput.shape.id,
+  userId: userOutput.shape.id,
 })
 
 type OnJoinOutputInterface = z.infer<typeof onJoinOutput>
