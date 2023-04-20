@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: archivist-db-depl
+  name: passport-database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: archivist-db
+      app: passport-database
   template:
     metadata:
       labels:
-        app: archivist-db
+        app: passport-database
     spec:
       containers:
-        - name: archivist-db
+        - name: passport-database
           image: postgres:12.2
           env:
             - name: POSTGRES_PASSWORD
@@ -21,18 +21,18 @@ spec:
             - name: POSTGRES_USER
               value: "root"
             - name: POSTGRES_DB
-              value: "archivist"
+              value: "passport"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: archivist-db-cluster-ip-srv
+  name: passport-database-cluster-ip
 spec:
   type: ClusterIP
   selector:
-    app: archivist-db
+    app: passport-database
   ports:
-    - name: archivist-db
+    - name: passport-database
       protocol: TCP
       port: 5432
       targetPort: 5432
@@ -40,15 +40,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: archivist-db-node-port-srv
+  name: passport-database-load-balancer
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
-    app: archivist-db
+    app: passport-database
   ports:
-    - name: archivist-db
+    - name: passport-database
       protocol: TCP
-      port: 30700
-      nodePort: 30700
+      port: 5302
       targetPort: 5432
 

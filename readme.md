@@ -60,3 +60,19 @@ sudo minikube tunnel
 
 # Visit http://gravity.io 🚀
 ```
+
+## Debugger
+The debugger is an essential tool in the software development process. It enables developers to analyze and troubleshoot issues in their code by providing a clear understanding of how the code is executed.
+
+With the help of a debugger, developers can step through their code, inspect variables, and identify and fix errors more efficiently. This saves time and effort in the development process, ultimately resulting in more reliable and robust software.
+
+To make debugging easier, we have developed a debugger that you can use alongside your application. We recommend running your application in debug mode and opening it in the debugger to get a comprehensive view of your code's behavior. 
+This will enable you to identify and resolve issues more quickly and effectively.
+
+Search port of debug service in your terminal:
+```bash
+kubectl get services | grep "debug"
+```
+
+Then connect debugger to these services in your [browser](https://developers.google.com/cast/docs/debugging/remote_debugger) or IDE.
+

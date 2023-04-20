@@ -5,6 +5,7 @@
   "scripts": {
     "start": "tsx src/main.ts",
     "dev": "tsx watch --clear-screen=false src/main.ts",
+    "debug": "tsx watch --inspect --clear-screen=false src/main.ts",
     "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "===utils===": "===utils===",

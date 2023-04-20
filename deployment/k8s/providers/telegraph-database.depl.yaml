@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: passport-db-depl
+  name: telegraph-db-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: passport-db
+      app: telegraph-database
   template:
     metadata:
       labels:
-        app: passport-db
+        app: telegraph-database
     spec:
       containers:
-        - name: passport-db
+        - name: telegraph-database
           image: postgres:12.2
           env:
             - name: POSTGRES_PASSWORD
@@ -21,18 +21,18 @@ spec:
             - name: POSTGRES_USER
               value: "root"
             - name: POSTGRES_DB
-              value: "passport"
+              value: "telegraph"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: passport-db-cluster-ip-srv
+  name: telegraph-database-cluster-ip
 spec:
   type: ClusterIP
   selector:
-    app: passport-db
+    app: telegraph-database
   ports:
-    - name: passport-db
+    - name: telegraph-database
       protocol: TCP
       port: 5432
       targetPort: 5432
@@ -40,15 +40,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: passport-db-node-port-srv
+  name: telegraph-database-load-balancer
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
-    app: passport-db
+    app: telegraph-database
   ports:
-    - name: passport-db
+    - name: telegraph-database
       protocol: TCP
-      port: 30701
-      nodePort: 30701
+      port: 5303
       targetPort: 5432
 

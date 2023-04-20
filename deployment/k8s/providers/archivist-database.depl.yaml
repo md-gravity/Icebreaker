@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: telegraph-db-depl
+  name: archivist-database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: telegraph-db
+      app: archivist-database
   template:
     metadata:
       labels:
-        app: telegraph-db
+        app: archivist-database
     spec:
       containers:
-        - name: telegraph-db
+        - name: archivist-database
           image: postgres:12.2
           env:
             - name: POSTGRES_PASSWORD
@@ -21,18 +21,18 @@ spec:
             - name: POSTGRES_USER
               value: "root"
             - name: POSTGRES_DB
-              value: "telegraph"
+              value: "archivist"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: telegraph-db-cluster-ip-srv
+  name: archivist-database-cluster-ip
 spec:
   type: ClusterIP
   selector:
-    app: telegraph-db
+    app: archivist-database
   ports:
-    - name: telegraph-db
+    - name: archivist-database
       protocol: TCP
       port: 5432
       targetPort: 5432
@@ -40,15 +40,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: telegraph-db-node-port-srv
+  name: archivist-database-load-balancer
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
-    app: telegraph-db
+    app: archivist-database
   ports:
-    - name: telegraph-db
+    - name: archivist-database
       protocol: TCP
-      port: 30702
-      nodePort: 30702
+      port: 5301
       targetPort: 5432
 

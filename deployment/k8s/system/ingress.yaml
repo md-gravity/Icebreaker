@@ -15,27 +15,27 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: passport-cluster-ip-srv
+                name: passport-cluster-ip
                 port:
                   number: 3000
           - path: /api/archivist(/|$)(.*)
             pathType: Prefix
             backend:
               service:
-                name: archivist-cluster-ip-srv
+                name: archivist-cluster-ip
                 port:
                   number: 3000
           - path: /(|)(api/telegraph)
             pathType: Prefix
             backend:
               service:
-                name: telegraph-cluster-ip-srv
+                name: telegraph-cluster-ip
                 port:
                   number: 3000
           - path: /(|)(.*)
             pathType: Prefix
             backend:
               service:
-                name: web-cluster-ip-srv
+                name: web-cluster-ip
                 port:
                   number: 3000
