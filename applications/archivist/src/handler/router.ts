@@ -14,15 +14,15 @@ const archivistRouter = router({
   createMessage: protectedProcedure
     .input((body) => createMessageInput.parse(body))
     .output(messageOutput)
-    .mutation(async ({input, ctx}) => createMessage(input, ctx.jwt.userId)),
+    .mutation(({input, ctx}) => createMessage(input, ctx.jwt.userId)),
   createRoom: protectedProcedure
     .input((body) => createRoomInput.parse(body))
     .output(roomOutput)
-    .mutation(async ({input, ctx}) => createRoom(input, ctx.jwt.userId)),
+    .mutation(({input, ctx}) => createRoom(input, ctx.jwt.userId)),
   findRoomByUrl: protectedProcedure
     .input((body) => findRoomByUrlInput.parse(body))
     .output(roomOutput)
-    .query(async ({input, ctx}) => findRoomByUrl(input, ctx.jwt.userId)),
+    .query(({input, ctx}) => findRoomByUrl(input, ctx.jwt.userId)),
 })
 
 type ArchivistRouter = typeof archivistRouter

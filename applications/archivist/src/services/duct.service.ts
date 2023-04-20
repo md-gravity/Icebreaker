@@ -26,8 +26,6 @@ const connectDuct = async () => {
   return client
 }
 
-const emitRoomCreated = async (room: RoomCreatedEvent['data']) => {
-  await roomCreatedEvent(getNATSClient().client).publish(roomOutput.parse(room))
-}
-
+const emitRoomCreated = async (room: RoomCreatedEvent['data']) =>
+  roomCreatedEvent(getNATSClient().client).publish(roomOutput.parse(room))
 export {connectDuct, emitRoomCreated}

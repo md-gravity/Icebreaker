@@ -1,6 +1,6 @@
 import {type CreateMessageInputInterface} from '@app/dtos/create-message.input'
 import {type CreateRoomInput} from '@app/dtos/create-room.input'
-import {FindRoomByUrlInput} from '@app/dtos/find-room-by-url.input'
+import {type FindRoomByUrlInput} from '@app/dtos/find-room-by-url.input'
 import {type MessageOutputInterface} from '@app/dtos/message.output'
 import {type RoomOutputInterface} from '@app/dtos/room.output'
 import {getPrismaClient} from '@app/library/prisma-client'
