@@ -10,11 +10,31 @@
     "packages/*"
   ],
   "scripts": {
-    "setup": "turbo setup",
     "build": "turbo build",
     "typecheck": "turbo typecheck",
     "lint": "turbo lint",
-    "lint:fix": "turbo lint:fix"
+    "lint:fix": "turbo lint:fix",
+    "===build===": "===build===",
+    "archivist:build": "turbo build --filter=@applications/archivist",
+    "passport:build": "turbo build --filter=@applications/passport",
+    "telegraph:build": "turbo build --filter=@applications/telegraph",
+    "web:build": "turbo build --filter=@applications/web",
+    "===typecheck===": "===typecheck===",
+    "archivist:typecheck": "turbo typecheck --filter=@applications/archivist",
+    "passport:typecheck": "turbo typecheck --filter=@applications/passport",
+    "telegraph:typecheck": "turbo typecheck --filter=@applications/telegraph",
+    "web:typecheck": "turbo typecheck --filter=@applications/web",
+    "===lint===": "===lint===",
+    "archivist:lint": "turbo lint --filter=@applications/archivist",
+    "passport:lint": "turbo lint --filter=@applications/passport",
+    "telegraph:lint": "turbo lint --filter=@applications/telegraph",
+    "web:lint": "turbo lint --filter=@applications/web",
+    "===lint:fix===": "===lint:fix===",
+    "archivist:lint:fix": "turbo lint:fix --filter=@applications/archivist",
+    "passport:lint:fix": "turbo lint:fix --filter=@applications/passport",
+    "telegraph:lint:fix": "turbo lint:fix --filter=@applications/telegraph",
+    "web:lint:fix": "turbo lint:fix --filter=@applications/web"
+
   },
   "devDependencies": {
     "eslint": "^8.30.0",

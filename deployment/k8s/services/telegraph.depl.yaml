@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: telegraph-depl
+  name: telegraph
 spec:
   replicas: 1
   selector:
@@ -17,7 +17,7 @@ spec:
           image: postgres:12.2
           env:
             - name: DB_HOST
-              value: "telegraph-db-cluster-ip-srv"
+              value: "telegraph-database-cluster-ip"
             - name: DB_USER
               value: "root"
           command: [ 'sh', '-c' ]
@@ -32,7 +32,7 @@ spec:
           image: curlimages/curl:7.87.0
           env:
             - name: NATS_HOST
-              value: "http://nats-cluster-ip-srv:8222/varz"
+              value: "http://nats-cluster-ip:8222/varz"
           command: [ 'sh', '-c' ]
           args:
             - |
@@ -45,14 +45,16 @@ spec:
         - name: telegraph
           image: dormammun/gravity-telegraph
           env:
+            - name: DEBUG
+              value: "true"
             - name: PORT
               value: "3000"
             - name: JWT_SECRET_KEY
               value: "secret-key"
             - name: DB_HOST
-              value: "postgresql://root:root@telegraph-db-cluster-ip-srv/telegraph"
+              value: "postgresql://root:root@telegraph-database-cluster-ip/telegraph"
             - name: NATS_URL
-              value: 'http://nats-cluster-ip-srv:4222'
+              value: 'http://nats-cluster-ip:4222'
             - name: NATS_CLUSTER_ID
               value: '@gravity/icebreaker'
             - name: NATS_CLIENT_ID
@@ -63,7 +65,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: telegraph-cluster-ip-srv
+  name: telegraph-cluster-ip
 spec:
   type: ClusterIP
   selector:
@@ -73,4 +75,17 @@ spec:
       protocol: TCP
       port: 3000
       targetPort: 3000
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telegraph-debug-load-balancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: telegraph
+  ports:
+    - name: telegraph-debug
+      protocol: TCP
+      port: 9203
+      targetPort: 9229

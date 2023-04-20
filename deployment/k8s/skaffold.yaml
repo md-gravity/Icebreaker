@@ -1,56 +1,55 @@
 apiVersion: skaffold/v2beta29
 kind: Config
+build:
+  local:
+    concurrency: 3
+  artifacts:
+    - image: dormammun/gravity-passport
+      docker:
+        dockerfile: deployment/images/passport/Dockerfile
+      context: ../../
+      sync:
+        manual:
+          - src: applications/**/src/**/*.ts
+            dest: .
+          - src: applications/**/src/**/*.tsx
+            dest: .
+    - image: dormammun/gravity-archivist
+      docker:
+        dockerfile: deployment/images/archivist/Dockerfile
+      context: ../../
+      sync:
+        manual:
+          - src: applications/**/src/**/*.ts
+            dest: .
+          - src: applications/**/src/**/*.tsx
+            dest: .
+    - image: dormammun/gravity-telegraph
+      docker:
+        dockerfile: deployment/images/telegraph/Dockerfile
+      context: ../../
+      sync:
+        manual:
+          - src: applications/**/src/**/*.ts
+            dest: .
+          - src: applications/**/src/**/*.tsx
+            dest: .
+    - image: dormammun/gravity-web
+      docker:
+        dockerfile: deployment/images/web/Dockerfile
+      context: ../../
+      sync:
+        manual:
+          - src: applications/**/src/**/*.ts
+            dest: .
+          - src: applications/**/src/**/*.tsx
+            dest: .
+  tagPolicy:
+    envTemplate:
+      template: "{{.IMAGE_NAME}}:{{.GIT_COMMIT_SHORT}}"
 deploy:
   kubectl:
     manifests:
-      - "system/*.yaml"
-      - "services/*.yaml"
-      - "providers/*.yaml"
-build:
-  tagPolicy:
-    customTemplate:
-        template: "latest"
-  local:
-    concurrency: 4
-    push: false
-  artifacts:
-    - image: dormammun/gravity-passport
-      context: "../../"
-      sync:
-        manual:
-          - src: "applications/**/src/**/*.ts"
-            dest: .
-          - src: "applications/**/src/**/*.tsx"
-            dest: .
-      docker:
-        dockerfile: "deployment/images/passport/Dockerfile"
-    - image: dormammun/gravity-archivist
-      context: "../../"
-      sync:
-        manual:
-          - src: "applications/**/src/**/*.ts"
-            dest: .
-          - src: "applications/**/src/**/*.tsx"
-            dest: .
-      docker:
-        dockerfile: "deployment/images/archivist/Dockerfile"
-    - image: dormammun/gravity-telegraph
-      context: "../../"
-      sync:
-        manual:
-          - src: "applications/**/src/**/*.ts"
-            dest: .
-          - src: "applications/**/src/**/*.tsx"
-            dest: .
-      docker:
-        dockerfile: "deployment/images/telegraph/Dockerfile"
-    - image: dormammun/gravity-web
-      context: "../../"
-      sync:
-        manual:
-          - src: "applications/**/src/**/*.ts"
-            dest: .
-          - src: "applications/**/src/**/*.tsx"
-            dest: .
-      docker:
-        dockerfile: "deployment/images/web/Dockerfile"
+      - system/*.yaml
+      - services/*.yaml
+      - providers/*.yaml
