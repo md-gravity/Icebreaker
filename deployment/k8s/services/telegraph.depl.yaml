@@ -45,6 +45,8 @@ spec:
         - name: telegraph
           image: dormammun/gravity-telegraph
           env:
+            - name: DEBUG
+              value: "true"
             - name: PORT
               value: "3000"
             - name: JWT_SECRET_KEY

@@ -16,6 +16,8 @@ spec:
         - name: web
           image: dormammun/gravity-web
           env:
+            - name: DEBUG
+              value: "true"
             - name: NEXT_PUBLIC_API_URL
               value: "http://gravity.io"
 ---
