@@ -1,0 +1,30 @@
+{
+  "name": "@packages/dtos",
+  "version": "1.0.0",
+  "main": "./build/index.js",
+  "scripts": {
+    "dev": "tsx watch src",
+    "watch": "tsc --watch",
+    "build": "tsc --build --clean && tsc",
+    "===utils===": "===utils===",
+    "typecheck": "tsc --noEmit true",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "===scripts===": "===scripts===",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "zod": "^3.20.2"
+  },
+  "devDependencies": {
+    "@packages/eslint-config-hub": "1.0.0",
+    "@packages/ts-configs": "1.0.0",
+    "@types/node": "^18.11.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@packages/eslint-config-hub/.base.js"
+    ]
+  },
+  "prettier": "@packages/eslint-config-hub/.prettierrc.js"
+}

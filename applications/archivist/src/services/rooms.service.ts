@@ -1,21 +1,21 @@
 import {type CreateMessageInputInterface} from '@app/dtos/create-message.input'
 import {type CreateRoomInput} from '@app/dtos/create-room.input'
-import {type FindRoomByUrlInput} from '@app/dtos/find-room-by-url.input'
-import {type MessageOutputInterface} from '@app/dtos/message.output'
-import {type RoomOutputInterface} from '@app/dtos/room.output'
+import {type FindRoomInput} from '@app/dtos/find-room.input'
 import {getPrismaClient} from '@app/library/prisma-client'
 import {emitRoomCreated} from '@app/services/duct.service'
+import {type MessageDtoInterface, type RoomDtoInterface} from '@packages/dtos'
 import {createHash} from 'node:crypto'
 
 const createRoom = async (
   input: CreateRoomInput,
   userId: number
-): Promise<RoomOutputInterface> => {
+): Promise<RoomDtoInterface> => {
   const room = await getPrismaClient().room.create({
     data: {
       name: input?.name,
       url: createUrl(input, userId),
     },
+    include: {messages: {include: {user: true}}},
   })
 
   await emitRoomCreated(room)
@@ -23,31 +23,27 @@ const createRoom = async (
   return room
 }
 
-const findRoomByUrl = async (
-  input: FindRoomByUrlInput,
+const findRoom = async (
+  input: FindRoomInput,
   userId: number
-): Promise<RoomOutputInterface> => {
-  const room = await getPrismaClient().room.findUnique({
+): Promise<RoomDtoInterface | null> =>
+  getPrismaClient().room.findUnique({
+    include: {messages: {include: {user: true}}},
     where: {
       url: input.url,
     },
   })
-  if (!room) {
-    throw Error(`Could not find room with the URL "${input.url}"`)
-  }
-
-  return room
-}
 
 const createMessage = async (
   input: CreateMessageInputInterface,
   userId: number
-): Promise<MessageOutputInterface> =>
+): Promise<MessageDtoInterface> =>
   getPrismaClient().message.create({
     data: {
       ...input,
       userId,
     },
+    include: {user: true},
   })
 
 const createUrl = (input: CreateRoomInput, userId: number): string => {
@@ -62,4 +58,4 @@ const createUrl = (input: CreateRoomInput, userId: number): string => {
   return hash.digest('hex')
 }
 
-export {createRoom, createMessage, findRoomByUrl}
+export {createRoom, createMessage, findRoom}

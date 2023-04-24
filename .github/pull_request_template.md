@@ -14,7 +14,7 @@ Screenshots (optional, more required)
 <!--
 How? ⚗️
 
-List any dependencies that was required to change.
+List any dependencies that were required to change.
 -->
 
 ## How To Test

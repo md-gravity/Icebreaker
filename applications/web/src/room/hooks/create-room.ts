@@ -1,5 +1,10 @@
-import {archivistClient} from '@app/library/api-client'
-import {type UseMutationOptions, useMutation} from '@app/library/storage'
+'use client'
+
+import {
+  type UseMutationOptions,
+  useMutation,
+} from '@app/library/providers/query'
+import {archivistClient} from '@app/library/services/api-clients'
 
 type Data = Awaited<ReturnType<typeof archivistClient.createRoom.mutate>>
 type Args = Parameters<typeof archivistClient.createRoom.mutate>

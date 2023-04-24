@@ -14,6 +14,16 @@ const main = async () => {
   server.on('listening', () => {
     console.log(`✅ Server listening on ${port}`)
   })
+
+  process.on('SIGTERM', () => {
+    server.close((err) => {
+      if (err) {
+        console.error(err)
+      } else {
+        console.log('❎ Server closed')
+      }
+    })
+  })
 }
 
 main()

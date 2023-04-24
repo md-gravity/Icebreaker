@@ -1,8 +1,8 @@
-import {userOutput} from '@app/dtos/user.output'
+import {userDto} from '@packages/dtos'
 import {z} from 'zod'
 
 const authOutput = z.object({
-  user: userOutput,
+  user: userDto,
 })
 
 type AuthOutputInterface = z.infer<typeof authOutput>

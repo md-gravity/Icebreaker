@@ -1,8 +1,7 @@
+import {userDto} from '@packages/dtos'
 import {z} from 'zod'
 
-const createTemporalUserInput = z.object({
-  username: z.string(),
-})
+const createTemporalUserInput = userDto.pick({username: true})
 
 type CreateTemporalUserInputInterface = z.infer<typeof createTemporalUserInput>
 

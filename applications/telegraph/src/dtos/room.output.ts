@@ -1,9 +1,10 @@
+import {roomDto} from '@packages/dtos'
 import {z} from 'zod'
 
-const roomOutput = z.object({
-  id: z.number(),
-  name: z.string().nullable(),
-  url: z.string(),
+const roomOutput = roomDto.pick({
+  id: true,
+  name: true,
+  url: true,
 })
 
 type RoomOutputInterface = z.infer<typeof roomOutput>
