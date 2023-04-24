@@ -6,9 +6,9 @@ import {
   createPassportClient,
   type ClientOptions,
   getHeaders,
-} from '@app/library/api-client.server'
-import {MessagesProvider} from '@app/rooms/services/messages-provider'
-import {TelegraphProvider} from '@app/rooms/services/telegraph-provider'
+} from '@app/library/services/api-clients'
+import {MessagesProvider} from '@app/room/providers/messages-provider'
+import {TelegraphProvider} from '@app/room/providers/telegraph-provider'
 
 import {MessageInput} from './message-input'
 import {Messages} from './messages'

@@ -2,7 +2,7 @@
 import {useRouter} from 'next/navigation'
 import {type FormEvent} from 'react'
 
-import {useCreateRoom} from '@app/rooms/hooks/create-room'
+import {useCreateRoom} from '@app/room/hooks/create-room'
 
 interface FormControlsCollection extends HTMLFormControlsCollection {
   roomName: HTMLInputElement

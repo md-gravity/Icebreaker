@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 
-import {useTelegraph} from '@app/rooms/services/telegraph-provider'
+import {useTelegraph} from '@app/room/providers/telegraph-provider'
 
 const useJoin = ({
   url,

@@ -1,6 +1,6 @@
 'use client'
-import {passportClient} from '@app/library/api-client.browser'
-import {useMutation} from '@app/library/storage'
+import {useMutation} from '@app/library/providers/query-provider'
+import {passportClient} from '@app/library/services/api-clients'
 
 const useCreateTemporalUser = () =>
   useMutation(passportClient.createTemporalUser.mutate)

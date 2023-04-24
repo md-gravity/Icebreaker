@@ -1,9 +1,9 @@
 'use client'
 import React, {FormEvent} from 'react'
 
-import {useCreateMessage} from '@app/rooms/hooks/create-message'
-import {useSendMessage} from '@app/rooms/hooks/send-message'
-import {useMessages} from '@app/rooms/services/messages-provider'
+import {useCreateMessage} from '@app/room/hooks/create-message'
+import {useSendMessage} from '@app/room/hooks/send-message'
+import {useMessages} from '@app/room/providers/messages-provider'
 
 interface FormControlsCollection extends HTMLFormControlsCollection {
   message: HTMLInputElement

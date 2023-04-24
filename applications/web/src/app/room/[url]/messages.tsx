@@ -2,9 +2,9 @@
 import {RoomDtoInterface} from '@packages/dtos'
 import React from 'react'
 
-import {useJoin} from '@app/rooms/hooks/join'
-import {useOnMessage} from '@app/rooms/hooks/on-messages'
-import {useMessages} from '@app/rooms/services/messages-provider'
+import {useJoin} from '@app/room/hooks/join'
+import {useOnMessage} from '@app/room/hooks/on-messages'
+import {useMessages} from '@app/room/providers/messages-provider'
 
 type MessagesListComponent = React.FC<{
   room: RoomDtoInterface
@@ -20,7 +20,7 @@ const Messages: MessagesListComponent = ({room}) => {
     url,
   })
 
-  useJoin({onJoin: (event) => console.log('jo', event), url})
+  useJoin({onJoin: console.log, url})
 
   return (
     <section>

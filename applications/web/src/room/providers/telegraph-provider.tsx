@@ -1,9 +1,9 @@
 'use client'
 import {RoomRouter} from '@applications/telegraph'
-import {createTRPCProxyClient, createWSClient, wsLink} from '@trpc/client'
+import {createTRPCProxyClient, createWSClient} from '@trpc/client'
 import React, {createContext, ReactNode, useEffect, useRef} from 'react'
 
-import {getTelegraphClient} from '@app/library/telegraph-client'
+import {getTelegraphConnector} from '@app/library/services/api-clients'
 
 type TRPCClient = ReturnType<typeof createTRPCProxyClient<RoomRouter>>
 type WSClient = ReturnType<typeof createWSClient>
@@ -11,32 +11,31 @@ type WSClient = ReturnType<typeof createWSClient>
 const useTelegraphState = () => {
   const [mount, setMount] = React.useState(false)
 
-  const wsClientRef = useRef<WSClient | null>(null)
-  const trpcClientRef = useRef<TRPCClient | null>(null)
+  const socketRef = useRef<WSClient | null>(null)
+  const clientRef = useRef<TRPCClient | null>(null)
 
-  const ready = mount && trpcClientRef.current
+  const ready = Boolean(mount && socketRef.current && clientRef.current)
 
   useEffect(() => {
-    const telegraph = getTelegraphClient()
-    wsClientRef.current = telegraph.client
-    trpcClientRef.current = telegraph.trpc
+    const {socket, client} = getTelegraphConnector()
+    socketRef.current = socket
+    clientRef.current = client
 
     setMount(true)
 
     return () => {
-      wsClientRef.current!.close()
+      socket.getConnection().close()
     }
   }, [])
 
-  return {client: trpcClientRef.current, ready}
+  return {client: clientRef.current, ready}
 }
 
 const Context = createContext<ReturnType<typeof useTelegraphState> | null>(null)
 
-const TelegraphProvider: React.FC<{children: ReactNode}> = ({children}) => {
-  const telegraph = useTelegraphState()
-  return <Context.Provider value={telegraph}>{children}</Context.Provider>
-}
+const TelegraphProvider: React.FC<{children: ReactNode}> = ({children}) => (
+  <Context.Provider value={useTelegraphState()}>{children}</Context.Provider>
+)
 
 const useTelegraph = () => {
   const ctx = React.useContext(Context)
