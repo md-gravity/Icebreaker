@@ -3,18 +3,31 @@
 import {type RoomRouter} from '@applications/telegraph'
 import {createTRPCProxyClient, createWSClient, wsLink} from '@trpc/client'
 
-import {API_URL} from '@app/library/api-client'
+import {API_URL} from '@app/library/api-client.server'
 
-const client = createWSClient({
-  url: `${API_URL.replace('http', 'ws')}/api/telegraph`,
-})
+const socketsMap = new Map<string, ReturnType<typeof getTelegraphClient>>()
 
-const telegraphClient = createTRPCProxyClient<RoomRouter>({
-  links: [
-    wsLink<RoomRouter>({
-      client,
-    }),
-  ],
-})
+const GUUID = 'GUUID'
 
-export {telegraphClient}
+const getTelegraphClient = (guid: string = GUUID) => {
+  if (socketsMap.has(guid)) {
+    return socketsMap.get(guid)
+  }
+
+  const client = createWSClient({
+    url: `${API_URL.replace('http', 'ws')}/api/telegraph`,
+  })
+  const trpc = createTRPCProxyClient<RoomRouter>({
+    links: [
+      wsLink<RoomRouter>({
+        client,
+      }),
+    ],
+  })
+
+  socketsMap.set(guid, {client, trpc})
+
+  return {client, trpc}
+}
+
+export {getTelegraphClient}

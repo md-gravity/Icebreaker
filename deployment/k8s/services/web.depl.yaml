@@ -20,6 +20,8 @@ spec:
               value: "true"
             - name: NEXT_PUBLIC_API_URL
               value: "http://gravity.io"
+            - name: NEXT_PUBLIC_INTERNAL_API_URL
+              value: "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local"
 ---
 apiVersion: v1
 kind: Service

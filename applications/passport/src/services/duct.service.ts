@@ -1,4 +1,4 @@
-import {userOutput} from '@app/dtos/user.output'
+import {userDto} from '@packages/dtos'
 import {
   connectDuct as connect,
   type UserCreatedEvent,
@@ -9,6 +9,6 @@ import {
 const connectDuct = async () => connect()
 
 const emitUserCreated = async (user: UserCreatedEvent['data']) =>
-  userCreatedEvent(getNATSClient().client).publish(userOutput.parse(user))
+  userCreatedEvent(getNATSClient().client).publish(userDto.parse(user))
 
 export {connectDuct, emitUserCreated}

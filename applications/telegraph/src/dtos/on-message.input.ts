@@ -1,7 +1,7 @@
-import {joinInput} from '@app/dtos/join.input'
+import {roomDto} from '@packages/dtos'
 import {z} from 'zod'
 
-const onMessageInput = joinInput.pick({url: true})
+const onMessageInput = roomDto.pick({url: true})
 
 type onMessageInputInterface = z.infer<typeof onMessageInput>
 

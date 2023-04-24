@@ -1,12 +1,12 @@
 import {z} from 'zod'
 
-const userOutput = z.object({
+const userDto = z.object({
   email: z.string(),
   id: z.number(),
   temporal: z.boolean(),
   username: z.string(),
 })
 
-type UserOutput = z.infer<typeof userOutput>
+type UserDtoInterface = z.infer<typeof userDto>
 
-export {type UserOutput, userOutput}
+export {type UserDtoInterface, userDto}

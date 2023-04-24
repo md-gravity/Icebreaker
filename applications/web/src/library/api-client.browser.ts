@@ -1,15 +1,9 @@
+'use client'
 import {type ArchivistRouter} from '@applications/archivist'
 import {type PassportRouter} from '@applications/passport'
 import {createTRPCProxyClient, httpLink} from '@trpc/client'
 
-if (!process.env.NEXT_PUBLIC_API_URL) {
-  throw new Error('NEXT_PUBLIC_API_URL is not defined')
-}
-
-const API_URL =
-  typeof window === 'undefined'
-    ? 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local'
-    : process.env.NEXT_PUBLIC_API_URL
+import {API_URL} from '@app/library/constants'
 
 const archivistClient = createTRPCProxyClient<ArchivistRouter>({
   links: [httpLink(getConfig(`${API_URL}/api/archivist`))],
@@ -26,21 +20,8 @@ function getConfig(url: string) {
         credentials: 'include',
       })
     },
-    headers: getHeaders,
     url,
   }
-}
-
-async function getHeaders(): Promise<Record<string, string>> {
-  if (typeof window === 'undefined') {
-    const {headers} = await import('next/headers')
-    return {
-      cookie: headers().get('cookie') ?? '',
-      host: headers().get('host') ?? '',
-    }
-  }
-
-  return {}
 }
 
 export {API_URL, archivistClient, passportClient}

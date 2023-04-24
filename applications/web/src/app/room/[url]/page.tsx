@@ -1,14 +1,49 @@
-import {LiveRoom} from '@app/app/room/[url]/live-room'
-import {archivistClient} from '@app/library/api-client'
+import {headers} from 'next/headers'
+import {redirect} from 'next/navigation'
 
-export default async function RoomUrlPage({
+import {
+  createArchivistClient,
+  createPassportClient,
+  type ClientOptions,
+  getHeaders,
+} from '@app/library/api-client.server'
+import {MessagesProvider} from '@app/rooms/services/messages-provider'
+import {TelegraphProvider} from '@app/rooms/services/telegraph-provider'
+
+import {MessageInput} from './message-input'
+import {Messages} from './messages'
+
+export default async function LiveRoom({
   params: {url},
 }: {
   params: {url: string}
 }) {
-  const room = await archivistClient.findRoomByUrl.query({url})
+  const options: ClientOptions = {
+    headers: getHeaders(headers()),
+  }
 
-  return <LiveRoom room={room} />
+  const user = await createPassportClient(options).currentUser.query()
+  if (!user) {
+    return redirect('/')
+  }
+
+  const room = await createArchivistClient(options).findRoom.query({url})
+  if (!room) {
+    return redirect('/')
+  }
+
+  return (
+    <>
+      <article>
+        <h1>{room.name ?? room.url}</h1>
+        <h2>Welcome {user.username}</h2>
+      </article>
+      <MessagesProvider messages={room.messages}>
+        <TelegraphProvider>
+          <Messages room={room} />
+          <MessageInput roomId={room.id} />
+        </TelegraphProvider>
+      </MessagesProvider>
+    </>
+  )
 }
-
-export const dynamic = 'force-dynamic'

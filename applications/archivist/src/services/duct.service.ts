@@ -1,5 +1,5 @@
-import {roomOutput} from '@app/dtos/room.output'
 import {getPrismaClient} from '@app/library/prisma-client'
+import {roomDto} from '@packages/dtos'
 import {
   connectDuct as connect,
   userCreatedEvent,
@@ -27,5 +27,14 @@ const connectDuct = async () => {
 }
 
 const emitRoomCreated = async (room: RoomCreatedEvent['data']) =>
-  roomCreatedEvent(getNATSClient().client).publish(roomOutput.parse(room))
+  roomCreatedEvent(getNATSClient().client).publish(
+    roomDto
+      .pick({
+        id: true,
+        name: true,
+        url: true,
+      })
+      .parse(room)
+  )
+
 export {connectDuct, emitRoomCreated}

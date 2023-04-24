@@ -1,13 +1,11 @@
 import {type JoinInputInterface} from '@app/dtos/join.input'
-import {type MessageInputInterface} from '@app/dtos/message.input'
-import {type MessageOutputInterface} from '@app/dtos/message.output'
-import {type OnJoinInputInterface} from '@app/dtos/on-join.input'
 import {type OnJoinOutputInterface} from '@app/dtos/on-join.output'
 import {type onMessageInputInterface} from '@app/dtos/on-message.input'
 import {type RoomOutputInterface} from '@app/dtos/room.output'
 import {getPrismaClient} from '@app/library/prisma-client'
 import {joinEmitter} from '@app/services/join-emitter.service'
 import {messageEmitter} from '@app/services/message-emitter.service'
+import {MessageDtoInterface} from '@packages/dtos'
 import {type Observer} from '@trpc/server/observable'
 
 const join = async (
@@ -27,7 +25,7 @@ const join = async (
 }
 
 const onJoin = (
-  {url, subscriberId}: OnJoinInputInterface & {subscriberId: number},
+  {url, subscriberId}: JoinInputInterface & {subscriberId: number},
   emit: Observer<OnJoinOutputInterface, unknown>
 ): (() => void) => {
   joinEmitter.on(url, callback)
@@ -54,9 +52,9 @@ const onJoin = (
 }
 
 const message = async (
-  input: MessageInputInterface,
+  input: MessageDtoInterface,
   userId: number
-): Promise<MessageOutputInterface> => {
+): Promise<MessageDtoInterface> => {
   const room = await getPrismaClient().room.findUnique({
     where: {id: input.roomId},
   })
@@ -68,21 +66,14 @@ const message = async (
     where: {id: userId},
   }))!
 
-  const msg: MessageOutputInterface = {
-    id: input.id,
-    roomId: room.id,
-    text: input.text,
-    userId: user.id,
-  }
+  messageEmitter.emit(room.url, input)
 
-  messageEmitter.emit(room.url, msg)
-
-  return msg
+  return input
 }
 
 const onMessage = (
   {url, subscriberId}: onMessageInputInterface & {subscriberId: number},
-  emit: Observer<MessageOutputInterface, unknown>
+  emit: Observer<MessageDtoInterface, unknown>
 ): (() => void) => {
   messageEmitter.on(url, callback)
 
@@ -90,7 +81,7 @@ const onMessage = (
     messageEmitter.off(url, callback)
   }
 
-  async function callback(msg: MessageOutputInterface) {
+  async function callback(msg: MessageDtoInterface) {
     const sameUser = subscriberId === msg.userId
     if (sameUser) {
       return

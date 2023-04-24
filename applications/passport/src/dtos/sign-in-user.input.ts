@@ -1,9 +1,13 @@
+import {userDto} from '@packages/dtos'
 import {z} from 'zod'
 
-const signInInput = z.object({
-  email: z.string(),
-  password: z.string(),
-})
+const signInInput = userDto
+  .pick({
+    email: true,
+  })
+  .extend({
+    password: z.string(),
+  })
 
 type SignInInputInterface = z.infer<typeof signInInput>
 

@@ -1,12 +1,13 @@
 'use client'
-import {type ChangeEvent, type FormEvent, useState} from 'react'
+import {UserDtoInterface} from '@packages/dtos'
+import {type ChangeEvent, type FC, type FormEvent, useState} from 'react'
 
-import {useCreateTemporalUser} from '@app/services/create-temporal-user'
-import {useCurrentUserQuery} from '@app/services/current-user'
+import {useCreateTemporalUser} from '@app/users/hooks/create-temporal-user'
 
-function UserForm() {
-  const currentUserQuery = useCurrentUserQuery()
-  const currentUser = currentUserQuery?.data?.user
+type UserFormComponent = FC<{
+  currentUser: UserDtoInterface | null
+}>
+const UserForm: UserFormComponent = ({currentUser}) => {
   const createTemporalUserMutation = useCreateTemporalUser()
 
   const [username, setUsername] = useState(currentUser?.username ?? '')

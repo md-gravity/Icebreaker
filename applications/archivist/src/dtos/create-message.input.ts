@@ -1,8 +1,9 @@
+import {messageDto} from '@packages/dtos'
 import {z} from 'zod'
 
-const createMessageInput = z.object({
-  roomId: z.number(),
-  text: z.string(),
+const createMessageInput = messageDto.pick({
+  roomId: true,
+  text: true,
 })
 
 type CreateMessageInputInterface = z.infer<typeof createMessageInput>

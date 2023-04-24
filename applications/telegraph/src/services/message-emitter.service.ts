@@ -1,24 +1,18 @@
-import {type MessageOutputInterface} from '@app/dtos/message.output'
 import {getRoomEmitter} from '@app/library/room-emitter'
+import {MessageDtoInterface} from '@packages/dtos'
 
 const EVENT = 'message'
 
 const messageEmitter = {
-  emit(targetRoomUrl: string, message: MessageOutputInterface) {
+  emit(targetRoomUrl: string, message: MessageDtoInterface) {
     const emitter = getRoomEmitter(targetRoomUrl)
     emitter.emit(EVENT, message)
   },
-  off(
-    targetRoomUrl: string,
-    callback: (message: MessageOutputInterface) => void
-  ) {
+  off(targetRoomUrl: string, callback: (message: MessageDtoInterface) => void) {
     const emitter = getRoomEmitter(targetRoomUrl)
     emitter.off(EVENT, callback)
   },
-  on(
-    targetRoomUrl: string,
-    callback: (message: MessageOutputInterface) => void
-  ) {
+  on(targetRoomUrl: string, callback: (message: MessageDtoInterface) => void) {
     const emitter = getRoomEmitter(targetRoomUrl)
     emitter.on(EVENT, callback)
   },
