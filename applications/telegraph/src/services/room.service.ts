@@ -62,10 +62,6 @@ const message = async (
     throw Error(`Could not find room with the ID "${input.roomId}"`)
   }
 
-  const user = (await getPrismaClient().user.findUnique({
-    where: {id: userId},
-  }))!
-
   messageEmitter.emit(room.url, input)
 
   return input

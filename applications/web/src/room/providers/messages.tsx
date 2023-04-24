@@ -15,10 +15,6 @@ const MessagesContext = createContext<ReturnType<
 
 type MessagesProviderComponent = FC<{
   messages: MessageDtoInterface[]
-}>
-
-type MessageProviderComponent = FC<{
-  messages: MessageDtoInterface[]
   children: ReactNode
 }>
 
@@ -26,7 +22,7 @@ function useMessagesState(messages: MessageDtoInterface[]) {
   return useState(messages)
 }
 
-const MessagesProvider: MessageProviderComponent = ({messages, children}) => {
+const MessagesProvider: MessagesProviderComponent = ({messages, children}) => {
   const ctx = useMessagesState(messages)
   return (
     <MessagesContext.Provider value={ctx}>{children}</MessagesContext.Provider>
