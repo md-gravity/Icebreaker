@@ -93,7 +93,6 @@ const getTelegraphConnector = createWSConnector<RoomRouter>(
 )
 
 export {
-  API_URL,
   archivistClient,
   createArchivistClient,
   createPassportClient,

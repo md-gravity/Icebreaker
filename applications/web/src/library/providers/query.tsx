@@ -12,7 +12,7 @@ import {type ReactNode} from 'react'
 
 const queryClient = new QueryClient()
 
-const QueryProvider = ({children}: {children: ReactNode}) => (
+const QueryProviders = ({children}: {children: ReactNode}) => (
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools initialIsOpen={false} />
     {children}
@@ -21,7 +21,7 @@ const QueryProvider = ({children}: {children: ReactNode}) => (
 
 export {
   type UseMutationOptions,
-  QueryProvider,
+  QueryProviders,
   queryClient,
   useQuery,
   useMutation,

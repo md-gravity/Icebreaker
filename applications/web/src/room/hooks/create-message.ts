@@ -2,7 +2,7 @@
 import {
   type UseMutationOptions,
   useMutation,
-} from '@app/library/providers/query-provider'
+} from '@app/library/providers/query'
 import {archivistClient} from '@app/library/services/api-clients'
 
 type Data = Awaited<ReturnType<typeof archivistClient.createMessage.mutate>>

@@ -5,7 +5,7 @@ import {type RoomOutputInterface} from '@app/dtos/room.output'
 import {getPrismaClient} from '@app/library/prisma-client'
 import {joinEmitter} from '@app/services/join-emitter.service'
 import {messageEmitter} from '@app/services/message-emitter.service'
-import {MessageDtoInterface} from '@packages/dtos'
+import {type MessageDtoInterface} from '@packages/dtos'
 import {type Observer} from '@trpc/server/observable'
 
 const join = async (

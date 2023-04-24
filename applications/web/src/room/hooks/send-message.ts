@@ -3,7 +3,7 @@
 import {
   type UseMutationOptions,
   useMutation,
-} from '@app/library/providers/query-provider'
+} from '@app/library/providers/query'
 import {getTelegraphConnector} from '@app/library/services/api-clients'
 
 type MessageMutation = ReturnType<

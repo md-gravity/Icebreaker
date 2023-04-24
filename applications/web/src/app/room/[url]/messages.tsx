@@ -4,7 +4,7 @@ import React from 'react'
 
 import {useJoin} from '@app/room/hooks/join'
 import {useOnMessage} from '@app/room/hooks/on-messages'
-import {useMessages} from '@app/room/providers/messages-provider'
+import {useMessages} from '@app/room/providers/messages'
 
 type MessagesListComponent = React.FC<{
   room: RoomDtoInterface

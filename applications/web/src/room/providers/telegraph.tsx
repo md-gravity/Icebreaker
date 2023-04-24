@@ -33,7 +33,7 @@ const useTelegraphState = () => {
 
 const Context = createContext<ReturnType<typeof useTelegraphState> | null>(null)
 
-const TelegraphProvider: React.FC<{children: ReactNode}> = ({children}) => (
+const TelegraphProviders: React.FC<{children: ReactNode}> = ({children}) => (
   <Context.Provider value={useTelegraphState()}>{children}</Context.Provider>
 )
 
@@ -49,4 +49,4 @@ const useTelegraph = () => {
   return ctx
 }
 
-export {useTelegraph, TelegraphProvider}
+export {useTelegraph, TelegraphProviders}

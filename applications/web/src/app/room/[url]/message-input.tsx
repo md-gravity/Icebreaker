@@ -3,7 +3,7 @@ import React, {FormEvent} from 'react'
 
 import {useCreateMessage} from '@app/room/hooks/create-message'
 import {useSendMessage} from '@app/room/hooks/send-message'
-import {useMessages} from '@app/room/providers/messages-provider'
+import {useMessages} from '@app/room/providers/messages'
 
 interface FormControlsCollection extends HTMLFormControlsCollection {
   message: HTMLInputElement

@@ -1,7 +1,7 @@
 import {MessageDtoInterface} from '@packages/dtos'
 import {useEffect} from 'react'
 
-import {useTelegraph} from '@app/room/providers/telegraph-provider'
+import {useTelegraph} from '@app/room/providers/telegraph'
 
 const useOnMessage = ({
   url,
@@ -11,9 +11,6 @@ const useOnMessage = ({
   onMessage: (event: MessageDtoInterface) => void
 }) => {
   const {ready, client} = useTelegraph()
-
-  console.log(ready)
-  console.log(client)
 
   useEffect(() => {
     if (!ready) return
