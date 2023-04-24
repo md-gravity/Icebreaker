@@ -2,6 +2,7 @@ name: Running packages tests
 
 env:
   NEXT_PUBLIC_API_URL: fake-api-url
+  NEXT_PUBLIC_INTERNAL_API_URL: fake-internal-api-url
   JWT_SECRET_KEY: secret-key
 
 on:
