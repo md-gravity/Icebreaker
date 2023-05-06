@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 
-import {useTelegraph} from '@app/room/providers/telegraph'
+import {getTelegraphConnector} from '@app/library/services/api-clients'
 
 const useJoin = ({
   url,
@@ -9,18 +9,12 @@ const useJoin = ({
   url: string
   onJoin: (event: {roomId: number; userId: number}) => void
 }) => {
-  const {ready, client} = useTelegraph()
+  useEffect(() => {
+    getTelegraphConnector().client.join.mutate({url})
+  }, [url])
 
   useEffect(() => {
-    if (!ready) return
-
-    client!.join.mutate({url})
-  }, [ready, client, url])
-
-  useEffect(() => {
-    if (!ready) return
-
-    const {unsubscribe} = client!.onJoin.subscribe(
+    const {unsubscribe} = getTelegraphConnector().client.onJoin.subscribe(
       {url},
       {
         onData: (event) => {
@@ -32,7 +26,7 @@ const useJoin = ({
     return () => {
       unsubscribe()
     }
-  }, [onJoin, ready, client, url])
+  }, [onJoin, url])
 }
 
 export {useJoin}

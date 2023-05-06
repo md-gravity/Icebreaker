@@ -13,9 +13,9 @@ export default async function Home() {
   }).currentUser.query()
 
   return (
-    <>
+    <section>
       <UserForm currentUser={user} />
       <RoomForm />
-    </>
+    </section>
   )
 }

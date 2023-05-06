@@ -4,13 +4,28 @@ import {Server as WSServer} from 'ws'
 
 const logConnections = (server: HTTPServer | WSServer) => {
   server.on('connection', (ws) => {
-    const connections =
-      'connections' in server ? server.connections : server.clients.size
-    console.log(`➕➕ Connection (${connections})`)
+    getConnection()
+
     ws.once('close', () => {
-      console.log(`➖➖ Connection (${connections})`)
+      getConnection()
     })
   })
+
+  function getConnection() {
+    if ('getConnections' in server) {
+      server.getConnections((err, connections) => {
+        if (err) {
+          console.error(err)
+        } else {
+          console.log(`Connections: (${connections})`)
+        }
+      })
+    }
+
+    if ('clients' in server) {
+      console.log(`Connections: (${server.clients.size})`)
+    }
+  }
 }
 
 export {logConnections}

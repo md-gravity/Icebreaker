@@ -2,7 +2,7 @@ import {useEffect} from 'react'
 
 import {MessageDtoInterface} from '@packages/dtos'
 
-import {useTelegraph} from '@app/room/providers/telegraph'
+import {getTelegraphConnector} from '@app/library/services/api-clients'
 
 const useOnMessage = ({
   url,
@@ -11,12 +11,8 @@ const useOnMessage = ({
   url: string
   onMessage: (event: MessageDtoInterface) => void
 }) => {
-  const {ready, client} = useTelegraph()
-
   useEffect(() => {
-    if (!ready) return
-
-    const {unsubscribe} = client!.onMessage.subscribe(
+    const {unsubscribe} = getTelegraphConnector().client.onMessage.subscribe(
       {url},
       {
         onData: (event) => {
@@ -28,7 +24,7 @@ const useOnMessage = ({
     return () => {
       unsubscribe()
     }
-  }, [ready, onMessage, url, client])
+  }, [onMessage, url])
 }
 
 export {useOnMessage}

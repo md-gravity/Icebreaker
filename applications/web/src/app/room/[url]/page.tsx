@@ -8,7 +8,6 @@ import {
   getHeaders,
 } from '@app/library/services/api-clients'
 import {MessagesProvider} from '@app/room/providers/messages'
-import {TelegraphProviders} from '@app/room/providers/telegraph'
 
 import {MessageInput} from './message-input'
 import {Messages} from './messages'
@@ -39,10 +38,8 @@ export default async function LiveRoom({
         <h2>Welcome {user.username}</h2>
       </article>
       <MessagesProvider messages={room.messages}>
-        <TelegraphProviders>
-          <Messages room={room} />
-          <MessageInput roomId={room.id} />
-        </TelegraphProviders>
+        <Messages room={room} />
+        <MessageInput roomId={room.id} />
       </MessagesProvider>
     </>
   )
