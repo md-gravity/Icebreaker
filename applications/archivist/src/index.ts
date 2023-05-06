@@ -1,1 +1,1 @@
-export {type ArchivistRouter} from '@app/router'
+export {type ArchivistRouter} from '@app/gateway/router'

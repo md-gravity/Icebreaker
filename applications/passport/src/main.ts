@@ -1,6 +1,4 @@
-import {createHTTPServer, type HTTPRouter, logConnections} from '@packages/rpc'
-
-import {passportRouter} from '@app/router'
+import {setupServer} from '@app/gateway/server'
 import {connectDuct} from '@app/services/duct.service'
 
 const main = async () => {
@@ -10,17 +8,8 @@ const main = async () => {
   if (!port) {
     throw new Error('PORT is not defined')
   }
-  const server = createHTTPServer({
-    router: passportRouter as HTTPRouter,
-  })
 
-  server.listen(port)
-
-  logConnections(server)
-
-  server.on('listening', () => {
-    console.log(`✅ Server listening on ${port}`)
-  })
+  setupServer(port)
 }
 
 main()

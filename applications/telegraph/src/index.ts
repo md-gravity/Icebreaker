@@ -1,1 +1,1 @@
-export {type RoomRouter} from '@app/router'
+export {type RoomRouter} from '@app/gateway/router'
