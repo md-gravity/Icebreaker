@@ -14,7 +14,7 @@ export default async function Home() {
 
   return (
     <section className="flex justify-center items-center h-full">
-      <article className="w-1/3">
+      <article className="w-1/3  px-20 py-10 shadow-md">
         <UserForm currentUser={user} />
         <RoomForm />
       </article>
