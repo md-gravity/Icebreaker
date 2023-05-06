@@ -1,5 +1,6 @@
-import {roomDto} from '@packages/dtos'
 import {z} from 'zod'
+
+import {roomDto} from '@packages/dtos'
 
 const roomOutput = roomDto.pick({
   id: true,

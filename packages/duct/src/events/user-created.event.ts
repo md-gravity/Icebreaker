@@ -1,5 +1,6 @@
-import {EventTypes} from './event'
 import {createEvent} from '../create-event'
+
+import {EventTypes} from './event'
 
 interface UserCreatedEvent {
   type: EventTypes.UserCreated

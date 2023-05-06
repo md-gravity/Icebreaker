@@ -31,6 +31,8 @@ brew install nvm
 nvm install 19
 
 npm i --include-workspace-root
+# npm link workspaces to the node_modules, but you need build them before use
+npm run build
 ```
 
 So, you have the necessary packages installed, but now you're wondering how to connect them to external services like databases. 🤔 

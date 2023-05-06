@@ -1,6 +1,5 @@
 'use client'
 
-import {type MessageDtoInterface} from '@packages/dtos'
 import {
   createContext,
   type FC,
@@ -8,6 +7,8 @@ import {
   useContext,
   useState,
 } from 'react'
+
+import {type MessageDtoInterface} from '@packages/dtos'
 
 const MessagesContext = createContext<ReturnType<
   typeof useMessagesState

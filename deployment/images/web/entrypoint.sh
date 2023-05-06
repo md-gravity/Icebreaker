@@ -4,7 +4,7 @@ echo "Debug mode: $DEBUG"
 
 if [ "$DEBUG" = "true" ]
 then
-  npm run debug --workspace=@applications/web
+  npm run debug:web
 else
-  npm run dev --workspace=@applications/web
+  npm run dev:web
 fi

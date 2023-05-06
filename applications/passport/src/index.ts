@@ -1,1 +1,1 @@
-export {type PassportRouter} from '@app/handler'
+export {type PassportRouter} from '@app/router'

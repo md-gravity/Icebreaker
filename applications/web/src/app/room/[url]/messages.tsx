@@ -1,6 +1,7 @@
 'use client'
-import {RoomDtoInterface} from '@packages/dtos'
 import React from 'react'
+
+import {RoomDtoInterface} from '@packages/dtos'
 
 import {useJoin} from '@app/room/hooks/join'
 import {useOnMessage} from '@app/room/hooks/on-messages'

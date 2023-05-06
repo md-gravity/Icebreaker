@@ -6,6 +6,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install --workspace=@applications/archivist --include-workspace-root
+RUN npm ci -w @applications/archivist --include-workspace-root && \
+    npm run build:archivist
 
 ENTRYPOINT ["sh", "./deployment/images/archivist/entrypoint.sh"]
