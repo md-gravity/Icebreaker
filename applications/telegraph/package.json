@@ -6,7 +6,7 @@
     "dev": "tsx watch --clear-screen=false src/main.ts",
     "start": "tsx src/main.ts",
     "watch": "tsc --watch",
-    "build": "npm run prisma:generate && tsc --build --clean && tsc && tsc-alias",
+    "build": "tsc --build --clean && tsc && tsc-alias",
     "===utils===": "===utils===",
     "debug": "tsx watch --inspect=0.0.0.0:9229 --clear-screen=false src/main.ts",
     "typecheck": "tsc --noEmit true",
