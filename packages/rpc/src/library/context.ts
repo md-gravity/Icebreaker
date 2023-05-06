@@ -8,6 +8,12 @@ type WSResponse = CreateWSSContextFnOptions['res']
 
 type Response = HTTPResponse | WSResponse
 
+/**
+ * For future, we need to, somehow, to split http  and socket context
+ * and make procedures infer this types.
+ * Currently, we don't know on which server tRPC will be used.
+ * Response type could be http response or socket.
+ */
 const createContext = ({
   req,
   res,
