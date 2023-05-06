@@ -1,6 +1,4 @@
-import {createWSServer, logConnections, type WSRouter} from '@packages/rpc'
-
-import {roomRouter} from '@app/router'
+import {setupServer} from '@app/gateway/server'
 import {connectDuct} from '@app/services/duct.service'
 
 const main = async () => {
@@ -11,11 +9,7 @@ const main = async () => {
     throw new Error('PORT is not defined')
   }
 
-  const server = createWSServer({router: roomRouter as WSRouter})
-
-  server.listen(port)
-
-  logConnections(server.getWS())
+  setupServer(port)
 }
 
 main()

@@ -1,14 +1,11 @@
-import {Server as HTTPServer} from 'node:http'
+import {ServerInterface} from '../gateways/server.interface'
 
-import {Server as WSServer} from 'ws'
+const logConnections = (server: ServerInterface) => {
+  server.onConnection(async (ws) => {
+    console.log(`Connection: ++${await server.getConnectionsCount()}`)
 
-const logConnections = (server: HTTPServer | WSServer) => {
-  server.on('connection', (ws) => {
-    const connections =
-      'connections' in server ? server.connections : server.clients.size
-    console.log(`➕➕ Connection (${connections})`)
-    ws.once('close', () => {
-      console.log(`➖➖ Connection (${connections})`)
+    ws.once('close', async () => {
+      console.log(`Connection: --${await server.getConnectionsCount()}`)
     })
   })
 }

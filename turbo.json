@@ -14,9 +14,11 @@
       "dependsOn": ["^build"]
     },
     "build": {
-      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts"],
-      "outputs": ["build/**", ".next/**"],
-      "dependsOn": ["^build", "prisma:generate"]
+      "cache": false,
+      "dependsOn": ["^build", "prisma:generate", "tailwind"]
+    },
+    "tailwind": {
+      "cache": false
     },
     "prisma:generate": {
       "cache": false

@@ -1,1 +1,1 @@
-export {type PassportRouter} from '@app/router'
+export {type PassportRouter} from '@app/gateway/router'

@@ -7,3 +7,5 @@ build
 .turbo
 tsconfig.tsbuildinfo
 .env
+.next
+tailwind.build.css
