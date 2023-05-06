@@ -1,7 +1,8 @@
-**/node_modules
-**/build
-**/.turbo
+node_modules
+build
+.turbo
 .next
+tailwind.build.css
 
 **/.env
 

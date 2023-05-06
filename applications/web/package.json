@@ -2,12 +2,14 @@
   "name": "@applications/web",
   "version": "0.1.0",
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"npm run tailwind:dev\" \"next dev\"",
     "start": "next start",
     "build": "next build",
     "watch": "tsc --watch",
+    "tailwind": "tailwindcss -c ./src/styles/tailwind.config.js -i ./src/styles/tailwind.css -o ./src/styles/tailwind.build.css --minify",
+    "tailwind:dev": "npm run tailwind -- --watch",
     "===utils===": "===utils===",
-    "debug": "NODE_OPTIONS='--inspect=0.0.0.0:9229' next dev",
+    "debug": "concurrently \"npm run tailwind:dev\"  \"NODE_OPTIONS='--inspect=0.0.0.0:9229' next dev\"",
     "typecheck": "tsc --noEmit true",
     "lint": "next lint",
     "lint:fix": "next lint --fix"
@@ -21,7 +23,7 @@
     "@tanstack/react-query-devtools": "^4.29.1",
     "@trpc/client": "^10.20.0",
     "@trpc/server": "^10.20.0",
-    "next": "13.3.1-canary.4",
+    "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "zod": "^3.20.2"
@@ -31,7 +33,9 @@
     "@packages/ts-configs": "*",
     "@types/node": "18.14.2",
     "@types/react": "18.0.35",
-    "@types/react-dom": "18.0.11"
+    "@types/react-dom": "18.0.11",
+    "concurrently": "^8.0.1",
+    "tailwindcss": "^3.3.1"
   },
   "eslintConfig": {
     "extends": [

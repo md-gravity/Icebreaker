@@ -13,9 +13,11 @@ export default async function Home() {
   }).currentUser.query()
 
   return (
-    <section>
-      <UserForm currentUser={user} />
-      <RoomForm />
+    <section className="flex justify-center items-center h-full">
+      <article className="w-1/3">
+        <UserForm currentUser={user} />
+        <RoomForm />
+      </article>
     </section>
   )
 }
