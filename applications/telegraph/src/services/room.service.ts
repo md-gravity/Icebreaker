@@ -1,6 +1,5 @@
-import {type Observer} from '@trpc/server/observable'
-
 import {type MessageDtoInterface} from '@packages/dtos'
+import {type Observer} from '@packages/rpc'
 
 import {type JoinInputInterface} from '@app/dtos/join.input'
 import {type OnJoinOutputInterface} from '@app/dtos/on-join.output'

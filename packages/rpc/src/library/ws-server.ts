@@ -1,5 +1,9 @@
 import {applyWSSHandler} from '@trpc/server/adapters/ws'
-import {observable} from '@trpc/server/observable'
+import {
+  observable,
+  type Observable,
+  type Observer,
+} from '@trpc/server/observable'
 import {WSSHandlerOptions} from '@trpc/server/src/adapters/ws'
 import {AnyRouter} from '@trpc/server/src/core'
 import WS, {type Server} from 'ws'
@@ -52,4 +56,10 @@ const createWSServer = ({router}: {router: WSRouter}) => {
   }
 }
 
-export {createWSServer, type WSRouter, observable}
+export {
+  createWSServer,
+  type WSRouter,
+  observable,
+  type Observable,
+  type Observer,
+}
