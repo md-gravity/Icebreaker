@@ -1,4 +1,8 @@
-import {AuthOutputInterface} from '@app/dtos/auth.output'
+import crypto from 'node:crypto'
+
+import {type Payload as JwtPayload, sign} from '@packages/authentication'
+
+import {type AuthOutputInterface} from '@app/dtos/auth.output'
 import {type CreateTemporalUserInputInterface} from '@app/dtos/create-temporal-user.input'
 import {type SignInInputInterface} from '@app/dtos/sign-in-user.input'
 import {type SignUpInputInterface} from '@app/dtos/sign-up-user.input'
@@ -8,8 +12,6 @@ import {
   comparePasswords,
   createPasswordHash,
 } from '@app/services/password.service'
-import {type Payload as JwtPayload, sign} from '@packages/authentication'
-import crypto from 'node:crypto'
 
 async function signUp(
   input: SignUpInputInterface

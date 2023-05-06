@@ -1,6 +1,7 @@
 'use client'
-import {UserDtoInterface} from '@packages/dtos'
 import {type ChangeEvent, type FC, type FormEvent, useState} from 'react'
+
+import {UserDtoInterface} from '@packages/dtos'
 
 import {useCreateTemporalUser} from '@app/users/hooks/create-temporal-user'
 

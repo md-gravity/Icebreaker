@@ -1,9 +1,10 @@
+import {messageDto, roomDto} from '@packages/dtos'
+import {protectedProcedure, router} from '@packages/rpc'
+
 import {createMessageInput} from '@app/dtos/create-message.input'
 import {createRoomInput} from '@app/dtos/create-room.input'
 import {findRoomInput} from '@app/dtos/find-room.input'
-import {protectedProcedure, router} from '@app/handler/trpc'
 import {createMessage, createRoom, findRoom} from '@app/services/rooms.service'
-import {messageDto, roomDto} from '@packages/dtos'
 
 const archivistRouter = router({
   createMessage: protectedProcedure

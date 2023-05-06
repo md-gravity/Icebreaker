@@ -1,21 +1,28 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
-    "setup": {
-      "cache": false,
-      "dependsOn": ["^setup"]
-    },
     "dev": {
       "cache": false,
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "prisma:deploy"]
+    },
+    "debug": {
+      "cache": false,
+      "dependsOn": ["^build", "prisma:deploy"]
     },
     "watch": {
-      "cache": false
+      "cache": false,
+      "dependsOn": ["^build"]
     },
     "build": {
       "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts"],
       "outputs": ["build/**", ".next/**"],
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "prisma:generate"]
+    },
+    "prisma:generate": {
+      "cache": false
+    },
+    "prisma:deploy": {
+      "cache": false
     },
     "typecheck": {
       "inputs": ["src/**/*.tsx", "src/**/*.ts"],
@@ -23,12 +30,10 @@
       "dependsOn": ["^build"]
     },
     "lint": {
-      "inputs": ["src/**/*.tsx", "src/**/*.ts"],
-      "outputs": []
+      "cache": false
     },
     "lint:fix": {
-      "inputs": ["src/**/*.tsx", "src/**/*.ts"],
-      "outputs": []
+      "cache": false
     }
   }
 }

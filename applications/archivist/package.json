@@ -4,11 +4,11 @@
   "main": "./build/index.js",
   "scripts": {
     "dev": "tsx watch --clear-screen=false src/main.ts",
-    "debug": "tsx watch --inspect=0.0.0.0:9229 --clear-screen=false src/main.ts",
     "start": "tsx src/main.ts",
     "watch": "tsc --watch",
     "build": "tsc --build --clean && tsc && tsc-alias",
     "===utils===": "===utils===",
+    "debug": "tsx watch --inspect=0.0.0.0:9229 --clear-screen=false src/main.ts",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
@@ -16,13 +16,10 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev --create-only --name",
     "prisma:deploy": "prisma migrate deploy",
-    "prisma:studio": "prisma studio",
-    "===scripts===": "===scripts===",
-    "postinstall": "npm run build",
-    "prepare": "npm run prisma:generate"
+    "prisma:studio": "prisma studio"
   },
   "dependencies": {
-    "@packages/authentication": "*",
+    "@packages/rpc": "*",
     "@packages/duct": "*",
     "@packages/dtos": "*",
     "@prisma/client": "^4.10.1",

@@ -1,1 +1,1 @@
-export {type ArchivistRouter} from '@app/handler'
+export {type ArchivistRouter} from '@app/router'

@@ -1,1 +1,1 @@
-export {type RoomRouter} from '@app/handler'
+export {type RoomRouter} from '@app/router'

@@ -1,5 +1,6 @@
-import {messageDto} from '@packages/dtos'
 import {z} from 'zod'
+
+import {messageDto} from '@packages/dtos'
 
 const createMessageInput = messageDto.pick({
   roomId: true,

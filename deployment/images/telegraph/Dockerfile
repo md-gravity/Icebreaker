@@ -6,6 +6,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm ci --workspace=@applications/telegraph --include-workspace-root
+RUN npm ci -w @applications/telegraph --include-workspace-root && \
+    npm run build:telegraph
 
 ENTRYPOINT ["sh", "./deployment/images/telegraph/entrypoint.sh"]

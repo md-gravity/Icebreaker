@@ -1,5 +1,6 @@
-import {MessageDtoInterface} from '@packages/dtos'
 import {useEffect} from 'react'
+
+import {MessageDtoInterface} from '@packages/dtos'
 
 import {useTelegraph} from '@app/room/providers/telegraph'
 

@@ -6,6 +6,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install --workspace=@applications/passport --include-workspace-root
+RUN npm ci -w @applications/passport --include-workspace-root && \
+    npm run build:passport
 
 ENTRYPOINT ["sh", "./deployment/images/passport/entrypoint.sh"]

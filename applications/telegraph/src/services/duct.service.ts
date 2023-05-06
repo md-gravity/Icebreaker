@@ -1,9 +1,10 @@
-import {getPrismaClient} from '@app/library/prisma-client'
 import {
   userCreatedEvent,
   connectDuct as connect,
   roomCreatedEvent,
 } from '@packages/duct'
+
+import {getPrismaClient} from '@app/library/prisma-client'
 
 const QUEUE_GROUP_NAME = 'telegraph-service'
 const ACK_WAIT_ITERATOR_TIMEOUT = 5000

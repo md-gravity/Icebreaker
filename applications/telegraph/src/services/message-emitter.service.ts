@@ -1,5 +1,6 @@
-import {getRoomEmitter} from '@app/library/room-emitter'
 import {MessageDtoInterface} from '@packages/dtos'
+
+import {getRoomEmitter} from '@app/library/room-emitter'
 
 const EVENT = 'message'
 

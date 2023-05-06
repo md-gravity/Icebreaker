@@ -15,8 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci --workspace=@applications/archivist --include-workspace-root
-      - run: npm run archivist:lint
+      - run: npm ci -w @applications/archivist --include-workspace-root
+      - run: npm run build:archivist
+      - run: npm run lint:archivist
   typecheck:
     runs-on: ubuntu-22.04
     steps:
@@ -24,14 +25,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci ---workspace=@applications/archivist --include-workspace-root
-      - run: npm run archivist:typecheck
-  build:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 19
-      - run: npm ci ---workspace=@applications/archivist --include-workspace-root
-      - run: npm run archivist:build
+      - run: npm ci -w @applications/archivist --include-workspace-root
+      - run: npm run build:archivist
+      - run: npm run typecheck:archivist

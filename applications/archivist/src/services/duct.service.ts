@@ -1,4 +1,3 @@
-import {getPrismaClient} from '@app/library/prisma-client'
 import {roomDto} from '@packages/dtos'
 import {
   connectDuct as connect,
@@ -7,6 +6,8 @@ import {
   roomCreatedEvent,
   getNATSClient,
 } from '@packages/duct'
+
+import {getPrismaClient} from '@app/library/prisma-client'
 
 const QUEUE_GROUP_NAME = 'archivist-service'
 const ACK_WAIT_ITERATOR_TIMEOUT = 5000

@@ -1,5 +1,6 @@
-import {userDto} from '@packages/dtos/build/user.dto'
 import {z} from 'zod'
+
+import {userDto} from '@packages/dtos/build/user.dto'
 
 const signUpInput = userDto
   .pick({

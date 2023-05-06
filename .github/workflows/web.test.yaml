@@ -17,8 +17,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci --workspace=@applications/web --include-workspace-root
-      - run: npm run web:lint
+      - run: npm ci -w @applications/web --include-workspace-root
+      - run: npm run build:web
+      - run: npm run lint:web
   typecheck:
     runs-on: ubuntu-22.04
     steps:
@@ -26,14 +27,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci ---workspace=@applications/web --include-workspace-root
-      - run: npm run web:typecheck
-  build:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 19
-      - run: npm ci ---workspace=@applications/web --include-workspace-root
-      - run: npm run web:build
+      - run: npm ci -w @applications/web --include-workspace-root
+      - run: npm run build:web
+      - run: npm run typecheck:web

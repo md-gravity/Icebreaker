@@ -1,10 +1,12 @@
+import {createHash} from 'node:crypto'
+
+import {type MessageDtoInterface, type RoomDtoInterface} from '@packages/dtos'
+
 import {type CreateMessageInputInterface} from '@app/dtos/create-message.input'
 import {type CreateRoomInput} from '@app/dtos/create-room.input'
 import {type FindRoomInput} from '@app/dtos/find-room.input'
 import {getPrismaClient} from '@app/library/prisma-client'
 import {emitRoomCreated} from '@app/services/duct.service'
-import {type MessageDtoInterface, type RoomDtoInterface} from '@packages/dtos'
-import {createHash} from 'node:crypto'
 
 const createRoom = async (
   input: CreateRoomInput,

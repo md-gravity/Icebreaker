@@ -1,5 +1,6 @@
-import {userDto} from '@packages/dtos'
 import {z} from 'zod'
+
+import {userDto} from '@packages/dtos'
 
 const createTemporalUserInput = userDto.pick({username: true})
 

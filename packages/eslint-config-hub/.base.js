@@ -12,31 +12,39 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error', {endOfLine: 'auto'}],
     'sort-keys-fix/sort-keys-fix': 2,
-    'import/order': [
-      'error',
+    "import/order": [
+      "error",
       {
-        alphabetize: {
-          caseInsensitive: true,
-          order: 'asc',
-        },
-        'newlines-between': 'always',
-        groups: [
-          ['builtin', 'external'],
-          'internal',
-          ['parent', 'sibling', 'index'],
-          'type',
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
         ],
-        pathGroups: [
+        "pathGroups": [
           {
-            pattern: '@app/**',
-            group: 'internal',
+            "pattern": "node:*",
+            "group": "builtin"
           },
           {
-            pattern: '@packages/**',
-            group: 'internal',
+            "pattern": "@packages/**",
+            "group": "external",
+            "position": "after"
           },
+          {
+            "pattern": "@app/**",
+            "group": "internal"
+          }
         ],
-      },
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
     ],
     'object-curly-spacing': ['error', 'never'],
     'array-bracket-spacing': ['error', 'never'],

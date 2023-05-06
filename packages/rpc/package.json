@@ -1,0 +1,32 @@
+{
+  "name": "@packages/rpc",
+  "version": "0.0.1",
+  "main": "./build/index.js",
+  "scripts": {
+    "dev": "tsx watch src",
+    "watch": "tsc --watch",
+    "build": "tsc --build --clean && tsc",
+    "===utils===": "===utils===",
+    "typecheck": "tsc --noEmit true",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "dependencies": {
+    "@packages/authentication": "*",
+    "@prisma/client": "^4.10.1",
+    "@trpc/server": "^10.20.0",
+    "ws": "^8.12.0"
+  },
+  "devDependencies": {
+    "@packages/eslint-config-hub": "*",
+    "@packages/ts-configs": "*",
+    "@types/node": "^18.11.3",
+    "@types/ws": "^8.5.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@packages/eslint-config-hub/.base.js"
+    ]
+  },
+  "prettier": "@packages/eslint-config-hub/.prettierrc.js"
+}

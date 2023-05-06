@@ -15,8 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci --workspace=@applications/telegraph --include-workspace-root
-      - run: npm run telegraph:lint
+      - run: npm ci -w @applications/telegraph --include-workspace-root
+      - run: npm run build:telegraph
+      - run: npm run lint:telegraph
   typecheck:
     runs-on: ubuntu-22.04
     steps:
@@ -24,14 +25,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci ---workspace=@applications/telegraph --include-workspace-root
-      - run: npm run telegraph:typecheck
-  build:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 19
-      - run: npm ci ---workspace=@applications/telegraph --include-workspace-root
-      - run: npm run telegraph:build
+      - run: npm ci -w @applications/telegraph --include-workspace-root
+      - run: npm run build:telegraph
+      - run: npm run typecheck:telegraph

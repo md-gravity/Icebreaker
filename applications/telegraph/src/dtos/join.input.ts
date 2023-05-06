@@ -1,5 +1,6 @@
-import {roomOutput} from '@app/dtos/room.output'
 import {z} from 'zod'
+
+import {roomOutput} from '@app/dtos/room.output'
 
 const joinInput = z.object({
   url: roomOutput.shape.url,

@@ -8,9 +8,7 @@
     "===utils===": "===utils===",
     "typecheck": "tsc --noEmit true",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix",
-    "===scripts===": "===scripts===",
-    "prepare": "npm run build"
+    "lint:fix": "eslint src --fix"
   },
   "dependencies": {
     "node-nats-streaming": "^0.3.2"
