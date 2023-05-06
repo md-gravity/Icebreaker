@@ -1,5 +1,5 @@
 export {createHTTPServer, type HTTPRouter} from './library/http-server'
-export {createWSServer, type WSRouter} from './library/ws-server'
+export {createWSServer, type WSRouter, observable} from './library/ws-server'
 export * from './library/context'
 export {setCookies} from './utilites/set-cookies'
 export {setCookieToken} from './utilites/set-cookies-token'

@@ -1,7 +1,5 @@
-import {observable} from '@trpc/server/observable'
-
 import {messageDto, type MessageDtoInterface} from '@packages/dtos'
-import {protectedProcedure, router} from '@packages/rpc'
+import {protectedProcedure, router, observable} from '@packages/rpc'
 
 import {joinInput} from '@app/dtos/join.input'
 import {type OnJoinOutputInterface} from '@app/dtos/on-join.output'
