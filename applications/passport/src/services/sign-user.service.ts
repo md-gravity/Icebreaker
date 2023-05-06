@@ -75,7 +75,7 @@ async function signIn(
   return {token, user}
 }
 
-async function findUserById(jwtPayload: JwtPayload) {
+async function findUserByToken(jwtPayload: JwtPayload) {
   return getPrismaClient().user.findUnique({
     where: {id: jwtPayload.userId},
   })
@@ -94,4 +94,4 @@ function createHashForTemporalUser(username): string {
     .digest('hex')
 }
 
-export {signUp, signIn, findUserById, temporalSignUp}
+export {signUp, signIn, findUserByToken, temporalSignUp}

@@ -5,7 +5,7 @@ import {createTemporalUserInput} from '@app/dtos/create-temporal-user.input'
 import {signInInput} from '@app/dtos/sign-in-user.input'
 import {signUpInput} from '@app/dtos/sign-up-user.input'
 import {
-  findUserById,
+  findUserByToken,
   signIn,
   signUp,
   temporalSignUp,
@@ -30,7 +30,7 @@ const passportRouter = router({
         return null
       }
 
-      return findUserById(jwt)
+      return findUserByToken(jwt)
     }),
   signIn: procedure
     .input((body) => signInInput.parse(body))
